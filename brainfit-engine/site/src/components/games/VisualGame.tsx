@@ -57,12 +57,18 @@ export default function VisualGame({ onComplete }: Props) {
     }, 850);
   };
 
+  // cleanup on unmount only — do NOT clear on every gamePhase change
+  // (clearing on phase change cancels the very timer that drives the next transition)
+  useEffect(() => {
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, []);
+
   useEffect(() => {
     if (gamePhase === 'done') {
-      setTimeout(() => onComplete(Math.round((correct / 4) * 100)), 900);
+      const t = setTimeout(() => onComplete(Math.round((correct / 4) * 100)), 900);
+      return () => clearTimeout(t);
     }
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [gamePhase]);
+  }, [gamePhase, correct, onComplete]);
 
   if (gamePhase === 'intro') return (
     <div className="text-center py-4">
