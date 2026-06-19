@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "domain": "brainfitankara.com",
+    "city": "Ankara",
+    "title": "BrainFit Ankara — Beyin Egzersizi Merkezi",
+    "description": "BrainFit Ankara — nöroplastisite temelli beyin egzersizi programları. Zihin Check-Up ile çocuğunuzun öğrenme potansiyelini keşfedin.",
+    "keywords": [
+      "brainfit ankara",
+      "beyin egzersizi ankara",
+      "dikkat eğitimi",
+      "zihin check up",
+      "öğrenme güçlüğü ankara"
+    ]
+  },
+  "hero": {
+    "eyebrow": "BrainFit Ankara",
+    "title": "Öğrenmenin önündeki kök nedeni buluyoruz",
+    "subtitle": "Nöroplastisite temelli, kişiye özel beyin egzersizleriyle Ankara'da dikkat, hafıza ve öğrenme becerilerini güçlendiriyoruz.",
+    "ctaPrimary": "Zihin Check-Up randevusu al",
+    "ctaSecondary": "Programları incele"
+  },
+  "intro": {
+    "title": "BrainFit nedir?",
+    "body": "BrainFit, 2001'den bu yana bilimsel temelli nörobilimsel programlarla öğrenme becerilerini geliştiren bütünsel bir beyin gelişim sistemidir. Beynin 5 temel alanını ölçer, zayıf alanları kişiye özel egzersizlerle güçlendirir."
+  },
+  "skills": [
+    {
+      "name": "Dikkat"
+    },
+    {
+      "name": "Hafıza"
+    },
+    {
+      "name": "Algı-Muhakeme"
+    },
+    {
+      "name": "Psiko-Motor"
+    },
+    {
+      "name": "Özgüven"
+    }
+  ],
+  "checkup": {
+    "name": "Zihin Check-Up (CogMap)",
+    "summary": "Beynin 5 temel alanını (dikkat, motor, sosyal-duygusal, görsel, işitsel) ölçen, öğrenmenin önündeki kök nedeni bulan değerlendirme."
+  },
+  "programs": [
+    {
+      "id": "junior",
+      "name": "Junior",
+      "ages": "3-6 yaş",
+      "summary": "Okul öncesi dönemde dikkat, motor beceri ve duyusal gelişimin temellerini atan hareket tabanlı program.",
+      "heroImagePrompt": "warm bright photo of preschool child doing balance exercise on a soft mat, friendly educational center, natural light, no text"
+    },
+    {
+      "id": "scholar",
+      "name": "Scholar",
+      "ages": "6-18 yaş",
+      "summary": "Okul başarısını destekleyen; dikkat, hafıza, işlem hızı ve okuma becerilerini güçlendiren kişiye özel egzersizler.",
+      "heroImagePrompt": "school age child focused on a cognitive tabletop exercise with an instructor, modern learning studio, no text"
+    },
+    {
+      "id": "senior",
+      "name": "Senior",
+      "ages": "18-99 yaş",
+      "summary": "Yetişkin ve ileri yaş için zihinsel zindelik, hafıza koruma ve odak geliştirme programı.",
+      "heroImagePrompt": "adult doing memory and focus exercise in a calm modern studio, no text"
+    }
+  ],
+  "cta": {
+    "title": "Ankara'da ilk adımı atın",
+    "body": "Zihin Check-Up değerlendirmesiyle çocuğunuzun güçlü ve gelişime açık alanlarını netleştirelim.",
+    "button": "Hemen randevu al"
+  },
+  "contact": {
+    "phone": "+90 312 000 00 00",
+    "whatsapp": "+905300000000",
+    "email": "ankara@brainfit.com.tr",
+    "address": "Çankaya Mah. Örnek Cad. No:1, Çankaya / Ankara",
+    "mapsEmbed": "https://www.google.com/maps/embed?pb=..."
+  },
+  "social": {
+    "instagram": "https://instagram.com/brainfitankara",
+    "facebook": "",
+    "youtube": ""
+  }
+}
