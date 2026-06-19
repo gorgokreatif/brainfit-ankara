@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Marka tasarım token'ları ─────────────────────────────────── */
+:root {
+  --ink: #16202E;
+  --primary: #1F6FB2;
+  --primary-deep: #0E4C82;
+  --accent: #1FA8A0;
+  --warm: #E8893B;
+  --paper: #F4F7FB;
+
+  /* Semantic aliases */
+  --text-base: var(--ink);
+  --bg-base: var(--paper);
+  --border-subtle: rgba(22, 32, 46, 0.1);
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ── Tipografi ────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* ── Erişilebilirlik ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Hero imza efekti — CSS/SVG animated dots ─────────────────── */
+@keyframes drift {
+  0%   { transform: translate(0, 0); }
+  33%  { transform: translate(6px, -8px); }
+  66%  { transform: translate(-5px, 4px); }
+  100% { transform: translate(0, 0); }
+}
+
+.neural-dot {
+  animation: drift 8s ease-in-out infinite;
+  will-change: transform;
+}
+.neural-dot:nth-child(2) { animation-delay: -2s; animation-duration: 11s; }
+.neural-dot:nth-child(3) { animation-delay: -4s; animation-duration: 9s; }
+.neural-dot:nth-child(4) { animation-delay: -1s; animation-duration: 13s; }
+.neural-dot:nth-child(5) { animation-delay: -3s; animation-duration: 10s; }
+
+/* ── Scroll reveal ────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

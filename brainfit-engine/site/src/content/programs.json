@@ -1,0 +1,74 @@
+{
+  "programs": [
+    {
+      "id": "junior",
+      "name": "Junior",
+      "slug": "junior",
+      "ages": "3–6 yaş",
+      "tagline": "Erken dönem beyin gelişiminin en verimli zamanı.",
+      "description": "Okul öncesi dönemde beyin en hızlı gelişimini yaşar. Junior programı, bu kritik pencerede dikkat, motor koordinasyon, işitsel ve görsel işlem becerilerinin temelini güçlü atar. Oyun temelli, çocuğun keşif isteğini besleyen egzersizlerden oluşur.",
+      "benefits": [
+        "Dikkat ve odak süresinin gelişimi",
+        "El-göz koordinasyonu ve denge",
+        "Fonolojik farkındalık (okumaya hazırlık)",
+        "Sosyal beceriler ve duygusal düzenleme",
+        "Okul hazırbulunuşluğu"
+      ],
+      "process": "Her hafta 2-3 kişiselleştirilmiş seans. Program 3-4 ayda somut ilerleme gösterir.",
+      "image": "/images/program-junior.jpg",
+      "color": "warm"
+    },
+    {
+      "id": "scholar",
+      "name": "Scholar",
+      "slug": "scholar",
+      "ages": "6–18 yaş",
+      "tagline": "Okul başarısının arkasındaki beyin kapasitesi.",
+      "description": "İlkokul, ortaokul ve lise döneminde akademik başarının temeli; konu bilgisi değil, bilgiyi işleme kapasitesidir. Scholar programı, dikkat, hafıza, okuma akıcılığı ve işlem hızını geliştirir. Her öğrenci profili farklıdır — program da ona göre şekillenir.",
+      "benefits": [
+        "Okuma akıcılığı ve anlama",
+        "Dikkat ve çalışma hafızası",
+        "İşlem hızı ve organizasyon",
+        "Yazı becerileri",
+        "Öz düzenleme ve motivasyon"
+      ],
+      "process": "Haftada 2-3 seans, 4-6 ay. İlerleme değerlendirmeleriyle bireysel program güncellenir.",
+      "image": "/images/program-scholar.jpg",
+      "color": "primary"
+    },
+    {
+      "id": "senior",
+      "name": "Senior",
+      "slug": "senior",
+      "ages": "18+ yaş",
+      "tagline": "Yetişkin zihninin gizli kapasitesi.",
+      "description": "Nöroplastisite yaşla bitmez. Senior programı, yetişkinler ve ileri yaş için hafıza güçlendirme, odak geliştirme, bilişsel esneklik ve stres yönetimi üzerine kişiselleştirilmiş egzersizler sunar.",
+      "benefits": [
+        "Çalışma hafızası ve konsantrasyon",
+        "Bilişsel esneklik ve problem çözme",
+        "Stres yönetimi ve zihinsel dayanıklılık",
+        "Yaşa bağlı bilişsel koruma",
+        "Performans ve üretkenlik"
+      ],
+      "process": "Haftada 2 seans, 3-6 ay. Bireysel hedefler doğrultusunda yapılandırılır.",
+      "image": "/images/program-senior.jpg",
+      "color": "primary-deep"
+    }
+  ],
+  "checkup": {
+    "name": "Zihin Check-Up",
+    "subtitle": "CogMap Değerlendirmesi",
+    "tagline": "Öğrenmenin önündeki kök nedeni bulmak için ilk adım.",
+    "description": "Zihin Check-Up, beynin 5 temel işlev alanını — Dikkat, İşitsel İşlem, Görsel İşlem, Motor Koordinasyon ve Sosyal-Duygusal Düzenleme — standart görevler ve uzman gözlemiyle ölçen kapsamlı bir profil değerlendirmesidir.",
+    "duration": "60–90 dakika",
+    "output": "Yazılı profil raporu + bireysel program önerisi",
+    "note": "Tanı değil, gelişim haritası. Değerlendirme sonucu tıbbi bir teşhis oluşturmaz; güçlü ve gelişime açık alanları ortaya koyar.",
+    "steps": [
+      { "step": 1, "title": "Ön Görüşme", "desc": "Aile ve çocukla kısa tanışma, beklentilerin netleştirilmesi." },
+      { "step": 2, "title": "5 Alan Değerlendirmesi", "desc": "Her alanda standart görevler ve uzman gözlemi." },
+      { "step": 3, "title": "Profil Raporu", "desc": "Güçlü ve gelişime açık alanların yazılı özeti." },
+      { "step": 4, "title": "Program Önerisi", "desc": "Profile özel egzersiz programı ve sonraki adımlar." }
+    ],
+    "image": "/images/checkup-process.jpg"
+  }
+}

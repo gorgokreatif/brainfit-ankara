@@ -1,0 +1,21 @@
+{
+  "brand": "BrainFit Ankara",
+  "tagline": "İlaçsız, bilimsel temelli zihin gelişim programları",
+  "phone": "+90 312 000 00 00",
+  "whatsapp": "905300000000",
+  "email": "ankara@brainfit.com.tr",
+  "address": "Çankaya Mah. Tunalı Hilmi Cad. No:XX, Çankaya / Ankara",
+  "mapsEmbed": "",
+  "openHours": "Pazartesi – Cumartesi: 09:00 – 18:00",
+  "social": {
+    "instagram": "https://instagram.com/brainfitankara",
+    "facebook": "",
+    "youtube": ""
+  },
+  "footer": {
+    "about": "BrainFit, 2001'den bu yana Singapur kökenli, ilaçsız ve bilimsel temelli zihin gelişim programlarıyla çocukların ve yetişkinlerin potansiyelini ortaya çıkarmaktadır.",
+    "legalLinks": [
+      { "label": "KVKK Aydınlatma Metni", "href": "/kvkk" }
+    ]
+  }
+}

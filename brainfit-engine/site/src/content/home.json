@@ -1,0 +1,143 @@
+{
+  "hero": {
+    "headline": "Çocuğunuzun yapamadığını görüyorsunuz. Biz neden yapamadığını buluyoruz.",
+    "subheadline": "İlaçsız, bilimsel temelli zihin gelişim programlarıyla Ankara'da — ücretsiz değerlendirmeden başlıyor.",
+    "ctaPrimary": { "label": "Ücretsiz Değerlendirme Al", "href": "/degerlendirme" },
+    "ctaSecondary": { "label": "Programları İncele", "href": "/programlar" },
+    "heroImage": "/images/hero.jpg"
+  },
+  "symptoms": {
+    "title": "Bu belirtileri görüyor musunuz?",
+    "intro": "Yalnız değilsiniz. Pek çok ebeveyn aynı kaygıları taşıyor — ve cevabı çoğu zaman beklediklerinden farklı bir yerde buluyorlar.",
+    "items": [
+      "Okurken satır kaybediyor ya da harfleri ters çeviriyor",
+      "Söylenenleri anlamak için birkaç kez tekrar ettiriyor",
+      "Yönergeleri takip etmekte güçlük çekiyor",
+      "Dikkatini uzun süre toplamakta zorlanıyor",
+      "El yazısı yaşına kıyasla düzensiz ve yavaş kalıyor",
+      "Yeni kavramları öğrenmesi beklenenden uzun sürüyor",
+      "Duygularını düzenlemekte güçlük çekiyor, kolay hayal kırıklığına uğruyor",
+      "Zeki olduğunu biliyorsunuz ama okul başarısı bunu yansıtmıyor"
+    ],
+    "bridge": "Bunlar birer başarısızlık değil — beynin gelişime açık bölgelerinin işaretleri. Tanı koymuyoruz; neyin güçlendirilebileceğini gösteriyoruz.",
+    "ctaLabel": "Hangi alan gelişime açık? Öğren →"
+  },
+  "positioning": {
+    "title": "Rehabilitasyon değil, potansiyel.",
+    "body": "BrainFit, 2001 yılında Singapur'da kurulan, bilimsel araştırmalara dayalı bir zihin gelişim sistemidir. Temelinde nöroplastisite yatar: beyin, doğru uyarımla her yaşta güçlenebilir.\n\nBiz çocuğunuzu \"düzeltmeye\" çalışmıyoruz. Öğrenme sürecindeki kök nedenini bulup, o alandaki kapasitesini genişletiyoruz — ilaçsız, baskısız, kişiye özel egzersizlerle.",
+    "trustSignals": [
+      { "label": "20+ Yıllık Bilimsel Temel", "detail": "Singapur kökenli, küresel araştırma altyapısı" },
+      { "label": "İlaçsız Yaklaşım", "detail": "Nöroplastisite temelli egzersiz programları" },
+      { "label": "Kişiye Özel", "detail": "5 alanda profil → bireyselleştirilmiş program" },
+      { "label": "Ölçülebilir İlerleme", "detail": "Her aşamada değerlendirme, somut geri bildirim" }
+    ],
+    "image": "/images/yaklasim.jpg"
+  },
+  "areas": {
+    "title": "5 Gelişim Alanı",
+    "subtitle": "Zihin Check-Up, beynin bu 5 temel alanını ölçer. Her alan birbirini etkiler; zayıf halka bulunup güçlendirilince bütün sistem ilerler.",
+    "items": [
+      {
+        "id": "dikkat",
+        "label": "Dikkat",
+        "description": "Odaklanma süresi, çoklu görev yönetimi, dürtü kontrolü.",
+        "icon": "focus"
+      },
+      {
+        "id": "isitsel",
+        "label": "İşitsel İşlem",
+        "description": "Sesleri ayırt etme, sözel yönergeleri izleme, fonolojik farkındalık.",
+        "icon": "ear"
+      },
+      {
+        "id": "gorsel",
+        "label": "Görsel İşlem",
+        "description": "Harfleri tanıma, satır takibi, uzamsal algı, okuma akıcılığı.",
+        "icon": "eye"
+      },
+      {
+        "id": "motor",
+        "label": "Motor Koordinasyon",
+        "description": "El-göz koordinasyonu, yazı becerisi, denge ve beden farkındalığı.",
+        "icon": "hand"
+      },
+      {
+        "id": "sosyal-duygusal",
+        "label": "Sosyal-Duygusal",
+        "description": "Duygusal düzenleme, empati, arkadaş ilişkileri, özgüven.",
+        "icon": "heart"
+      }
+    ]
+  },
+  "programsPreview": {
+    "title": "Her Yaş İçin Program",
+    "subtitle": "Junior'dan Senior'a — yaşa ve profile özel, kanıta dayalı egzersiz programları.",
+    "ctaLabel": "Tüm Programları Gör"
+  },
+  "testimonials": {
+    "title": "Aileler Anlatıyor",
+    "items": [
+      {
+        "quote": "Oğlum 3. sınıfa kadar okumaktan nefret ediyordu. İlk iki ayda fark ettik — sesleri işlemede bir güçlüğü varmış. Şimdi kendi isteğiyle kitap okuyor.",
+        "name": "Selin A.",
+        "location": "Çankaya, Ankara",
+        "program": "Scholar Program"
+      },
+      {
+        "quote": "Tanı alıp almamak konusunda çok kararsızdık. BrainFit değerlendirmesi bize 'ne eksik, ne güçlendirilmeli' sorusunun cevabını ilaçsız bir yolla verdi. Bu netlik inanılmaz rahatlattı.",
+        "name": "Mehmet K.",
+        "location": "Keçiören, Ankara",
+        "program": "Zihin Check-Up"
+      },
+      {
+        "quote": "Kızımın el yazısı ve dikkat sorunları için geldik. 4 ay içinde hem yazısı düzeldi hem de sınıfta çok daha rahat. Öğretmeni de fark etmiş.",
+        "name": "Ayşe T.",
+        "location": "Bahçelievler, Ankara",
+        "program": "Junior Program"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Sık Sorulan Sorular",
+    "items": [
+      {
+        "q": "BrainFit ile dershane ya da özel ders arasındaki fark nedir?",
+        "a": "Özel ders veya dershane konuyu tekrar öğretir. BrainFit ise öğrenmeyi mümkün kılan beyin kapasitesini güçlendirir — dikkat, hafıza, işitsel ve görsel işlem gibi alanlarda. Bu temeller güçlenince çocuk her konuyu daha kolay öğrenir."
+      },
+      {
+        "q": "Çocuğumun herhangi bir tanısı yok, yine de başvurabilir miyiz?",
+        "a": "Evet, mutlaka. BrainFit'e gelen ailelerin büyük çoğunluğunun tanısı yoktur. Tanı, programımız için bir ön koşul değildir. Değerlendirme size bağımsız, somut bir profil sunar."
+      },
+      {
+        "q": "İlaç kullanan çocuklar da katılabilir mi?",
+        "a": "Evet. BrainFit ilaçsız bir programdır ancak ilaç kullanan çocuklarla da çalışırız. Programımız mevcut tedaviyle çelişmez; aksine tamamlayıcı olabilir. Aile hekiminize de danışmanızı öneririz."
+      },
+      {
+        "q": "Program kaç seans sürer, ne sıklıkta gelinmeli?",
+        "a": "Her profil bireyseldir. Genellikle haftada 2-3 seans, 3-6 ay süren bir program önerilir. İlerleme düzenli değerlendirmelerle takip edilir ve program gerektiğinde güncellenir."
+      },
+      {
+        "q": "Sonuçları ne zaman görmeye başlarız?",
+        "a": "Çoğu aile ilk 6-8 haftada fark görmeye başlar — genellikle dikkat süresi ve ödev direnci üzerinde. Daha kalıcı değişimler 3. ayda belirginleşir. Her çocuk farklıdır; bunu ilk görüşmede açıkça paylaşırız."
+      },
+      {
+        "q": "Değerlendirme nasıl yapılıyor ve ne kadar sürer?",
+        "a": "Zihin Check-Up yaklaşık 60-90 dakikadır. Uzmanımız 5 alanda gözlem ve standart görevler uygular; sonunda size yazılı profil raporu ve program önerisi sunulur."
+      },
+      {
+        "q": "Sigorta veya SGK kapsamında mı?",
+        "a": "BrainFit programları şu an SGK veya özel sigorta kapsamında değildir. Bazı kurumsal çalışan sağlık programları kapsayabilir — işvereninizin sağlık sigortasını kontrol etmenizi öneririz."
+      },
+      {
+        "q": "Online seçenek var mı?",
+        "a": "Bazı takip seansları online yapılabilmektedir. Ancak ilk değerlendirme ve temel egzersiz seansları yüz yüze yürütülmektedir."
+      }
+    ]
+  },
+  "closingCta": {
+    "title": "2 dakika ayırın. Çocuğunuzun zihin profilini görün.",
+    "body": "Ücretsiz interaktif değerlendirmemiz, hangi alanlara bakmak faydalı olabileceğini gösterir. Randevu gerekmez, anında başlayabilirsiniz.",
+    "ctaLabel": "Ücretsiz Değerlendirmeye Başla",
+    "ctaHref": "/degerlendirme"
+  }
+}

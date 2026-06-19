@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "Disleksi Ankara — Çocuğunuz Okurken Zorlanıyor mu?",
+    "description": "Disleksi belirtileri, nedenleri ve BrainFit'in ilaçsız, bilimsel temelli yaklaşımı. Ankara'da ücretsiz değerlendirme.",
+    "keywords": ["disleksi ankara", "okuma güçlüğü ankara", "disleksi tedavisi", "okuma zorluğu çocuk"]
+  },
+  "hero": {
+    "eyebrow": "Disleksi & Okuma Güçlüğü",
+    "title": "Okuması zor, ama öğrenmesi değil.",
+    "body": "Disleksi bir zeka eksikliği değildir. Beynin sesi harfe, harfi anlama dönüştürme biçiminin farklılaşmasıdır. Doğru yaklaşımla bu fark güçlü bir öğrenme zeminene dönüşebilir.",
+    "image": "/images/disleksi.jpg"
+  },
+  "symptoms": {
+    "title": "Tanıdık geliyor mu?",
+    "items": [
+      "Harfleri ters çeviriyor ya da sırasını değiştiriyor (b/d, p/q gibi)",
+      "Okuduğunu anlamakta güçlük çekiyor",
+      "Okurken satır kaybediyor, parmakla takip ediyor",
+      "Yazarken heceleri atlıyor veya karıştırıyor",
+      "Yüksek sesle okumaktan kaçınıyor",
+      "Kelimeyi görmüş olmasına rağmen bir türlü tanıyamıyor",
+      "Zeki olduğunu hissediyorsunuz ama okuma ona çok pahalıya geliyor"
+    ]
+  },
+  "approach": {
+    "title": "BrainFit yaklaşımı",
+    "body": "Dislekside tipik olarak işitsel işlem ve görsel işlem alanları gelişime açıktır. BrainFit, Zihin Check-Up ile hangi alanın kök neden oluşturduğunu belirler; ardından kişiye özel egzersizlerle o kapasiteyi adım adım güçlendirir. İlaç yok, etiket yok — sadece somut, ölçülebilir ilerleme.",
+    "trustNote": "Tanı koymuyoruz. Ama hangi alanın güçlendirilmesinin okumayı kolaylaştıracağını gösteriyoruz."
+  },
+  "faq": [
+    {
+      "q": "Disleksi bir hastalık mı?",
+      "a": "Hayır. Disleksi, beyinin dil ve yazı işleme biçimindeki bir farklılıktır. Zeka veya çalışkanlıkla ilgisi yoktur. Pek çok disleksik birey üstün yaratıcılık ve uzamsal zekaya sahiptir."
+    },
+    {
+      "q": "BrainFit disleksiyi 'iyileştirir' mi?",
+      "a": "BrainFit disleksiyi 'ortadan kaldırmaz'; ancak okuma sürecini zorlaştıran beyin alanlarını (işitsel ve görsel işlem gibi) güçlendirerek okumayı daha erişilebilir kılar."
+    },
+    {
+      "q": "Kaç yaşında başlamak en iyisi?",
+      "a": "Ne kadar erken başlanırsa beyin o kadar hızlı değişir. Ancak nöroplastisite her yaşta çalışır — yetişkinler de faydalanabilir."
+    }
+  ],
+  "cta": {
+    "title": "Okumanın önündeki engeli bulalım.",
+    "body": "Ücretsiz Zihin Check-Up değerlendirmesi, okuma güçlüğünün arkasındaki kök nedeni ortaya koyar.",
+    "ctaLabel": "Ücretsiz Değerlendirme Al",
+    "ctaHref": "/degerlendirme"
+  }
+}

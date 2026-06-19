@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "Dikkat Eksikliği & DEHB Ankara — İlaçsız Destek",
+    "description": "DEHB ve dikkat eksikliği için ilaçsız, bilimsel temelli BrainFit yaklaşımı. Ankara'da ücretsiz değerlendirme.",
+    "keywords": ["dehb ankara", "dikkat eksikliği ankara", "adhd çocuk", "dikkat dağınıklığı tedavisi", "ilaçsız dehb"]
+  },
+  "hero": {
+    "eyebrow": "Dikkat Eksikliği & DEHB",
+    "title": "Dikkat dağınıklığı irade eksikliği değildir.",
+    "body": "DEHB veya dikkat eksikliği tanısı alan çocukların beyni farklı çalışır — tembel değil, farklı. Doğru uyarımla bu beyin, dikkatini gerçekten güçlendirebilir.",
+    "image": "/images/dehb.jpg"
+  },
+  "symptoms": {
+    "title": "Bu tablo tanıdık mı?",
+    "items": [
+      "Bir göreve 10 dakikadan uzun odaklanamıyor",
+      "Verilen yönergeleri başlıyor ama yarıda bırakıyor",
+      "Eşyalarını sürekli kaybediyor, organizasyonu zayıf",
+      "Aşırı hareketli veya tam tersi, aşırı hayalperest",
+      "Impulse kontrolü zayıf — düşünmeden davranıyor",
+      "Uyarıldığında anlık iyi; ama sürdüremiyor",
+      "Becerikli ve zeki ama 'tembel' damgası yiyor"
+    ]
+  },
+  "approach": {
+    "title": "BrainFit yaklaşımı",
+    "body": "DEHB'de en sık etkilenen alanlar dikkat ve çalışma hafızasıdır. BrainFit, bu kapasiteleri hedef alan kişiye özel egzersizlerle beynin odak sistemini güçlendirir. İlaç kullanılıyorsa program bunu tamamlar; ilaç yoksa bağımsız olarak ilerlenir.",
+    "trustNote": "İlaç kullanmak ya da kullanmamak sizin kararınız. BrainFit her iki senaryoda da çalışır."
+  },
+  "faq": [
+    {
+      "q": "DEHB tanısı olmadan da bu programa başlayabilir miyiz?",
+      "a": "Evet. Tanı, BrainFit için ön koşul değildir. Dikkat güçlüğü yaşayan ve henüz tanı almamış birçok çocukla çalışıyoruz."
+    },
+    {
+      "q": "İlaç kullanan çocuklar katılabilir mi?",
+      "a": "Evet. BrainFit ilaçla çelişmez. Ancak ilaç kullanımı hakkında aile hekiminizle bilgi paylaşmanızı öneririz."
+    },
+    {
+      "q": "BrainFit ile ilaç bırakılabilir mi?",
+      "a": "Bu sorunun cevabı hekime aittir, bize değil. BrainFit beyin kapasitesini güçlendirir; ilaç kararı her zaman doktorunuza bırakılmalıdır."
+    }
+  ],
+  "cta": {
+    "title": "Dikkat güçlüğünün kök nedenini bulalım.",
+    "body": "Ücretsiz interaktif değerlendirme, hangi alanların dikkat gelişimini destekleyeceğini gösterir.",
+    "ctaLabel": "Ücretsiz Değerlendirme Al",
+    "ctaHref": "/degerlendirme"
+  }
+}
