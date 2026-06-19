@@ -36,7 +36,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
-          <Image src="/logo.svg" alt="BrainFit Ankara" width={140} height={36} priority />
+          <Image src="/images/brainfit-ankara-logo.png" alt="BrainFit Ankara" width={160} height={48} priority />
         </Link>
 
         {/* Desktop nav */}
