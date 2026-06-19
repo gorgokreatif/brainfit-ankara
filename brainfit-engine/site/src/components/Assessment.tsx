@@ -33,23 +33,30 @@ type GameArea = 'dikkat' | 'isitsel' | 'gorsel' | 'motor' | 'sosyal-duygusal';
 type Phase = 'intro' | 'transition' | 'game' | 'optin' | 'result';
 
 const GAMES: { area: GameArea; emoji: string; label: string; hint: string }[] = [
-  { area: 'dikkat',          emoji: '🔍', label: 'Dikkat Oyunu',         hint: 'Farklı olanı hızlıca bul!' },
-  { area: 'isitsel',         emoji: '👂', label: 'İşitsel Oyun',         hint: 'Sesleri dinle ve tekrar et!' },
-  { area: 'gorsel',          emoji: '👁️', label: 'Görsel Hafıza Oyunu',  hint: 'Ne değişti, bul bakalım!' },
-  { area: 'motor',           emoji: '🎈', label: 'Motor Oyunu',          hint: 'Balonları hızlıca patlat!' },
-  { area: 'sosyal-duygusal', emoji: '🤝', label: 'Duygu Oyunu',          hint: 'Karakterin nasıl hissediyor?' },
+  { area: 'dikkat',          emoji: '🔍', label: 'Dikkat Oyunu',        hint: 'Farklı olanı hızlıca bul!' },
+  { area: 'isitsel',         emoji: '👂', label: 'İşitsel Oyun',        hint: 'Sesleri dinle ve tekrar et!' },
+  { area: 'gorsel',          emoji: '👁️', label: 'Görsel Hafıza Oyunu', hint: 'Ne değişti, bul bakalım!' },
+  { area: 'motor',           emoji: '🎈', label: 'Motor Oyunu',         hint: 'Balonları hızlıca patlat!' },
+  { area: 'sosyal-duygusal', emoji: '🤝', label: 'Duygu Oyunu',         hint: 'Karakterin nasıl hissediyor?' },
 ];
 
 const AREA_EMOJI: Record<string, string> = {
   dikkat: '🔍', isitsel: '👂', gorsel: '👁️', motor: '🎈', 'sosyal-duygusal': '🤝',
 };
 
+// Profile-based tag: sorted rank among 5 areas
+// Rank 0-1 (top 2) → Güçlü Alan, Rank 2-3 → Takip Edilebilir, Rank 4 (bottom) → Gelişime Açık
+function rankTag(rank: number) {
+  if (rank <= 1) return { label: 'Güçlü Alan',       emoji: '⭐', color: '#059669', bg: '#d1fae5' };
+  if (rank <= 3) return { label: 'Takip Edilebilir', emoji: '👀', color: '#d97706', bg: '#fef3c7' };
+  return              { label: 'Gelişime Açık',      emoji: '🚀', color: '#dc2626', bg: '#fee2e2' };
+}
+
 export default function Assessment({ data, whatsapp }: { data: AssessmentData; whatsapp: string }) {
   const [phase, setPhase] = useState<Phase>('intro');
   const [gameIdx, setGameIdx] = useState(0);
   const [scores, setScores] = useState<Partial<Record<GameArea, number>>>({});
 
-  // Form state
   const [form, setForm] = useState({ name: '', phone: '', email: '', childAge: '', website: '' });
   const [kvkk, setKvkk] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -107,7 +114,6 @@ export default function Assessment({ data, whatsapp }: { data: AssessmentData; w
           🚀 {intro.cta}
         </button>
         <p className="mt-6 text-sm font-body" style={{ color: 'rgba(255,255,255,0.5)' }}>{intro.note}</p>
-        {/* Game preview chips */}
         <div className="flex flex-wrap justify-center gap-3 mt-12">
           {GAMES.map(g => (
             <span key={g.area} className="text-sm px-4 py-2 rounded-full font-semibold"
@@ -120,17 +126,16 @@ export default function Assessment({ data, whatsapp }: { data: AssessmentData; w
     </section>
   );
 
-  /* ── TRANSITION (between games) ── */
+  /* ── TRANSITION ── */
   if (phase === 'transition') {
     const next = GAMES[gameIdx];
-    const completedCount = gameIdx;
     return (
       <section className="min-h-screen flex items-center" style={{ background: 'var(--paper)' }}>
         <Container narrow className="py-20 text-center">
-          {completedCount > 0 && (
+          {gameIdx > 0 && (
             <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-6"
               style={{ backgroundColor: 'rgba(31,174,160,0.12)', color: 'var(--accent)' }}>
-              ✓ {completedCount}/{GAMES.length} oyun tamamlandı
+              ✓ {gameIdx}/{GAMES.length} oyun tamamlandı
             </div>
           )}
           <div className="text-7xl mb-5 pop-in inline-block">{next.emoji}</div>
@@ -145,7 +150,6 @@ export default function Assessment({ data, whatsapp }: { data: AssessmentData; w
             style={{ backgroundColor: 'var(--primary)' }}>
             Oyuna Geç! 🎮
           </button>
-          {/* Mini progress dots */}
           <div className="flex justify-center gap-3 mt-10">
             {GAMES.map((g, i) => (
               <div key={g.area} style={{
@@ -164,16 +168,15 @@ export default function Assessment({ data, whatsapp }: { data: AssessmentData; w
   if (phase === 'game') {
     const current = GAMES[gameIdx];
     const GameComponent =
-      current.area === 'dikkat' ? AttentionGame :
-      current.area === 'isitsel' ? AuditoryGame :
-      current.area === 'gorsel' ? VisualGame :
-      current.area === 'motor' ? MotorGame :
+      current.area === 'dikkat'          ? AttentionGame :
+      current.area === 'isitsel'         ? AuditoryGame :
+      current.area === 'gorsel'          ? VisualGame :
+      current.area === 'motor'           ? MotorGame :
       SocialGame;
 
     return (
       <section className="min-h-screen flex items-center" style={{ background: 'var(--paper)' }}>
         <Container narrow className="py-12">
-          {/* Game header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <span className="text-2xl">{current.emoji}</span>
@@ -184,8 +187,6 @@ export default function Assessment({ data, whatsapp }: { data: AssessmentData; w
               {gameIdx + 1}/{GAMES.length}
             </span>
           </div>
-
-          {/* Game card */}
           <div className="rounded-3xl p-6 md:p-8 bg-white shadow-lg" style={{ border: '1px solid var(--border-subtle)' }}>
             <GameComponent onComplete={handleGameComplete} />
           </div>
@@ -242,53 +243,78 @@ export default function Assessment({ data, whatsapp }: { data: AssessmentData; w
   );
 
   /* ── RESULT ── */
+  // Algorithm: sort 5 areas by game score (high = good).
+  // Rank 0-1 → Güçlü Alan ⭐, Rank 2-3 → Takip Edilebilir 👀, Rank 4 → Gelişime Açık 🚀
+  const ranked = [...GAMES]
+    .map(g => ({ ...g, pct: scores[g.area] ?? 0 }))
+    .sort((a, b) => b.pct - a.pct);
+
+  const weakest = ranked[4];
   const waMsg = encodeURIComponent(rc.cta.whatsapp);
+
   return (
     <section className="min-h-screen" style={{ background: 'var(--paper)' }}>
       <Container className="py-16">
         <div className="max-w-2xl mx-auto">
+
           <div className="text-center mb-10 pop-in">
             <div className="text-6xl mb-4">🏆</div>
             <h1 className="text-3xl md:text-4xl font-display font-extrabold mb-3" style={{ color: 'var(--ink)' }}>{rc.title}</h1>
             <p className="font-body text-sm max-w-lg mx-auto" style={{ color: 'rgba(22,32,46,0.6)' }}>{rc.intro}</p>
           </div>
 
-          <div className="rounded-3xl p-6 md:p-8 mb-8 bg-white shadow-lg" style={{ border: '1px solid var(--border-subtle)' }}>
-            <div className="space-y-6">
-              {GAMES.map((g, i) => {
+          {/* Güç Haritası — en güçlüden en zayıfa */}
+          <div className="rounded-3xl p-6 md:p-8 mb-6 bg-white shadow-lg" style={{ border: '1px solid var(--border-subtle)' }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: 'rgba(22,32,46,0.4)' }}>
+              Güç Haritası — en güçlüden gelişime açığa
+            </p>
+            <div className="space-y-5">
+              {ranked.map((g, rank) => {
                 const area = areas.find(a => a.id === g.area);
-                const pct = scores[g.area] ?? 0;
-                const tag = pct >= 60 ? rc.highScore : pct >= 30 ? rc.midScore : rc.lowScore;
-                const barColor = pct >= 60 ? '#e53e3e' : pct >= 30 ? 'var(--warm)' : 'var(--accent)';
-                const tagEmoji = pct >= 60 ? '🚀' : pct >= 30 ? '👀' : '⭐';
+                const tag = rankTag(rank);
                 return (
-                  <div key={g.area} className="quiz-enter" style={{ animationDelay: `${i * 0.09}s` }}>
+                  <div key={g.area} className="quiz-enter" style={{ animationDelay: `${rank * 0.1}s` }}>
                     <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg">{AREA_EMOJI[g.area]}</span>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-base">{AREA_EMOJI[g.area]}</span>
                         <span className="font-bold font-display text-sm" style={{ color: 'var(--ink)' }}>
                           {area?.label ?? g.label}
                         </span>
                         <span className="text-xs px-2.5 py-0.5 rounded-full font-bold"
-                          style={{ backgroundColor: barColor + '22', color: barColor }}>
-                          {tagEmoji} {tag.label}
+                          style={{ backgroundColor: tag.bg, color: tag.color }}>
+                          {tag.emoji} {tag.label}
                         </span>
                       </div>
-                      <span className="text-xs font-bold" style={{ color: barColor }}>%{pct}</span>
+                      <span className="text-xs font-bold tabular-nums ml-2" style={{ color: tag.color }}>%{g.pct}</span>
                     </div>
                     <div className="h-3 rounded-full overflow-hidden" style={{ backgroundColor: 'rgba(22,32,46,0.08)' }}>
                       <div className="h-full rounded-full"
-                        style={{ width: `${pct}%`, backgroundColor: barColor, transition: 'width 1.3s cubic-bezier(0.22,1,0.36,1)' }} />
+                        style={{ width: `${g.pct}%`, backgroundColor: tag.color, transition: 'width 1.3s cubic-bezier(0.22,1,0.36,1)' }} />
                     </div>
-                    <p className="text-xs font-body mt-1.5" style={{ color: 'rgba(22,32,46,0.55)' }}>
-                      {tag.description}{area ? ` — ${area.description}` : ''}
-                    </p>
+                    {area?.description && (
+                      <p className="text-xs font-body mt-1" style={{ color: 'rgba(22,32,46,0.48)' }}>{area.description}</p>
+                    )}
                   </div>
                 );
               })}
             </div>
           </div>
 
+          {/* Öncelikli alan callout */}
+          <div className="rounded-2xl p-5 mb-6 flex gap-4 items-start"
+            style={{ backgroundColor: '#fff7ed', border: '2px solid #fed7aa' }}>
+            <div className="text-3xl flex-shrink-0">{AREA_EMOJI[weakest.area]}</div>
+            <div>
+              <p className="font-bold text-sm mb-1" style={{ color: '#9a3412' }}>
+                Öncelikli gelişim alanı: {areas.find(a => a.id === weakest.area)?.label ?? weakest.label}
+              </p>
+              <p className="text-xs leading-relaxed" style={{ color: '#c2410c' }}>
+                Bu alandaki oyun performansı diğer alanlara kıyasla daha düşük kaldı. Bir uzmanla ücretsiz görüşme yaparak bu alanı birlikte değerlendirin.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA */}
           <div className="rounded-3xl p-6 md:p-8 text-center"
             style={{ background: 'linear-gradient(135deg,var(--primary-deep) 0%,var(--primary) 100%)' }}>
             <div className="text-3xl mb-3">🎯</div>
@@ -308,6 +334,7 @@ export default function Assessment({ data, whatsapp }: { data: AssessmentData; w
               </Button>
             </div>
           </div>
+
         </div>
       </Container>
     </section>
