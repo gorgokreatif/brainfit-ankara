@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { upload } from '@vercel/blob/client'
 
 const PAGE_SLOTS = [
   // ─── Hero Bölümleri ───
@@ -76,28 +77,27 @@ export default function GorsellerPage() {
     if (!file || !editing) return
     setUploading(true)
     setMsg('')
-    const form = new FormData()
-    form.append('file', file)
-    const uploadRes = await fetch('/api/upload', { method: 'POST', body: form })
-    if (!uploadRes.ok) {
-      setMsg('Yükleme başarısız. Vercel Blob token ayarlandı mı kontrol edin.')
+    try {
+      const blob = await upload(file.name, file, {
+        access: 'public',
+        handleUploadUrl: '/api/upload',
+      })
+      const updated = { ...editing, url: blob.url }
+      setEditing(updated)
+      setSaving(true)
+      const ok = await persist(updated)
+      if (ok) {
+        setMsg('Görsel yüklendi ve kaydedildi!')
+        await load()
+      } else {
+        setMsg('Görsel yüklendi ama kaydedilemedi. Kaydet butonunu deneyin.')
+      }
+      setSaving(false)
+    } catch {
+      setMsg('Görsel yüklenemedi. Dosya formatını (JPG/PNG/WEBP, max 10 MB) kontrol edin.')
+    } finally {
       setUploading(false)
-      return
     }
-    const { url } = await uploadRes.json()
-    const updated = { ...editing, url }
-    setEditing(updated)
-    // Dosya yüklenince otomatik kaydet
-    setSaving(true)
-    const ok = await persist(updated)
-    if (ok) {
-      setMsg('Görsel yüklendi ve kaydedildi!')
-      await load()
-    } else {
-      setMsg('Görsel yüklendi ama kaydedilemedi. Kaydet butonunu deneyin.')
-    }
-    setSaving(false)
-    setUploading(false)
   }
 
   async function save() {

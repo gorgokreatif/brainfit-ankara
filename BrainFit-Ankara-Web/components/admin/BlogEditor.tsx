@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import { upload } from '@vercel/blob/client'
 
 interface Category { id: string; name: string; color: string }
 interface PostData {
@@ -25,6 +26,7 @@ export default function BlogEditor({ postId }: { postId?: string }) {
   const [cats, setCats] = useState<Category[]>([])
   const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
   const [preview, setPreview] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
@@ -47,12 +49,19 @@ export default function BlogEditor({ postId }: { postId?: string }) {
     const file = e.target.files?.[0]
     if (!file) return
     setUploading(true)
-    const form = new FormData()
-    form.append('file', file)
-    const res = await fetch('/api/upload', { method: 'POST', body: form })
-    const d = await res.json()
-    setUploading(false)
-    if (d.url) setField('imageUrl', d.url)
+    setUploadError('')
+    try {
+      const blob = await upload(file.name, file, {
+        access: 'public',
+        handleUploadUrl: '/api/upload',
+      })
+      setField('imageUrl', blob.url)
+    } catch {
+      setUploadError('Görsel yüklenemedi. Dosya formatını (JPG/PNG/WEBP) ve boyutunu (max 10 MB) kontrol edin.')
+    } finally {
+      setUploading(false)
+      if (fileRef.current) fileRef.current.value = ''
+    }
   }
 
   async function save(publish?: boolean) {
@@ -102,8 +111,8 @@ export default function BlogEditor({ postId }: { postId?: string }) {
                 />
               </label>
               <label className="flex flex-col gap-1.5 text-[13px] font-semibold">
-                Özet (Arama sonuçlarında görünür)
-                <textarea rows={2} value={data.excerpt} onChange={e => setField('excerpt', e.target.value)} placeholder="Kısa bir özet..." className={inputCls + ' resize-none'} />
+                Özet <span className="font-normal text-[#9a968c]">(arama sonuçlarında ve sosyal medyada görünür)</span>
+                <textarea rows={2} value={data.excerpt} onChange={e => setField('excerpt', e.target.value)} placeholder="Kısa bir özet (max 160 karakter)..." className={inputCls + ' resize-none'} />
               </label>
               <label className="flex flex-col gap-1.5 text-[13px] font-semibold">
                 İçerik
@@ -140,13 +149,21 @@ export default function BlogEditor({ postId }: { postId?: string }) {
 
             <div className="bg-white border border-[#e3ddd5] rounded-[16px] p-5 flex flex-col gap-3">
               <h3 className="font-semibold text-sm text-[#23231f]">Kapak Görseli</h3>
+              <p className="text-xs text-[#9a968c]">JPG / PNG / WEBP · max 10 MB · önerilen 1200×630px</p>
               {data.imageUrl && <img src={data.imageUrl} alt="" className="w-full rounded-[10px] aspect-video object-cover" />}
               <input ref={fileRef} type="file" accept="image/*" onChange={uploadImage} className="hidden" />
-              <button onClick={() => fileRef.current?.click()} disabled={uploading} className="border border-[#e3ddd5] py-2 rounded-[9px] text-sm font-medium text-[#23231f] disabled:opacity-60">
+              <button
+                onClick={() => fileRef.current?.click()}
+                disabled={uploading}
+                className="border border-[#e3ddd5] py-2 rounded-[9px] text-sm font-medium text-[#23231f] disabled:opacity-60"
+              >
                 {uploading ? 'Yükleniyor...' : data.imageUrl ? 'Görseli Değiştir' : 'Görsel Yükle'}
               </button>
+              {uploadError && <p className="text-xs text-red-500">{uploadError}</p>}
               {data.imageUrl && (
-                <button onClick={() => setField('imageUrl', '')} className="text-xs text-red-400 hover:text-red-600">Görseli Kaldır</button>
+                <button onClick={() => setField('imageUrl', '')} className="text-xs text-red-400 hover:text-red-600">
+                  Görseli Kaldır
+                </button>
               )}
             </div>
           </div>
