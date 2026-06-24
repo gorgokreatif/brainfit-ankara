@@ -11,8 +11,9 @@ build/
 # Vercel
 .vercel/
 
-# Environment
+# Environment — tüm .env dosyalarını koru
 .env
+.env.*
 .env.local
 .env.*.local
 
