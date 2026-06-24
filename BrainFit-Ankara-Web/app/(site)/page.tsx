@@ -1,4 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
+import { getPageImages } from '@/lib/pageImages'
+
+export const dynamic = 'force-dynamic'
 
 const concerns = [
   { q: 'Ödevin başında duramıyor mu?', color: '#00B4E5' },
@@ -34,7 +38,8 @@ const whyPoints = [
   { t: 'Bütünsel bakış', d: 'Akademik, sosyal ve duygusal gelişim birlikte ele alınır.' },
 ]
 
-export default function HomePage() {
+export default async function HomePage() {
+  const imgs = await getPageImages(['hero_home'])
   return (
     <div className="bf-reveal">
       {/* HERO */}
@@ -71,10 +76,16 @@ export default function HomePage() {
             <div className="absolute top-8 bottom-8 -left-0.5 w-[7px] rounded-[6px] opacity-85 hidden lg:block" style={{ background: 'linear-gradient(#00B4E5,#F8AF00,#CE007F,#E84F2D,#61CE70)' }} />
             <div className="relative rounded-[26px] overflow-hidden shadow-[0_30px_60px_rgba(35,35,31,.14)] border border-[#e3ded5]">
               <div className="h-[7px]" style={{ background: 'linear-gradient(90deg,#00B4E5,#F8AF00,#CE007F,#E84F2D,#61CE70)' }} />
-              <div className="aspect-[4/3] lg:aspect-[4/4.2] flex flex-col items-center justify-center gap-3 text-[#a8a08f]" style={{ background: 'linear-gradient(160deg,#efe9df,#e4ddce)' }}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#bcb4a3" strokeWidth="1.4"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M4 17l5-5 4 4 3-3 4 4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                <span className="font-mono text-[12.5px] tracking-wide">çocuk · öğrenme ortamı</span>
-              </div>
+              {imgs['hero_home'] ? (
+                <div className="relative aspect-[4/3] lg:aspect-[4/4.2]">
+                  <Image src={imgs['hero_home']} alt="BrainFit Ankara" fill className="object-cover" />
+                </div>
+              ) : (
+                <div className="aspect-[4/3] lg:aspect-[4/4.2] flex flex-col items-center justify-center gap-3 text-[#a8a08f]" style={{ background: 'linear-gradient(160deg,#efe9df,#e4ddce)' }}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#bcb4a3" strokeWidth="1.4"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M4 17l5-5 4 4 3-3 4 4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <span className="font-mono text-[12.5px] tracking-wide">çocuk · öğrenme ortamı</span>
+                </div>
+              )}
             </div>
             {/* Floating cards — only on larger screens */}
             <div className="hidden md:block absolute -left-4 bottom-16 bg-white rounded-2xl px-4 py-4 shadow-[0_16px_36px_rgba(35,35,31,.16)] border border-[#efe9df]" style={{ animation: 'bfFloat 7s ease-in-out infinite' }}>
