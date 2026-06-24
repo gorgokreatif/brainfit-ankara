@@ -24,7 +24,9 @@
     color: var(--text);
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+  html { overflow-x: hidden; }
   h1, h2, h3, h4 {
     font-family: 'Sora', sans-serif;
     color: var(--text-dark);

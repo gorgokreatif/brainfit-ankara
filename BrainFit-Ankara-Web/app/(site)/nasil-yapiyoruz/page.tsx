@@ -29,7 +29,7 @@ export default async function NasilYapiyoruzPage() {
   return (
     <div className="bf-reveal">
       {/* Hero — metin sol, görsel sağ */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,80px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,80px)]">
         <div className="grid lg:grid-cols-[1fr_1fr] gap-[clamp(32px,5vw,64px)] items-center">
           <div>
             <span className="text-[13px] font-semibold text-[#F8AF00] tracking-widest uppercase">Nasıl Yapıyoruz?</span>
@@ -57,7 +57,7 @@ export default async function NasilYapiyoruzPage() {
       </section>
 
       {/* Timeline + seans görseli */}
-      <section className="max-w-[1280px] mx-auto px-6 pb-[clamp(40px,5vw,56px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-[clamp(40px,5vw,56px)]">
         <div className="grid lg:grid-cols-[1fr_.85fr] gap-[clamp(32px,5vw,56px)] items-start">
           {/* Timeline */}
           <div className="relative pl-2">
@@ -105,7 +105,7 @@ export default async function NasilYapiyoruzPage() {
 
       {/* Program Deneyimi */}
       <section className="bg-white border-t border-[#efe9df]">
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,72px)] pb-[clamp(56px,7vw,90px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,72px)] pb-[clamp(56px,7vw,90px)]">
           <h2 className="text-[clamp(22px,2.8vw,32px)] font-bold mb-7">Program deneyimi</h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 mb-10">
             {experience.map(e => (

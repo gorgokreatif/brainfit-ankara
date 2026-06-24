@@ -19,7 +19,7 @@ export default async function BizKimizPage() {
   return (
     <div className="bf-reveal">
       {/* Hero — metin sol, görsel sağ */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,80px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,80px)]">
         <div className="grid lg:grid-cols-[1fr_1fr] gap-[clamp(32px,5vw,64px)] items-center">
           <div>
             <span className="text-[13px] font-semibold text-[#00B4E5] tracking-widest uppercase">Biz Kimiz?</span>
@@ -49,7 +49,7 @@ export default async function BizKimizPage() {
 
       {/* Ankara'da BrainFit + merkez görseli */}
       <section className="bg-white border-t border-b border-[#efe9df]">
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,72px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,72px)]">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-[clamp(32px,5vw,64px)] items-center">
             {/* Merkez iç görsel */}
             <div className="relative w-full aspect-[4/3] rounded-[20px] overflow-hidden border border-[#e3ded5] order-last lg:order-first">
@@ -78,7 +78,7 @@ export default async function BizKimizPage() {
       </section>
 
       {/* Değerlerimiz */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,72px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,72px)]">
         <h2 className="text-[clamp(22px,2.6vw,32px)] font-bold mb-8">Değerlerimiz</h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
           {values.map(v => (
@@ -91,7 +91,7 @@ export default async function BizKimizPage() {
       </section>
 
       {/* Misyon / Vizyon */}
-      <section className="max-w-[1280px] mx-auto px-6 pb-[clamp(40px,6vw,72px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-[clamp(40px,6vw,72px)]">
         <div className="grid sm:grid-cols-2 gap-5">
           <div className="bg-[#23231f] text-white rounded-[24px] p-[clamp(28px,3.5vw,44px)]">
             <span className="text-[13px] font-semibold text-[#61CE70] tracking-widest uppercase">Misyonumuz</span>
@@ -109,9 +109,9 @@ export default async function BizKimizPage() {
       </section>
 
       {/* Kurucu bölümü */}
-      <section className="max-w-[1280px] mx-auto px-6 pb-[clamp(56px,7vw,90px)]">
-        <div className="grid lg:grid-cols-[.55fr_1.45fr] gap-8 items-center bg-[#F1ECE3] border border-[#e6e0d5] rounded-[24px] p-[clamp(28px,4vw,48px)]">
-          <div className="relative w-full aspect-square rounded-[20px] overflow-hidden border border-[#ddd8ce]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-[clamp(56px,7vw,90px)]">
+        <div className="grid lg:grid-cols-[.55fr_1.45fr] gap-8 items-center bg-[#F1ECE3] border border-[#e6e0d5] rounded-[24px] p-[clamp(24px,4vw,48px)]">
+          <div className="relative w-full max-w-[260px] mx-auto lg:max-w-none aspect-square rounded-[20px] overflow-hidden border border-[#ddd8ce]">
             {imgs['section_biz_kimiz_kurucu'] ? (
               <Image src={imgs['section_biz_kimiz_kurucu']} alt="Kurucu / Merkez Sorumlusu" fill className="object-cover object-top" />
             ) : (

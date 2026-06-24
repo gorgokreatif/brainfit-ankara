@@ -88,7 +88,7 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
     <div className="bf-reveal">
       {/* Hero */}
       <section style={{ background: pd.color }}>
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,80px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,80px)]">
           <Link href="/programlar" className="inline-block bg-white/25 font-semibold text-[13.5px] px-3.5 py-2 rounded-full mb-5" style={{ color: '#fff' }}>← Programlar</Link>
           <span className="block text-[13px] font-bold tracking-widest uppercase opacity-90" style={{ color: '#fff' }}>{pd.tag} · {pd.name}</span>
           <h1 className="text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight leading-[1.1] mt-3.5 max-w-[900px]" style={{ color: '#fff' }}>{pd.headline}</h1>
@@ -97,7 +97,7 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
       </section>
 
       {/* Intro + Hero Görsel */}
-      <section className="max-w-[1080px] mx-auto px-6 py-[clamp(48px,6vw,80px)]">
+      <section className="max-w-[1080px] mx-auto px-4 sm:px-6 py-[clamp(48px,6vw,80px)]">
         <div className="grid lg:grid-cols-[1.2fr_.8fr] gap-10 items-center">
           <div>
             <h2 className="text-[clamp(22px,2.8vw,32px)] font-bold max-w-[760px]">{pd.introTitle}</h2>
@@ -118,7 +118,7 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
 
       {/* Desteklenen Alanlar */}
       <section className="bg-white border-t border-b border-[#efe9df]">
-        <div className="max-w-[1080px] mx-auto px-6 py-[clamp(48px,6vw,72px)] grid sm:grid-cols-2 gap-12">
+        <div className="max-w-[1080px] mx-auto px-4 sm:px-6 py-[clamp(48px,6vw,72px)] grid sm:grid-cols-2 gap-12">
           <div>
             <h3 className="text-[21px] font-bold mb-6">{pd.supportTitle}</h3>
             <div className="flex flex-col gap-3.5">
@@ -147,7 +147,7 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
       </section>
 
       {/* CTA */}
-      <section className="max-w-[1080px] mx-auto px-6 py-[clamp(48px,6vw,72px)] pb-[clamp(64px,8vw,96px)]">
+      <section className="max-w-[1080px] mx-auto px-4 sm:px-6 py-[clamp(48px,6vw,72px)] pb-[clamp(64px,8vw,96px)]">
         <div className="bg-[#23231f] rounded-[28px] px-[clamp(32px,5vw,60px)] py-[clamp(40px,5vw,60px)] text-center">
           <h2 className="text-[clamp(22px,2.6vw,32px)] font-bold max-w-[580px] mx-auto" style={{ color: '#fff' }}>
             Çocuğunuz için ilk adımı birlikte atalım.

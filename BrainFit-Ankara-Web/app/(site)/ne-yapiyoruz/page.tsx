@@ -27,7 +27,7 @@ export default async function NeYapiyoruzPage() {
   return (
     <div className="bf-reveal">
       {/* Hero — metin sol, görsel sağ */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,80px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,80px)]">
         <div className="grid lg:grid-cols-[1fr_1fr] gap-[clamp(32px,5vw,64px)] items-center">
           <div>
             <span className="text-[13px] font-semibold text-[#E84F2D] tracking-widest uppercase">Ne Yapıyoruz?</span>
@@ -53,7 +53,7 @@ export default async function NeYapiyoruzPage() {
 
       {/* 5 Temel Alan — görsel kartlar */}
       <section className="bg-white border-t border-b border-[#efe9df]">
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,6vw,72px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,6vw,72px)]">
           <div className="max-w-[760px] mb-10">
             <h2 className="text-[clamp(22px,2.8vw,32px)] font-bold mb-3">5 temel alan neden önemli?</h2>
             <p className="text-base text-[#6c6c68] leading-7">Bu alanlardan biri zorlandığında çocuk ders çalışırken, okurken, yazarken veya sosyal ilişkilerde kendini ifade ederken güçlük yaşayabilir.</p>
@@ -86,7 +86,7 @@ export default async function NeYapiyoruzPage() {
       </section>
 
       {/* Hedefler + egzersiz görseli */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,72px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,72px)]">
         <div className="grid lg:grid-cols-[1fr_1fr] gap-[clamp(32px,5vw,56px)] items-start">
           <div>
             <h2 className="text-[clamp(22px,2.8vw,32px)] font-bold mb-7">BrainFit neyi hedefler?</h2>

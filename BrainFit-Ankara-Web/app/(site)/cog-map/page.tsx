@@ -27,7 +27,7 @@ export default async function CogMapPage() {
     <div className="bf-reveal">
       {/* Hero — gradient sol metin, sağ görsel */}
       <section style={{ background: 'linear-gradient(135deg,#00B4E5,#0a93bd)' }}>
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(44px,6vw,84px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(44px,6vw,84px)]">
           <div className="grid lg:grid-cols-[1fr_.9fr] gap-[clamp(32px,5vw,56px)] items-center">
             <div>
               <span className="text-[13px] font-bold tracking-widest uppercase opacity-90" style={{ color: '#fff' }}>Cog-Map Zihin Check-Up</span>
@@ -57,7 +57,7 @@ export default async function CogMapPage() {
       </section>
 
       {/* 5 Alan */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,6vw,72px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,6vw,72px)]">
         <h2 className="text-[clamp(22px,2.8vw,32px)] font-bold mb-3">Zihnin hangi alanlarını ölçümlüyoruz?</h2>
         <p className="text-base text-[#6c6c68] mb-9 max-w-[640px]">Her alan bağımsız değil, birbirleriyle bağlantılı şekilde değerlendirilir.</p>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
@@ -73,7 +73,7 @@ export default async function CogMapPage() {
 
       {/* Süreç + rapor görseli */}
       <section className="bg-white border-t border-b border-[#efe9df]">
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,6vw,72px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,6vw,72px)]">
           <div className="grid lg:grid-cols-[1fr_.8fr] gap-[clamp(32px,5vw,56px)] items-start">
             <div>
               <h2 className="text-[clamp(22px,2.8vw,32px)] font-bold mb-9">Cog-Map süreci</h2>
@@ -109,7 +109,7 @@ export default async function CogMapPage() {
       </section>
 
       {/* Ne Kazandırır */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,6vw,72px)] pb-[clamp(64px,8vw,96px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,6vw,72px)] pb-[clamp(64px,8vw,96px)]">
         <div className="bg-[#F1ECE3] border border-[#e6e0d5] rounded-[24px] p-[clamp(32px,4vw,52px)]">
           <h2 className="text-[clamp(22px,2.8vw,30px)] font-bold mb-7">Cog-Map ne kazandırır?</h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-3.5">

@@ -41,42 +41,43 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <span className="absolute -top-[120px] -right-[80px] w-[420px] h-[420px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(0,180,229,.12),transparent 70%)' }} />
         <span className="absolute -bottom-[160px] -left-[100px] w-[460px] h-[460px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle,rgba(248,175,0,.12),transparent 70%)' }} />
-        <div className="relative max-w-[1280px] mx-auto px-6 py-[clamp(32px,5vw,68px)] grid lg:grid-cols-2 gap-[clamp(36px,5vw,72px)] items-center">
+        <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(32px,5vw,68px)] grid lg:grid-cols-2 gap-[clamp(28px,5vw,72px)] items-center">
           <div>
             <span className="inline-flex items-center gap-2 bg-white border border-[#eae6df] px-3.5 py-1.5 rounded-full text-[13px] font-semibold text-[#51AD32] mb-6 shadow-[0_4px_14px_rgba(0,0,0,.04)]">
               <span className="w-2 h-2 rounded-full bg-[#51AD32]" />
               Cog-Map Zihin Check-Up · Ankara
             </span>
-            <h1 className="text-[clamp(34px,4.7vw,56px)] font-extrabold tracking-tight leading-[1.06]">
+            <h1 className="text-[clamp(28px,4.7vw,56px)] font-extrabold tracking-tight leading-[1.08]">
               Çocuğunuzun öğrenmesinin önündeki <span className="text-[#51AD32]">kök nedeni</span> birlikte keşfedelim.
             </h1>
-            <p className="text-[clamp(16px,1.4vw,18px)] leading-relaxed text-[#6c6c68] mt-5 max-w-[520px]">
+            <p className="text-[clamp(15px,1.4vw,18px)] leading-relaxed text-[#6c6c68] mt-4 max-w-[520px]">
               Dikkat, hafıza, görsel-işitsel beceriler, psiko-motor gelişim ve sosyal-duygusal alanları analiz ediyor; çocuğunuza özel bir gelişim programı oluşturuyoruz.
             </p>
-            <div className="flex flex-wrap gap-3 mt-8">
-              <Link href="/iletisim" className="bf-lift bg-[#51AD32] text-white px-6 py-4 rounded-[13px] text-base font-semibold shadow-[0_12px_26px_rgba(81,173,50,.3)]">
+            <div className="flex flex-wrap gap-3 mt-7">
+              <Link href="/iletisim" className="bf-lift bg-[#51AD32] text-white px-5 py-3.5 rounded-[13px] text-[15px] font-semibold shadow-[0_12px_26px_rgba(81,173,50,.3)]">
                 Ücretsiz Ön Görüşme Planla
               </Link>
-              <Link href="/cog-map" className="bf-lift bg-white border-[1.5px] border-[#e3ded5] text-[#23231f] px-6 py-4 rounded-[13px] text-base font-semibold">
+              <Link href="/cog-map" className="bf-lift bg-white border-[1.5px] border-[#e3ded5] text-[#23231f] px-5 py-3.5 rounded-[13px] text-[15px] font-semibold">
                 Cog-Map'i İncele
               </Link>
             </div>
-            <p className="text-[13.5px] text-[#9a968c] mt-5 flex items-center gap-2">
+            <p className="text-[13px] text-[#9a968c] mt-5 flex items-center gap-2">
               <span className="w-5 h-0.5 bg-[#E84F2D] inline-block" />
               Önce ölçüyoruz, sonra kişiye özel yol haritası oluşturuyoruz.
             </p>
           </div>
-          {/* Visual placeholder */}
+          {/* Visual area */}
           <div className="relative px-2 py-2">
-            <div className="absolute top-8 bottom-8 -left-0.5 w-[7px] rounded-[6px] opacity-85" style={{ background: 'linear-gradient(#00B4E5,#F8AF00,#CE007F,#E84F2D,#61CE70)' }} />
+            <div className="absolute top-8 bottom-8 -left-0.5 w-[7px] rounded-[6px] opacity-85 hidden lg:block" style={{ background: 'linear-gradient(#00B4E5,#F8AF00,#CE007F,#E84F2D,#61CE70)' }} />
             <div className="relative rounded-[26px] overflow-hidden shadow-[0_30px_60px_rgba(35,35,31,.14)] border border-[#e3ded5]">
               <div className="h-[7px]" style={{ background: 'linear-gradient(90deg,#00B4E5,#F8AF00,#CE007F,#E84F2D,#61CE70)' }} />
-              <div className="aspect-[4/4.4] flex flex-col items-center justify-center gap-3 text-[#a8a08f]" style={{ background: 'linear-gradient(160deg,#efe9df,#e4ddce)' }}>
+              <div className="aspect-[4/3] lg:aspect-[4/4.2] flex flex-col items-center justify-center gap-3 text-[#a8a08f]" style={{ background: 'linear-gradient(160deg,#efe9df,#e4ddce)' }}>
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#bcb4a3" strokeWidth="1.4"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M4 17l5-5 4 4 3-3 4 4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 <span className="font-mono text-[12.5px] tracking-wide">çocuk · öğrenme ortamı</span>
               </div>
             </div>
-            <div className="absolute -left-4 bottom-16 bg-white rounded-2xl px-4 py-4 shadow-[0_16px_36px_rgba(35,35,31,.16)] border border-[#efe9df]" style={{ animation: 'bfFloat 7s ease-in-out infinite' }}>
+            {/* Floating cards — only on larger screens */}
+            <div className="hidden md:block absolute -left-4 bottom-16 bg-white rounded-2xl px-4 py-4 shadow-[0_16px_36px_rgba(35,35,31,.16)] border border-[#efe9df]" style={{ animation: 'bfFloat 7s ease-in-out infinite' }}>
               <span className="text-[11.5px] font-semibold text-[#9a968c] tracking-widest uppercase">5 temel alan</span>
               <div className="flex gap-1.5 mt-2">
                 {['#00B4E5','#F8AF00','#CE007F','#E84F2D','#61CE70'].map(c => (
@@ -84,7 +85,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="absolute -right-1 top-10 bg-[#23231f] rounded-2xl px-4 py-3.5 shadow-[0_16px_36px_rgba(35,35,31,.22)]" style={{ animation: 'bfFloat 7s ease-in-out infinite 1.2s' }}>
+            <div className="hidden md:block absolute -right-1 top-10 bg-[#23231f] rounded-2xl px-4 py-3.5 shadow-[0_16px_36px_rgba(35,35,31,.22)]" style={{ animation: 'bfFloat 7s ease-in-out infinite 1.2s' }}>
               <span className="block font-[Sora] text-[30px] font-extrabold text-[#61CE70] leading-none">18</span>
               <span className="text-xs text-[#cfcabf]">sayfalık detaylı rapor</span>
             </div>
@@ -94,7 +95,7 @@ export default function HomePage() {
 
       {/* TRUST STRIP */}
       <section className="bg-[#23231f]">
-        <div className="max-w-[1280px] mx-auto px-6 py-5 flex flex-wrap gap-4 justify-center items-center">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-5 flex flex-wrap gap-4 justify-center items-center">
           {trust.map(t => (
             <span key={t} className="flex items-center gap-2.5 text-[#e8e3d8] text-[14.5px] font-medium">
               <span className="w-[7px] h-[7px] rounded-full bg-[#61CE70]" />{t}
@@ -104,7 +105,7 @@ export default function HomePage() {
       </section>
 
       {/* CONCERNS */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,7vw,84px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,7vw,84px)]">
         <div className="max-w-[660px] mb-10">
           <h2 className="text-[clamp(26px,3.4vw,40px)] font-bold tracking-tight">Çocuğunuz zorlanıyor olabilir. Peki neden?</h2>
           <p className="text-[17px] text-[#6c6c68] mt-3.5 leading-relaxed">Bir davranışın arkasında çoğu zaman birden fazla beceri alanı vardır. Önce hangi alanın desteğe ihtiyaç duyduğunu anlamaya çalışırız.</p>
@@ -124,7 +125,7 @@ export default function HomePage() {
 
       {/* 3 STEPS */}
       <section className="bg-white border-t border-b border-[#efe9df]">
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,7vw,84px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,7vw,84px)]">
           <h2 className="text-[clamp(26px,3.4vw,40px)] font-bold tracking-tight mb-11">BrainFit Ankara'da yaklaşımımız</h2>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-5">
             {steps.map(s => (
@@ -139,7 +140,7 @@ export default function HomePage() {
       </section>
 
       {/* 5 AREAS */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,7vw,84px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,7vw,84px)]">
         <div className="flex justify-between items-end flex-wrap gap-4 mb-10">
           <h2 className="text-[clamp(26px,3.4vw,40px)] font-bold tracking-tight max-w-[520px]">5 temel gelişim alanı</h2>
           <Link href="/ne-yapiyoruz" className="text-[#51AD32] font-semibold text-[15px]">Detaylı incele →</Link>
@@ -158,7 +159,7 @@ export default function HomePage() {
 
       {/* PROGRAMS */}
       <section className="bg-[#23231f] text-white">
-        <div className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,7vw,84px)]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,7vw,84px)]">
           <div className="flex justify-between items-end flex-wrap gap-4 mb-10">
             <h2 className="text-[clamp(26px,3.4vw,40px)] font-bold tracking-tight text-white">Programlar</h2>
             <Link href="/programlar" className="text-[#61CE70] font-semibold text-[15px]">Tüm programlar →</Link>
@@ -177,7 +178,7 @@ export default function HomePage() {
       </section>
 
       {/* WHY */}
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(48px,7vw,84px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(48px,7vw,84px)]">
         <div className="grid lg:grid-cols-[.85fr_1.15fr] gap-[clamp(32px,5vw,64px)] items-start">
           <div className="lg:sticky lg:top-24">
             <h2 className="text-[clamp(26px,3.4vw,40px)] font-bold tracking-tight">Neden BrainFit Ankara?</h2>
@@ -199,7 +200,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA BANNER */}
-      <section className="max-w-[1280px] mx-auto px-6 pb-[clamp(56px,7vw,90px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-[clamp(56px,7vw,90px)]">
         <div className="rounded-[28px] px-[clamp(36px,5vw,64px)] py-[clamp(36px,5vw,64px)] relative overflow-hidden" style={{ background: 'linear-gradient(120deg,#51AD32,#61CE70)' }}>
           <span className="absolute -top-12 -right-8 w-48 h-48 rounded-full bg-white/10" />
           <span className="absolute -bottom-16 left-[30%] w-40 h-40 rounded-full bg-white/8" />

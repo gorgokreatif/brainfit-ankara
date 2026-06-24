@@ -21,7 +21,7 @@ export default async function ProgramlarPage() {
 
   return (
     <div className="bf-reveal">
-      <section className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,80px)] pb-[clamp(24px,3vw,40px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 py-[clamp(40px,6vw,80px)] pb-[clamp(24px,3vw,40px)]">
         <span className="text-[13px] font-semibold text-[#51AD32] tracking-widest uppercase">Programlar</span>
         <h1 className="text-[clamp(30px,4.2vw,50px)] font-extrabold tracking-tight leading-[1.1] mt-4 max-w-[780px]">
           Her çocuğun ihtiyacı farklı. Programı da öyle olmalı.
@@ -32,7 +32,7 @@ export default async function ProgramlarPage() {
       </section>
 
       {/* Program kartları — görsel alanlı */}
-      <section className="max-w-[1280px] mx-auto px-6 pb-[clamp(40px,5vw,56px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-[clamp(40px,5vw,56px)]">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
           {programs.map(pr => {
             const imgUrl = imgs[pr.imgKey]
@@ -80,7 +80,7 @@ export default async function ProgramlarPage() {
       </section>
 
       {/* Karşılaştırma tablosu */}
-      <section className="max-w-[1280px] mx-auto px-6 pb-[clamp(56px,7vw,90px)]">
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-[clamp(56px,7vw,90px)]">
         <h2 className="text-[clamp(20px,2.4vw,28px)] font-bold mb-6">Programları karşılaştırın</h2>
         <div className="overflow-x-auto bg-white border border-[#efe9df] rounded-[20px]">
           <table className="w-full border-collapse min-w-[680px] text-[14.5px]">
