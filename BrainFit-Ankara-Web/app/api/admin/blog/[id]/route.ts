@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 
@@ -26,6 +27,8 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     },
     include: { category: true },
   })
+  revalidatePath('/blog')
+  revalidatePath(`/blog/${post.slug}`)
   return NextResponse.json(post)
 }
 
@@ -34,5 +37,6 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   if (!session) return NextResponse.json({ error: 'Yetkisiz' }, { status: 401 })
   const { id } = await params
   await prisma.blogPost.delete({ where: { id } })
+  revalidatePath('/blog')
   return NextResponse.json({ success: true })
 }

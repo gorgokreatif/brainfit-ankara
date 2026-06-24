@@ -50,7 +50,8 @@ export default function Navbar() {
           <Link
             key={item.href}
             href={item.href}
-            className="px-[15px] py-[11px] text-[15px] font-semibold tracking-[.005em] text-white transition-opacity hover:opacity-80"
+            style={{ color: '#fff', fontSize: 15 }}
+            className="px-[15px] py-[11px] font-semibold tracking-[.005em] transition-opacity hover:opacity-80"
           >
             {item.label}
           </Link>

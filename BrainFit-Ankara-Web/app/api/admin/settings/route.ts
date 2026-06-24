@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 
@@ -22,5 +23,7 @@ export async function PUT(req: NextRequest) {
     create: { id: 'main', ...data, updatedAt: new Date() },
     update: { ...data, updatedAt: new Date() },
   })
+  revalidatePath('/iletisim')
+  revalidatePath('/', 'layout')
   return NextResponse.json(settings)
 }

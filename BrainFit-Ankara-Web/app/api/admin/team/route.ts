@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/db'
 
@@ -17,5 +18,6 @@ export async function POST(req: NextRequest) {
   const member = await prisma.teamMember.create({
     data: { ...data, order: (last?.order ?? 0) + 1 },
   })
+  revalidatePath('/ekibimiz')
   return NextResponse.json(member)
 }

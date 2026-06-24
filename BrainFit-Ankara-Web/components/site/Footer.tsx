@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { unstable_noStore as noStore } from 'next/cache'
 import { prisma } from '@/lib/db'
 
 async function getSettings() {
+  noStore()
   try {
     return await prisma.siteSettings.upsert({
       where: { id: 'main' },

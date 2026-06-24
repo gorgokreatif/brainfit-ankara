@@ -1,16 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { unstable_noStore as noStore } from 'next/cache'
 import { prisma } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+export const metadata = { title: 'Ekibimiz | BrainFit Ankara' }
+
 async function getTeam() {
+  noStore()
   try {
     return await prisma.teamMember.findMany({ orderBy: { order: 'asc' } })
   } catch {
     return []
   }
 }
-
-export const metadata = { title: 'Ekibimiz | BrainFit Ankara' }
 
 export default async function EkibimizPage() {
   const team = await getTeam()
