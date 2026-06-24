@@ -1,12 +1,17 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { unstable_noStore as noStore } from 'next/cache'
+import { prisma } from '@/lib/db'
+
+export const dynamic = 'force-dynamic'
 
 const programs: Record<string, {
   color: string; tag: string; name: string; headline: string; sub: string;
   introTitle: string; introDesc: string;
   supportTitle: string; support: string[];
   forTitle: string; forWhom: string[];
-  cta: string;
+  cta: string; imageKey: string;
 }> = {
   junior: {
     color: '#F8AF00', tag: '4–6 yaş', name: 'BrainFit Junior',
@@ -19,6 +24,7 @@ const programs: Record<string, {
     forTitle: 'Kimler için uygun?',
     forWhom: ['Okula başlamaya hazırlanan çocuklar','Dikkati kısa sürede dağılan çocuklar','Yönergeleri takip etmekte zorlanan çocuklar','Kalem tutma, kesme çalışmalarında zorlanan çocuklar'],
     cta: 'Junior için ön görüşme alın',
+    imageKey: 'hero_junior',
   },
   scholar: {
     color: '#00B4E5', tag: '6–18 yaş', name: 'BrainFit Scholar / Akademik Başarı',
@@ -31,6 +37,7 @@ const programs: Record<string, {
     forTitle: 'Kimler için?',
     forWhom: ['Ders çalışıyor ama sonuç alamayan öğrenciler','Sınavlarda bildiğini gösteremeyen öğrenciler','Okuma-anlama problemi yaşayanlar','Dikkati dağılan veya yönerge takibi zorlananlar'],
     cta: 'Akademik gelişim için değerlendirme al',
+    imageKey: 'hero_scholar',
   },
   dehb: {
     color: '#E84F2D', tag: 'Dikkat & Dürtü', name: 'DEHB',
@@ -43,6 +50,7 @@ const programs: Record<string, {
     forTitle: 'Süreç nasıl ilerler?',
     forWhom: ['Ön görüşme','Cog-Map değerlendirme','Rapor geri bildirimi','Kişiye özel program','Seans ve ev egzersizi takibi'],
     cta: 'DEHB için ön görüşme planla',
+    imageKey: 'hero_dehb',
   },
   disleksi: {
     color: '#CE007F', tag: 'Okuma & Yazma', name: 'Disleksi',
@@ -55,7 +63,18 @@ const programs: Record<string, {
     forTitle: 'Kimler için?',
     forWhom: ['Harfleri karıştıran çocuklar','Heceleri birleştirmekte zorlananlar','Yavaş okuyanlar','Yazısı düzensiz veya yavaş olanlar'],
     cta: 'Disleksi destek süreci için görüşme al',
+    imageKey: 'hero_disleksi',
   },
+}
+
+async function getHeroImage(key: string): Promise<string | null> {
+  noStore()
+  try {
+    const img = await prisma.pageImage.findUnique({ where: { key } })
+    return img?.url || null
+  } catch {
+    return null
+  }
 }
 
 export default async function ProgramDetayPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -63,36 +82,50 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
   const pd = programs[slug]
   if (!pd) notFound()
 
+  const heroUrl = await getHeroImage(pd.imageKey)
+
   return (
     <div className="bf-reveal">
+      {/* Hero */}
       <section style={{ background: pd.color }}>
         <div className="max-w-[1280px] mx-auto px-6 py-[clamp(40px,6vw,80px)]">
-          <Link href="/programlar" className="inline-block bg-white/25 text-white font-semibold text-[13.5px] px-3.5 py-2 rounded-full mb-5">← Programlar</Link>
-          <span className="block text-[13px] font-bold text-white tracking-widest uppercase opacity-90">{pd.tag} · {pd.name}</span>
-          <h1 className="text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight leading-[1.1] mt-3.5 max-w-[900px] text-white">{pd.headline}</h1>
-          <p className="text-[17.5px] text-white/92 leading-relaxed mt-5 max-w-[820px]">{pd.sub}</p>
+          <Link href="/programlar" className="inline-block bg-white/25 font-semibold text-[13.5px] px-3.5 py-2 rounded-full mb-5" style={{ color: '#fff' }}>← Programlar</Link>
+          <span className="block text-[13px] font-bold tracking-widest uppercase opacity-90" style={{ color: '#fff' }}>{pd.tag} · {pd.name}</span>
+          <h1 className="text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight leading-[1.1] mt-3.5 max-w-[900px]" style={{ color: '#fff' }}>{pd.headline}</h1>
+          <p className="text-[17.5px] leading-relaxed mt-5 max-w-[820px]" style={{ color: 'rgba(255,255,255,0.92)' }}>{pd.sub}</p>
         </div>
       </section>
-      <section className="max-w-[1080px] mx-auto px-6 py-[clamp(40px,6vw,72px)]">
+
+      {/* Intro + Hero Görsel */}
+      <section className="max-w-[1080px] mx-auto px-6 py-[clamp(48px,6vw,80px)]">
         <div className="grid lg:grid-cols-[1.2fr_.8fr] gap-10 items-center">
           <div>
             <h2 className="text-[clamp(22px,2.8vw,32px)] font-bold max-w-[760px]">{pd.introTitle}</h2>
-            <p className="text-[17px] text-[#6c6c68] leading-[1.75] mt-4">{pd.introDesc}</p>
+            <p className="text-[17px] text-[#6c6c68] leading-[1.75] mt-5">{pd.introDesc}</p>
           </div>
-          <div className="w-full aspect-[4/3] rounded-[20px] border border-dashed border-[#cdc4b3] flex items-center justify-center text-[#a8a08f]" style={{ background: 'linear-gradient(160deg,#efe9df,#e6dfd2)' }}>
-            <span className="font-mono text-xs">Görsel alanı</span>
+          <div className="w-full aspect-[4/3] rounded-[20px] overflow-hidden border border-[#e3ded5] relative">
+            {heroUrl ? (
+              <Image src={heroUrl} alt={pd.name} fill className="object-cover" />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-[#a8a08f]" style={{ background: 'linear-gradient(160deg,#efe9df,#e6dfd2)' }}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bcb4a3" strokeWidth="1.2"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M4 17l5-5 4 4 3-3 4 4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <span className="font-mono text-xs tracking-wide">Admin panelinden görsel ekleyin</span>
+              </div>
+            )}
           </div>
         </div>
       </section>
+
+      {/* Desteklenen Alanlar */}
       <section className="bg-white border-t border-b border-[#efe9df]">
-        <div className="max-w-[1080px] mx-auto px-6 py-[clamp(40px,6vw,72px)] grid sm:grid-cols-2 gap-12">
+        <div className="max-w-[1080px] mx-auto px-6 py-[clamp(48px,6vw,72px)] grid sm:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-[21px] font-bold mb-5">{pd.supportTitle}</h3>
-            <div className="flex flex-col gap-3">
+            <h3 className="text-[21px] font-bold mb-6">{pd.supportTitle}</h3>
+            <div className="flex flex-col gap-3.5">
               {pd.support.map(s => (
-                <div key={s} className="flex gap-3 items-center">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-[7px] flex items-center justify-center opacity-16" style={{ background: pd.color }}>
-                    <span className="w-2 h-2 rounded-[2px]" style={{ background: pd.color }} />
+                <div key={s} className="flex gap-3.5 items-center">
+                  <span className="flex-shrink-0 w-7 h-7 rounded-[8px] flex items-center justify-center" style={{ background: pd.color + '22' }}>
+                    <span className="w-2.5 h-2.5 rounded-[3px]" style={{ background: pd.color }} />
                   </span>
                   <span className="text-[15.5px] text-[#3a3a38]">{s}</span>
                 </div>
@@ -100,10 +133,10 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
             </div>
           </div>
           <div>
-            <h3 className="text-[21px] font-bold mb-5">{pd.forTitle}</h3>
+            <h3 className="text-[21px] font-bold mb-6">{pd.forTitle}</h3>
             <div className="flex flex-col gap-3">
               {pd.forWhom.map(f => (
-                <div key={f} className="flex gap-3 px-4 py-3.5 bg-[#F8F6F2] border border-[#efe9df] rounded-[12px]">
+                <div key={f} className="flex gap-3.5 px-5 py-4 bg-[#F8F6F2] border border-[#efe9df] rounded-[14px]">
                   <span className="flex-shrink-0 w-2 h-2 rounded-full mt-2" style={{ background: pd.color }} />
                   <span className="text-[15px] text-[#3a3a38] leading-relaxed">{f}</span>
                 </div>
@@ -112,10 +145,23 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
           </div>
         </div>
       </section>
-      <section className="max-w-[1080px] mx-auto px-6 py-[clamp(40px,6vw,72px)] pb-[clamp(56px,7vw,90px)]">
-        <div className="bg-[#23231f] rounded-[24px] px-[clamp(32px,4vw,52px)] py-[clamp(32px,4vw,52px)] text-center">
-          <h2 className="text-[clamp(22px,2.6vw,30px)] font-bold text-white max-w-[560px] mx-auto">Çocuğunuz için ilk adımı birlikte atalım.</h2>
-          <Link href="/iletisim" className="bf-lift mt-6 inline-block text-white px-7 py-4 rounded-[13px] font-bold text-base" style={{ background: pd.color }}>{pd.cta}</Link>
+
+      {/* CTA */}
+      <section className="max-w-[1080px] mx-auto px-6 py-[clamp(48px,6vw,72px)] pb-[clamp(64px,8vw,96px)]">
+        <div className="bg-[#23231f] rounded-[28px] px-[clamp(32px,5vw,60px)] py-[clamp(40px,5vw,60px)] text-center">
+          <h2 className="text-[clamp(22px,2.6vw,32px)] font-bold max-w-[580px] mx-auto" style={{ color: '#fff' }}>
+            Çocuğunuz için ilk adımı birlikte atalım.
+          </h2>
+          <p className="text-[15px] mt-3 max-w-[460px] mx-auto" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            Ücretsiz ön görüşmede çocuğunuzun ihtiyaçlarını birlikte değerlendiririz.
+          </p>
+          <Link
+            href="/iletisim"
+            className="bf-lift mt-7 inline-block px-8 py-4 rounded-[14px] font-bold text-base"
+            style={{ background: pd.color, color: '#fff' }}
+          >
+            {pd.cta}
+          </Link>
         </div>
       </section>
     </div>

@@ -50,6 +50,13 @@ model BlogCategory {
   posts BlogPost[]
 }
 
+model PageImage {
+  key       String   @id
+  url       String
+  altText   String   @default("")
+  updatedAt DateTime @updatedAt
+}
+
 model BlogPost {
   id          String       @id @default(cuid())
   title       String
