@@ -1,0 +1,705 @@
+You are a senior creative director, UX strategist, conversion copywriter and front-end visual designer. Design a complete, premium, responsive, multi-page website for “BrainFit Ankara”.
+
+IMPORTANT BRAND RULES
+Use the uploaded BrainFit Ankara logo exactly as provided. Do not redraw, recolor, distort, crop, stretch, trace, simplify or add effects to the logo. It is a horizontal logo, so the header must respect its proportions. Keep it crisp on desktop and mobile.
+
+Brand colors:
+--text: #7A7A7A
+--accent-green: #61CE70
+--cream: #F8F6F2
+--orange: #E84F2D
+--yellow: #F8AF00
+--black: #000000
+--gray-dark: #666666
+--blue: #00B4E5
+--magenta: #CE007F
+--brand-green: #51AD32
+
+The website language must be Turkish.
+
+PROJECT GOAL
+Create a website for BrainFit Ankara, a parent-facing, trust-building, premium but warm cognitive development center website. The target audience is mostly parents of children aged 4–18 who are worried about attention, focus, reading, writing, academic performance, exam stress, learning difficulties, DEHB/ADHD, dyslexia, memory, confidence and emotional resilience.
+
+The site must not feel like a generic school website, generic clinic website, childish kindergarten website or SaaS template. It must feel like a premium “cognitive development studio” where science, movement, child development and parent trust meet.
+
+DESIGN CONCEPT
+Create an unusual but elegant design system called:
+“Zihin Haritası Deneyimi / Cognitive Journey Interface”
+
+Use the BrainFit logo colors as a modular navigation and section identity system. Each cognitive area gets its own visual identity:
+1. Dikkat & Odaklanma — blue
+2. Görsel Beceriler — yellow
+3. İşitsel Beceriler — magenta
+4. Psiko-Motor Beceriler — orange
+5. Sosyal-Duygusal Beceriler — green
+
+The design should feel:
+- warm
+- premium
+- scientific
+- parent-friendly
+- Ankara-local but not provincial
+- clean but not empty
+- modern but not futuristic
+- emotional but not manipulative
+- trustworthy but not cold
+
+AVOID
+Do not use generic blue gradients.
+Do not use fake neon brain holograms.
+Do not use overused stock “child holding book” layouts.
+Do not use hospital-style cold visuals.
+Do not use childish cartoon mascots.
+Do not use generic Elementor-like section blocks.
+Do not use dark sci-fi UI.
+Do not make medical treatment claims.
+Do not write “tedavi eder”, “iyileştirir”, “kesin çözüm”, “garanti sonuç” language.
+Use “destekler”, “gelişimi hedefler”, “bireysel ihtiyaçlara göre yapılandırılır”, “kök nedeni anlamaya yardımcı olur” language.
+
+GLOBAL UX STRUCTURE
+Create these pages:
+
+1. Anasayfa
+2. Biz Kimiz?
+3. Ekibimiz
+4. Programlar
+   - BrainFit Junior
+   - BrainFit Scholar / Akademik Başarı
+   - DEHB
+   - Disleksi
+5. Ne Yapıyoruz?
+6. Nasıl Yapıyoruz?
+7. Cog-Map Zihin Check-Up
+8. Kimler Yararlanabilir?
+9. İletişim
+10. Blog
+
+HEADER
+Desktop header:
+- Left: BrainFit Ankara logo
+- Center nav:
+  Anasayfa
+  Biz Kimiz?
+  Ekibimiz
+  Programlar
+  Ne Yapıyoruz?
+  Nasıl Yapıyoruz?
+  Cog-Map
+  Blog
+  İletişim
+- Right CTA buttons:
+  “Ücretsiz Ön Görüşme”
+  “WhatsApp”
+
+Mobile header:
+- Logo top left
+- Clean hamburger menu
+- Sticky bottom CTA bar:
+  “Ön Görüşme Al”
+  “WhatsApp”
+
+FOOTER
+Footer must include:
+- Logo
+- Short description:
+  “BrainFit Ankara, çocukların öğrenme, dikkat, odaklanma ve bilişsel gelişim süreçlerini bilimsel değerlendirme ve kişiye özel egzersiz programlarıyla destekleyen bütünsel bir zihin gelişim merkezidir.”
+- Quick links
+- Program links
+- Contact placeholders:
+  Telefon: [ANKARA TELEFON EKLENECEK]
+  E-posta: [ANKARA E-POSTA EKLENECEK]
+  Adres: [ANKARA ADRES EKLENECEK]
+- KVKK, Gizlilik Politikası, Çerez Politikası links
+- Social icons
+
+PAGE 1 — ANASAYFA
+
+Hero section:
+Use a highly distinctive hero layout. Left side emotional parent-facing copy. Right side a “living cognitive map” visual made of five colored cards/tiles, not a generic brain image. Use natural child photography or realistic placeholder imagery showing a child in a warm learning/movement environment. Add subtle line paths connecting cards.
+
+Hero headline:
+“Çocuğunuzun öğrenmesinin önündeki kök nedeni birlikte keşfedelim.”
+
+Hero subheadline:
+“BrainFit Ankara’da Cog-Map Zihin Check-Up ile dikkat, hafıza, görsel-işitsel beceriler, psiko-motor gelişim ve sosyal-duygusal alanları analiz ediyor; çocuğunuzun ihtiyacına göre kişiye özel gelişim programı oluşturuyoruz.”
+
+Primary CTA:
+“Ücretsiz Ön Görüşme Planla”
+
+Secondary CTA:
+“Cog-Map’i İncele”
+
+Hero microcopy:
+“Önce ölçüyoruz. Sonra çocuğunuza özel gelişim yol haritası oluşturuyoruz.”
+
+Trust strip:
+- Cog-Map Zihin Check-Up
+- 5 temel gelişim alanı
+- 18 sayfalık detaylı rapor
+- Kişiye özel egzersiz programı
+- Ankara’da yüz yüze takip
+
+Section: “Çocuğunuz zorlanıyor olabilir. Peki neden?”
+Create 5 parent concern cards:
+1. “Ödevin başında duramıyor mu?”
+2. “Dikkati çok çabuk dağılıyor mu?”
+3. “Okuyor ama anlamakta zorlanıyor mu?”
+4. “Yazısı yavaş, düzensiz veya yorucu mu?”
+5. “Sınavlarda bildiğini gösteremiyor mu?”
+
+Each card must have:
+- small icon
+- short parent language
+- “Bu davranışın arkasında dikkat, görsel, işitsel, motor veya duygusal bir alan olabilir.”
+
+Section: “BrainFit Ankara’da yaklaşımımız”
+Create a 3-step horizontal or diagonal journey:
+1. Analiz
+   “Cog-Map Zihin Check-Up ile güçlü ve gelişime açık alanları ölçümleriz.”
+2. Yol Haritası
+   “Sonuçlara göre çocuğa özel gelişim programı planlarız.”
+3. Gelişim & Takip
+   “Seanslar, ev egzersizleri ve düzenli geri bildirimlerle süreci takip ederiz.”
+
+Section: “5 temel alan”
+Design a colorful interactive grid:
+- Dikkat & Odaklanma
+- Görsel Beceriler
+- İşitsel Beceriler
+- Psiko-Motor Beceriler
+- Sosyal-Duygusal Beceriler
+
+Each tile should expand visually on hover.
+
+Section: “Programlar”
+Show 4 program cards:
+1. BrainFit Junior
+   “4–6 yaş okul öncesi çocukların zihinsel hazırlık, dikkat, görsel algı, fonetik işlem ve psiko-motor becerilerini destekler.”
+2. BrainFit Scholar / Akademik Başarı
+   “6–18 yaş öğrencilerin dikkat, hafıza, okuma-anlama, sınav performansı, özgüven ve akademik becerilerini desteklemeye odaklanır.”
+3. DEHB
+   “Dikkat, dürtü kontrolü, odakta kalma ve yönerge takibi gibi alanlarda bireysel ihtiyaçlara göre yapılandırılmış egzersiz programları sunar.”
+4. Disleksi
+   “Okuma, yazma, işitsel-görsel işlemleme ve psiko-motor beceri temellerini destekleyen kişiye özel bir gelişim yaklaşımıdır.”
+
+Section: “Neden BrainFit Ankara?”
+Use an editorial split layout:
+- Bilimsel değerlendirme temelli başlangıç
+- Kişiye özel program
+- Hareket temelli egzersiz yaklaşımı
+- Ebeveyn geri bildirimleri
+- Çocuğun akademik, sosyal ve duygusal gelişimine bütünsel bakış
+
+Section: “Ücretsiz Ön Görüşme”
+CTA block:
+“Çocuğunuzun yaşadığı zorlanmanın arkasında hangi beceri alanları olabilir? İlk adımı birlikte atalım.”
+Button:
+“Randevu Talep Et”
+
+PAGE 2 — BİZ KİMİZ?
+
+Hero headline:
+“Her çocuğun öğrenme yolculuğu farklıdır. Biz o yolculuğu görünür kılmak için buradayız.”
+
+Page copy:
+“BrainFit Ankara, çocukların dikkat, hafıza, öğrenme kapasitesi, problem çözme, psiko-motor ve sosyal-duygusal becerilerini bütünsel bir yaklaşımla destekleyen bir zihin gelişim merkezidir. Amacımız, yalnızca çocuğun neyi yapamadığını görmek değil; neden zorlandığını anlamak ve ona uygun gelişim yol haritasını oluşturmaktır.”
+
+Section: “Ankara’da BrainFit yaklaşımı”
+Copy:
+“Günümüzde çocuklar yalnızca akademik içerikle değil; dikkat dağınıklığı, ekran yoğunluğu, sınav baskısı, motivasyon kaybı ve öğrenme hızındaki farklılıklarla da mücadele ediyor. BrainFit Ankara olarak bu tabloya tek bir davranış üzerinden değil, çocuğun bilişsel altyapısına bütünsel olarak bakıyoruz.”
+
+Section: “Değerlerimiz”
+Cards:
+- Bilimsel bakış
+- Çocuğa özel planlama
+- Ebeveynle şeffaf iletişim
+- Gelişimi takip etme
+- Güvenli ve sıcak merkez deneyimi
+
+Section: “Misyonumuz”
+“Çocukların öğrenme potansiyelini görünür kılmak, gelişime açık alanlarını bilimsel değerlendirmelerle belirlemek ve kişiye özel egzersiz programlarıyla onları akademik, sosyal ve duygusal yaşamlarında desteklemek.”
+
+Section: “Vizyonumuz”
+“Ankara’da çocukların öğrenme, dikkat ve bilişsel gelişim süreçlerinde ailelerin güvenle başvurabileceği, ölçülebilir ve bütünsel bir gelişim merkezi olmak.”
+
+Add a founder note block with placeholder:
+“[Kurucu / Merkez Sorumlusu adı buraya eklenecek]”
+“Bu bölüme Ankara kurucusunun kişisel hikayesi, uzmanlık alanı ve BrainFit’i Ankara’ya getirme motivasyonu yazılacak.”
+
+PAGE 3 — EKİBİMİZ
+
+Create a premium team page.
+Hero:
+“Çocuğunuzun gelişim yolculuğuna eşlik eden uzman ekip.”
+
+Team cards must include:
+- Photo placeholder
+- Name placeholder
+- Title
+- Expertise tags
+- Short bio
+- “Randevu Al” mini CTA
+
+Suggested roles:
+1. Kurucu / Merkez Sorumlusu
+2. Uzman Psikolog
+3. Bilişsel Gelişim Uygulayıcısı
+4. Psiko-Motor Egzersiz Uygulayıcısı
+5. Eğitim Koçu / Akademik Takip Uzmanı
+
+Copy block:
+“BrainFit Ankara’da ekip yapısı, değerlendirme, uygulama ve takip süreçlerinin birlikte çalıştığı bütünsel bir model üzerine kuruludur. Her çocuk için süreç; gözlem, ölçüm, programlama ve geri bildirim adımlarıyla yürütülür.”
+
+PAGE 4 — PROGRAMLAR ANA SAYFA
+
+Hero:
+“Her çocuğun ihtiyacı farklı. Programı da öyle olmalı.”
+
+Intro:
+“BrainFit Ankara programları, Cog-Map Zihin Check-Up ile elde edilen bilişsel profil doğrultusunda kişiye özel olarak planlanır. Amaç; çocuğun güçlü alanlarını görünür kılmak, gelişime açık alanlarını desteklemek ve öğrenme sürecini daha sağlıklı hale getirmektir.”
+
+Program cards:
+- BrainFit Junior
+- BrainFit Scholar / Akademik Başarı
+- DEHB
+- Disleksi
+
+Add comparison table:
+Columns:
+Program
+Yaş / Odak
+Kimler için?
+Ana hedef
+CTA
+
+PAGE 4A — BRAINFIT JUNIOR
+
+Headline:
+“Okul öncesi dönemde güçlü bir öğrenme altyapısı.”
+
+Subheadline:
+“BrainFit Junior, 4–6 yaş aralığındaki çocukların okul öncesi zihinsel gelişimini, dikkat, görsel algı, fonetik işlem, göz takip hızı ve psiko-motor beceriler üzerinden desteklemeye odaklanır.”
+
+Sections:
+1. “Neden okul öncesi dönem önemli?”
+Copy:
+“İlkokula hazırlık yalnızca harfleri veya sayıları bilmek değildir. Çocuğun dikkatini sürdürebilmesi, yönerge takip edebilmesi, görsel-işitsel bilgiyi işleyebilmesi, el-göz koordinasyonu ve ince motor becerilerinin gelişmesi öğrenme sürecinin temelini oluşturur.”
+
+2. “Junior programında desteklenen alanlar”
+- Dikkat süresi
+- Göz takip becerisi
+- Fonetik işlem
+- Görsel-mekânsal algı
+- İnce/kaba motor beceriler
+- Yönerge takip becerisi
+- Okula hazırlık özgüveni
+
+3. “Kimler için uygun?”
+- Okula başlamaya hazırlanan çocuklar
+- Dikkati kısa sürede dağılan çocuklar
+- Yönergeleri takip etmekte zorlanan çocuklar
+- Kalem tutma, kesme, çizgi çalışmaları gibi alanlarda zorlanan çocuklar
+- Harf/ses farkındalığı gelişimi desteklenmesi gereken çocuklar
+
+CTA:
+“Junior için ön görüşme alın”
+
+PAGE 4B — BRAINFIT SCHOLAR / AKADEMİK BAŞARI
+
+Headline:
+“Akademik başarı, yalnızca daha çok çalışmakla ilgili değildir.”
+
+Subheadline:
+“BrainFit Scholar, 6–18 yaş öğrencilerin dikkat, hafıza, okuma-anlama, algı-muhakeme, sınav performansı, özgüven ve psiko-motor becerilerini desteklemeye odaklanan gelişim programıdır.”
+
+Sections:
+1. “Öğrenmenin altyapısını güçlendirmek”
+Copy:
+“Bir öğrenci çok çalıştığı halde karşılığını alamıyorsa, sorun yalnızca çalışma süresi olmayabilir. Dikkat, hafıza, işlemleme hızı, görsel-işitsel beceriler, zaman yönetimi ve duygusal dayanıklılık öğrenme performansını doğrudan etkileyebilir.”
+
+2. “Programda desteklenen kazanımlar”
+- Dikkat ve odaklanma
+- Kısa ve uzun süreli hafıza
+- Okuduğunu anlama
+- Görsel ve işitsel işlemleme
+- Algı ve muhakeme
+- Sınav kaygısı yönetimine destek
+- Özgüven ve bağımsız çalışma becerisi
+- Yazı yazma ve psiko-motor beceriler
+
+3. “Kimler için?”
+- Ders çalışıyor ama sonuç alamayan öğrenciler
+- Sınavlarda bildiğini gösteremeyen öğrenciler
+- Okuma-anlama problemi yaşayanlar
+- Yavaş işlemleyen veya çabuk yorulan öğrenciler
+- Dikkati dağılan veya yönerge takibi zorlanan öğrenciler
+
+CTA:
+“Akademik gelişim için değerlendirme al”
+
+PAGE 4C — DEHB
+
+Headline:
+“Dikkat, hareket ve dürtü kontrolüne bütünsel bakış.”
+
+Important wording:
+Do not claim treatment. Use support language.
+
+Subheadline:
+“DEHB tanısı olan veya dikkat-dürtü kontrolü alanlarında zorlanan çocuklarda, öncelikle hangi bilişsel beceri alanlarının desteğe ihtiyaç duyduğu anlaşılır. Ardından çocuğa özel egzersiz ve takip süreci planlanır.”
+
+Sections:
+1. “DEHB’de tek bir davranışa değil, beceri altyapısına bakıyoruz.”
+Copy:
+“Çocuğun yerinde duramaması, yönergeyi kaçırması, başladığı işi tamamlayamaması veya dürtüsel davranması farklı bilişsel alanlarla ilişkili olabilir. BrainFit Ankara’da süreç, gözlem ve değerlendirme ile başlar.”
+
+2. “Desteklenen alanlar”
+- Dikkat süresi
+- Odakta kalma
+- Dürtü kontrolü
+- Yönerge takibi
+- İşitsel dikkat
+- Psiko-motor düzenleme
+- Duygusal dayanıklılık
+- Özgüven
+
+3. “Süreç nasıl ilerler?”
+- Ön görüşme
+- Cog-Map değerlendirme
+- Rapor geri bildirimi
+- Kişiye özel program
+- Seans ve ev egzersizi takibi
+- Ebeveyn bilgilendirmesi
+
+CTA:
+“DEHB için ön görüşme planla”
+
+PAGE 4D — DİSLEKSİ
+
+Headline:
+“Okuma ve yazma güçlüklerinin arkasındaki beceri alanlarını birlikte anlayalım.”
+
+Subheadline:
+“Disleksi ve öğrenme güçlüğü yaşayan çocuklarda okuma, yazma, görsel-işitsel işlemleme, psiko-motor beceriler ve dikkat alanları birlikte değerlendirilir. Amaç, çocuğun öğrenme sürecini destekleyecek kişisel yol haritasını oluşturmaktır.”
+
+Sections:
+1. “Okuma yalnızca harfleri tanımak değildir.”
+Copy:
+“Okuma ve yazma süreci; görsel takip, işitsel ayrım, dikkat, hafıza, motor planlama ve ritim gibi birçok becerinin birlikte çalışmasını gerektirir. Bu alanlardan biri zorlandığında çocuk okurken, yazarken veya anlamlandırırken güçlük yaşayabilir.”
+
+2. “Desteklenen alanlar”
+- Okuma akıcılığına altyapı
+- Okuduğunu anlama
+- İşitsel ayrım
+- Görsel takip
+- Harf-ses eşleştirme
+- Yazı yazma becerileri
+- İnce motor beceriler
+- Dikkat ve motivasyon
+
+3. “Kimler için?”
+- Harfleri karıştıran çocuklar
+- Heceleri birleştirmekte zorlananlar
+- Yavaş okuyanlar
+- Okuduğunu anlamakta zorlananlar
+- Yazısı düzensiz veya yavaş olanlar
+- Özgüveni etkilenen öğrenciler
+
+CTA:
+“Disleksi destek süreci için görüşme al”
+
+PAGE 5 — NE YAPIYORUZ?
+
+Hero:
+“Öğrenmenin önündeki kök nedeni bulmaya odaklanıyoruz.”
+
+Copy:
+“BrainFit Ankara’da çocukların akademik veya davranışsal zorlanmalarını yalnızca görünen sonuçlar üzerinden değerlendirmiyoruz. Dikkat, hafıza, görsel-işitsel beceriler, psiko-motor gelişim ve sosyal-duygusal alanları birlikte ele alarak çocuğun öğrenme altyapısını anlamaya çalışıyoruz.”
+
+Section:
+“5 temel alan neden önemli?”
+Use layered pyramid or orbit visual.
+- Dikkat & Odaklanma
+- Görsel Beceriler
+- İşitsel Beceriler
+- Psiko-Motor Beceriler
+- Sosyal-Duygusal Beceriler
+
+Copy:
+“Bu alanlardan biri zorlandığında, çocuk ders çalışırken, okurken, yazarken, yönerge takip ederken, sınavda performans gösterirken veya sosyal ilişkilerde kendini ifade ederken güçlük yaşayabilir.”
+
+Section:
+“BrainFit neyi hedefler?”
+- Güçlü ve zayıf alanları görünür kılmak
+- Çocuğun ihtiyacına uygun egzersiz planlamak
+- Öğrenme sürecini daha takip edilebilir hale getirmek
+- Ebeveyni süreç hakkında bilgilendirmek
+- Çocuğun özgüvenini ve gelişim motivasyonunu desteklemek
+
+CTA:
+“Çocuğunuzun gelişim haritasını öğrenin”
+
+PAGE 6 — NASIL YAPIYORUZ?
+
+Hero:
+“Önce ölçüm, sonra kişiye özel gelişim.”
+
+Create a beautiful vertical process timeline:
+1. Ön Görüşme
+   “Ailenin gözlemleri, çocuğun yaşadığı zorlanmalar ve beklentiler dinlenir.”
+2. Cog-Map Zihin Check-Up
+   “Yaşa uygun bilimsel envanterlerle bilişsel alanlar değerlendirilir.”
+3. Raporlama
+   “Sonuçlar detaylı rapor halinde hazırlanır.”
+4. Geri Bildirim
+   “Uzman ekip raporu aileyle paylaşır ve ihtiyaç alanlarını açıklar.”
+5. Kişiye Özel Program
+   “Seans planı, egzersizler ve hedef alanlar belirlenir.”
+6. Seanslar & Ev Egzersizleri
+   “Kurum içi bireysel uygulamalar ve ev destek çalışmalarıyla süreç devam eder.”
+7. Takip
+   “Gelişim düzenli gözlenir, aileye geri bildirim verilir.”
+
+Section:
+“Program deneyimi”
+Use a split layout:
+- Kurumda bireysel egzersizler
+- Evde destek çalışmaları
+- Aile bilgilendirmesi
+- Düzenli takip
+- Çocuğun motivasyonunu koruyan yapı
+
+CTA:
+“Nasıl ilerleyeceğimizi birlikte planlayalım”
+
+PAGE 7 — COG-MAP ZİHİN CHECK-UP
+
+Hero:
+“Çocuğunuzun bilişsel gelişim haritasını görün.”
+
+Subheadline:
+“Cog-Map Zihin Check-Up; dikkat, görsel, işitsel, psiko-motor ve sosyal-duygusal beceri alanlarını değerlendirmeye yardımcı olan kapsamlı bir bilişsel ölçüm sürecidir.”
+
+Top CTA:
+“Cog-Map Randevusu Al”
+
+Section:
+“Neden Cog-Map?”
+Copy:
+“Çoğu zaman çocuğun neyi yapamadığını görürüz: ödevin başında duramıyor, dikkatini sürdüremiyor, okuduğunu anlamıyor, yazarken yoruluyor, yönergeleri kaçırıyor. Cog-Map’in amacı, bu davranışların arkasında hangi beceri alanlarının etkili olabileceğini anlamaya yardımcı olmaktır.”
+
+Section:
+“Zihnin hangi alanlarını ölçümlüyoruz?”
+5 colored modules:
+- Dikkat & Odaklanma
+- Görsel Beceriler
+- İşitsel Beceriler
+- Psiko-Motor Beceriler
+- Sosyal-Duygusal Beceriler
+
+Section:
+“Cog-Map süreci”
+Use 4 large cards:
+1. Değerlendirme
+   “Kapsamlı testlerle mevcut durumun görülmesi”
+2. Ölçme
+   “Temel bilişsel alanların detaylı incelenmesi”
+3. Raporlama
+   “18 sayfalık kapsamlı rapor hazırlanması”
+4. Geri Bildirim
+   “Uzman ekip tarafından raporun aileye açıklanması”
+
+Section:
+“Cog-Map ne kazandırır?”
+- Genel bilişsel görünüm
+- Güçlü ve gelişime açık alanların fark edilmesi
+- Stratejik rehberlik
+- Erken farkındalık
+- Kişiye özel gelişim planı için başlangıç
+- Aileye daha net yol haritası
+
+CTA:
+“Çocuğunuzun gelişim haritasını çıkarmak için ilk adımı atın.”
+
+PAGE 8 — KİMLER YARARLANABİLİR?
+
+Hero:
+“BrainFit Ankara kimler için uygun?”
+
+Intro:
+“BrainFit Ankara; dikkat, öğrenme, okuma-yazma, sınav performansı, psiko-motor beceriler ve sosyal-duygusal gelişim alanlarında desteğe ihtiyaç duyan çocuklar, gençler ve aileler için yapılandırılmış bir gelişim süreci sunar.”
+
+Create audience cards:
+1. Dikkat ve odaklanma problemi yaşayanlar
+2. DEHB tanısı olan veya dikkat-dürtü kontrolünde zorlanan çocuklar
+3. Disleksi ve öğrenme güçlüğü yaşayanlar
+4. Okuma problemi yaşayanlar
+5. Yazma problemi yaşayanlar
+6. Sınav performansını artırmak isteyen öğrenciler
+7. Akademik performansını desteklemek isteyenler
+8. Sosyal-duygusal becerilerde desteğe ihtiyaç duyanlar
+9. Spor, sanat veya performans alanlarında reaksiyon, algı ve koordinasyonunu geliştirmek isteyenler
+
+Add “Belirtiler” section:
+“Şunları sık duyuyorsanız değerlendirme faydalı olabilir:”
+- “Aslında zeki ama derslere yansıtamıyor.”
+- “Çalışıyor ama sınavda yapamıyor.”
+- “Okuyor ama anlamıyor.”
+- “Bir türlü odaklanamıyor.”
+- “Çok çabuk unutuyor.”
+- “Yazı yazarken çok yoruluyor.”
+- “Söylediklerimi duymuyor gibi.”
+- “Özgüveni giderek düşüyor.”
+
+CTA:
+“Çocuğunuz için uygun programı birlikte belirleyelim.”
+
+PAGE 9 — İLETİŞİM
+
+Hero:
+“BrainFit Ankara ile tanışın.”
+
+Layout:
+Left:
+- Contact form
+Fields:
+Ad Soyad
+Telefon
+E-posta
+Çocuğun Yaşı
+İlgilendiğiniz Alan
+Mesajınız
+KVKK onay checkbox
+Button: “Ön Görüşme Talep Et”
+
+Right:
+- Contact cards
+Telefon: [ANKARA TELEFON]
+WhatsApp: [ANKARA WHATSAPP]
+E-posta: [ANKARA E-POSTA]
+Adres: [ANKARA ADRES]
+Çalışma Saatleri: [EKLENECEK]
+
+Add map placeholder:
+“Google Maps alanı buraya eklenecek.”
+
+Add FAQ mini section:
+1. İlk görüşme nasıl ilerliyor?
+2. Cog-Map kaç yaş için uygundur?
+3. Program ne kadar sürer?
+4. Ebeveyn süreçten nasıl haberdar olur?
+5. DEHB veya Disleksi için nasıl bir yaklaşım uygulanır?
+
+PAGE 10 — BLOG
+
+Hero:
+“Ebeveynler için zihin gelişimi rehberi.”
+
+Categories:
+- Dikkat & Odaklanma
+- DEHB
+- Disleksi
+- Okuma & Yazma
+- Sınav Dönemi
+- Okul Öncesi
+- Bilişsel Gelişim
+- Ebeveyn Rehberi
+
+Create blog listing with sample posts:
+1. “Çocuğum çok zeki ama derslerde neden zorlanıyor?”
+2. “Dikkat dağınıklığı her zaman isteksizlik değildir”
+3. “Okuduğunu anlamakta zorlanan çocuklarda hangi beceriler etkili olabilir?”
+4. “DEHB’de evde ailelerin dikkat etmesi gereken 7 nokta”
+5. “Disleksi belirtileri ne zaman fark edilir?”
+6. “Sınav kaygısı mı, dikkat problemi mi?”
+7. “Okul öncesi dönemde öğrenmeye hazırlık becerileri”
+8. “Cog-Map Zihin Check-Up ailelere ne anlatır?”
+
+VISUAL DESIGN DETAILS
+Typography:
+Use a modern, premium, highly legible Turkish-friendly font pairing.
+Suggested:
+- Headings: Sora, Manrope or Plus Jakarta Sans
+- Body: Inter or Nunito Sans
+Use strong hierarchy, generous line height.
+
+Layout:
+- Max content width: 1200–1280px
+- Use asymmetric editorial grids
+- Use large white/cream negative space
+- Use floating color-coded cards
+- Use soft shadows, not heavy shadows
+- Use rounded corners but not childish
+- Use custom section dividers inspired by neural paths and learning maps
+- Use animated scroll reveal lines connecting sections
+- Use sticky CTA on long pages
+
+Microinteractions:
+- Colored cognitive tiles gently activate on hover
+- CTA buttons have subtle lift
+- Program cards reveal “Kimler için?” on hover
+- Mobile accordions for detailed content
+- Sticky “Randevu Al” button
+
+Imagery:
+Use realistic, warm, natural-light imagery:
+- children working with guidance
+- movement-based exercises
+- parent-child consultation
+- focused child in calm environment
+- no exaggerated hospital or lab scenes
+- no futuristic neon brain visuals
+- no childish cartoons
+
+COPYWRITING TONE
+Use direct parent language:
+“Çocuğunuz yapmıyor değil, belki de zorlandığı alan henüz görünür değil.”
+“Önce anlamaya, sonra geliştirmeye odaklanıyoruz.”
+“Her çocuk aynı şekilde öğrenmez.”
+“Daha çok çalışmak her zaman çözüm olmayabilir.”
+“Doğru destek, doğru değerlendirmeyle başlar.”
+
+LEGAL / ETHICAL COPY RULES
+Do not use medical treatment language.
+Do not guarantee outcomes.
+Do not say “DEHB’yi tedavi eder” or “Disleksi biter”.
+Use:
+- “destekler”
+- “gelişimi hedefler”
+- “farkındalık sağlar”
+- “kişiye özel yol haritası sunar”
+- “öğrenme sürecini güçlendirmeye yardımcı olur”
+
+SEO REQUIREMENTS
+Create SEO-friendly H1, H2, meta title and meta description for every page.
+Focus keywords:
+- BrainFit Ankara
+- Cog-Map Zihin Check-Up Ankara
+- Dikkat eksikliği Ankara
+- DEHB destek programı Ankara
+- Disleksi destek Ankara
+- Çocuklarda dikkat ve odaklanma
+- Bilişsel gelişim merkezi Ankara
+- Okuma yazma güçlüğü Ankara
+- Akademik başarı destek programı
+
+TECHNICAL OUTPUT
+Create a full responsive website design with all pages represented.
+Use reusable components:
+- Header
+- Footer
+- CTA banner
+- ProgramCard
+- CognitiveAreaCard
+- ProcessTimeline
+- TeamCard
+- BlogCard
+- FAQAccordion
+- ContactForm
+
+Make the design polished enough to hand off to development.
+No lorem ipsum, except for missing Ankara-specific contact/team data. Use clear placeholders only where real Ankara data is missing.
+
+FINAL FEELING
+When a parent opens this site, they should feel:
+“Burası çocuğumu etiketlemeden anlamaya çalışan, bilimsel ama sıcak, güvenilir ve profesyonel bir merkez.”
