@@ -62,31 +62,49 @@ export default function GorsellerPage() {
     setMsg('')
   }
 
+  async function persist(data: { key: string; url: string; altText: string }) {
+    const res = await fetch('/api/admin/page-images', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+    return res.ok
+  }
+
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file || !editing) return
     setUploading(true)
+    setMsg('')
     const form = new FormData()
     form.append('file', file)
-    const res = await fetch('/api/upload', { method: 'POST', body: form })
-    if (res.ok) {
-      const { url } = await res.json()
-      setEditing(ed => ed ? { ...ed, url } : ed)
-    } else {
+    const uploadRes = await fetch('/api/upload', { method: 'POST', body: form })
+    if (!uploadRes.ok) {
       setMsg('Yükleme başarısız. Vercel Blob token ayarlandı mı kontrol edin.')
+      setUploading(false)
+      return
     }
+    const { url } = await uploadRes.json()
+    const updated = { ...editing, url }
+    setEditing(updated)
+    // Dosya yüklenince otomatik kaydet
+    setSaving(true)
+    const ok = await persist(updated)
+    if (ok) {
+      setMsg('Görsel yüklendi ve kaydedildi!')
+      await load()
+    } else {
+      setMsg('Görsel yüklendi ama kaydedilemedi. Kaydet butonunu deneyin.')
+    }
+    setSaving(false)
     setUploading(false)
   }
 
   async function save() {
     if (!editing) return
     setSaving(true)
-    const res = await fetch('/api/admin/page-images', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(editing),
-    })
-    if (res.ok) {
+    const ok = await persist(editing)
+    if (ok) {
       setMsg('Kaydedildi!')
       await load()
       setEditing(null)

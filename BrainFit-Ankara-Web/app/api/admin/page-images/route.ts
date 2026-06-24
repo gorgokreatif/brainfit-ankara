@@ -20,7 +20,8 @@ export async function PUT(req: NextRequest) {
     create: { key, url: url || '', altText: altText || '', updatedAt: new Date() },
     update: { url: url || '', altText: altText || '', updatedAt: new Date() },
   })
+  const paths = ['/', '/biz-kimiz', '/ne-yapiyoruz', '/nasil-yapiyoruz', '/cog-map', '/programlar', '/programlar/junior', '/programlar/scholar', '/programlar/dehb', '/programlar/disleksi']
+  for (const p of paths) revalidatePath(p)
   revalidatePath('/', 'layout')
-  revalidatePath('/programlar', 'layout')
   return NextResponse.json(img)
 }
