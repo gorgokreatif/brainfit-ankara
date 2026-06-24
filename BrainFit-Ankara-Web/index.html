@@ -72,7 +72,7 @@
     </div>
     <nav class="bf-desktop-nav" style="display:flex;align-items:center;justify-content:center;gap:4px;background:#C8401C;padding:5px 24px">
       <sc-for list="{{ nav }}" as="item" hint-placeholder-count="9">
-        <button class="bf-navlink-o" onClick="{{ item.go }}" style="padding:11px 15px;border-radius:9px;font-size:15px;font-weight:600;letter-spacing:.005em;{{ item.btnStyle }}">{{ item.label }}</button>
+        <button class="bf-navlink-o" onClick="{{ item.go }}" style="padding:11px 15px;font-size:15px;font-weight:600;letter-spacing:.005em;{{ item.btnStyle }}">{{ item.label }}</button>
       </sc-for>
     </nav>
     <sc-if value="{{ mobileMenu }}" hint-placeholder-val="">
@@ -760,7 +760,7 @@ class Component extends DCLogic {
       return {
         label: n.label, go: go(n.page), active,
         color: active ? '#E84F2D' : '#3a3a38',
-        btnStyle: active ? 'background:#fff;color:#E84F2D;' : 'color:#fff;',
+        btnStyle: 'color:#fff;',
       };
     });
     const areas = [

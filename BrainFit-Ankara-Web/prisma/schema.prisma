@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  bio       String
+  tags      String   @default("")
+  color     String   @default("#00B4E5")
+  imageUrl  String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSettings {
+  id         String   @id @default("main")
+  phone      String   @default("")
+  whatsapp   String   @default("")
+  email      String   @default("")
+  address    String   @default("")
+  hours      String   @default("")
+  mapsEmbed  String   @default("")
+  updatedAt  DateTime @updatedAt
+}
+
+model SmtpSettings {
+  id        String   @id @default("main")
+  host      String   @default("smtp.gmail.com")
+  port      Int      @default(587)
+  user      String   @default("")
+  password  String   @default("")
+  fromName  String   @default("BrainFit Ankara")
+  toEmail   String   @default("")
+  updatedAt DateTime @updatedAt
+}
+
+model BlogCategory {
+  id    String     @id @default(cuid())
+  name  String
+  color String     @default("#00B4E5")
+  posts BlogPost[]
+}
+
+model BlogPost {
+  id          String       @id @default(cuid())
+  title       String
+  slug        String       @unique
+  content     String
+  excerpt     String       @default("")
+  imageUrl    String?
+  categoryId  String
+  category    BlogCategory @relation(fields: [categoryId], references: [id])
+  tags        String       @default("")
+  published   Boolean      @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}

@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --brand-green: #51AD32;
+  --brand-green-light: #61CE70;
+  --brand-red: #C8401C;
+  --brand-orange: #E84F2D;
+  --brand-blue: #00B4E5;
+  --brand-pink: #CE007F;
+  --brand-yellow: #F8AF00;
+  --cream: #F8F6F2;
+  --text: #3a3a38;
+  --text-dark: #23231f;
+  --border: #efe9df;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+  font-family: 'Sora', sans-serif;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.1;
+}
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; }
+
+@keyframes bfFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+@keyframes bfReveal {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.bf-reveal { animation: bfReveal 0.5s ease both; }
+.bf-card { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s; }
+.bf-card:hover { transform: translateY(-7px); }
+.bf-lift { transition: transform 0.2s, box-shadow 0.2s; }
+.bf-lift:hover { transform: translateY(-2px); }
+.bf-tile { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s; }
+.bf-tile:hover { transform: translateY(-8px) scale(1.015); }
