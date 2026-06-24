@@ -21,7 +21,7 @@ export default async function Footer() {
     <footer className="bg-[#23231f] text-[#cfcabf] mt-0">
       <div className="max-w-[1280px] mx-auto px-6 pt-16 pb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
-          <Image src="/images/logo.png" alt="BrainFit Ankara" width={100} height={26} style={{ height: 26, width: 'auto', filter: 'brightness(1.15)', marginBottom: 18 }} />
+          <Image src="/images/logo.png" alt="BrainFit Ankara" width={293} height={26} style={{ height: 26, width: 'auto', filter: 'brightness(1.15)', marginBottom: 18 }} />
           <p className="text-sm leading-7 text-[#a8a397] max-w-xs">
             BrainFit Ankara, çocukların öğrenme, dikkat, odaklanma ve bilişsel gelişim süreçlerini bilimsel değerlendirme ve kişiye özel egzersiz programlarıyla destekleyen bütünsel bir zihin gelişim merkezidir.
           </p>

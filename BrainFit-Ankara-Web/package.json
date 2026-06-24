@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
+    "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "db:studio": "prisma studio"
   },
   "private": true,
@@ -34,6 +35,7 @@
     "autoprefixer": "^10.5.1",
     "postcss": "^8.5.15",
     "tailwindcss": "^4.3.1",
+    "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }
 }

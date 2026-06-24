@@ -24,7 +24,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-[#eae6df]" style={{ background: 'rgba(248,246,242,.88)', backdropFilter: 'blur(12px)' }}>
       <div className="max-w-[1280px] mx-auto px-6 py-3 flex items-center gap-4">
         <Link href="/" className="flex items-center flex-shrink-0">
-          <Image src="/images/logo.png" alt="BrainFit Ankara" width={120} height={30} style={{ height: 30, width: 'auto' }} priority />
+          <Image src="/images/logo.png" alt="BrainFit Ankara" width={340} height={30} style={{ height: 30, width: 'auto' }} priority />
         </Link>
         <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ml-auto">
           <Link href="/iletisim" className="bf-lift bg-[#51AD32] text-white px-4 py-2.5 rounded-[10px] text-sm font-semibold whitespace-nowrap shadow-[0_6px_16px_rgba(81,173,50,.28)]">

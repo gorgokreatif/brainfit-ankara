@@ -1,14 +1,19 @@
-import { auth } from '@/lib/auth'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function proxy(req: NextRequest) {
-  const session = await auth()
+export function proxy(req: NextRequest) {
   const isAdminPath = req.nextUrl.pathname.startsWith('/admin')
   const isLoginPath = req.nextUrl.pathname === '/admin/login'
 
-  if (isAdminPath && !isLoginPath && !session) {
-    return NextResponse.redirect(new URL('/admin/login', req.url))
+  if (isAdminPath && !isLoginPath) {
+    // NextAuth v5 stores session in these cookies
+    const sessionToken =
+      req.cookies.get('authjs.session-token')?.value ||
+      req.cookies.get('__Secure-authjs.session-token')?.value
+
+    if (!sessionToken) {
+      return NextResponse.redirect(new URL('/admin/login', req.url))
+    }
   }
   return NextResponse.next()
 }
