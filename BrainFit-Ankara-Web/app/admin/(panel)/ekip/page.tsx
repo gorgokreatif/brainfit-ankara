@@ -15,6 +15,7 @@ export default function EkipPage() {
   const [isNew, setIsNew] = useState(false)
   const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => { load() }, [])
@@ -45,12 +46,20 @@ export default function EkipPage() {
     const file = e.target.files?.[0]
     if (!file || !editing) return
     setUploading(true)
-    const form = new FormData()
-    form.append('file', file)
-    const res = await fetch('/api/upload', { method: 'POST', body: form })
-    const data = await res.json()
-    setUploading(false)
-    if (data.url) setEditing(ed => ({ ...ed!, imageUrl: data.url }))
+    setUploadError('')
+    try {
+      const form = new FormData()
+      form.append('file', file)
+      const res = await fetch('/api/upload', { method: 'POST', body: form })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Yükleme başarısız')
+      setEditing(ed => ({ ...ed!, imageUrl: data.url }))
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : 'Fotoğraf yüklenemedi. Tekrar deneyin.')
+    } finally {
+      setUploading(false)
+      if (fileRef.current) fileRef.current.value = ''
+    }
   }
 
   return (
@@ -119,6 +128,7 @@ export default function EkipPage() {
                 <button onClick={() => fileRef.current?.click()} disabled={uploading} className="px-3 py-2 text-sm border border-[#e3ddd5] rounded-[9px] text-[#23231f] disabled:opacity-60">
                   {uploading ? 'Yükleniyor...' : 'Fotoğraf Seç'}
                 </button>
+                {uploadError && <p className="text-xs text-red-500 mt-1">{uploadError}</p>}
               </div>
             </div>
             <div className="flex gap-3 mt-6">

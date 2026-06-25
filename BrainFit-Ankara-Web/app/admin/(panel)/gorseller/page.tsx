@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { upload } from '@vercel/blob/client'
 
 const PAGE_SLOTS = [
   // ─── Hero Bölümleri ───
@@ -78,11 +77,12 @@ export default function GorsellerPage() {
     setUploading(true)
     setMsg('')
     try {
-      const blob = await upload(file.name, file, {
-        access: 'public',
-        handleUploadUrl: '/api/upload',
-      })
-      const updated = { ...editing, url: blob.url }
+      const form = new FormData()
+      form.append('file', file)
+      const res = await fetch('/api/upload', { method: 'POST', body: form })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Yükleme başarısız')
+      const updated = { ...editing, url: data.url }
       setEditing(updated)
       setSaving(true)
       const ok = await persist(updated)
@@ -93,8 +93,8 @@ export default function GorsellerPage() {
         setMsg('Görsel yüklendi ama kaydedilemedi. Kaydet butonunu deneyin.')
       }
       setSaving(false)
-    } catch {
-      setMsg('Görsel yüklenemedi. Dosya formatını (JPG/PNG/WEBP, max 10 MB) kontrol edin.')
+    } catch (err) {
+      setMsg(err instanceof Error ? err.message : 'Görsel yüklenemedi. Dosya formatını (JPG/PNG/WEBP, max 10 MB) kontrol edin.')
     } finally {
       setUploading(false)
     }

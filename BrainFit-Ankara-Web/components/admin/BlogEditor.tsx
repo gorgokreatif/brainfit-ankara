@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { upload } from '@vercel/blob/client'
 
 interface Category { id: string; name: string; color: string }
 interface PostData {
@@ -51,13 +50,14 @@ export default function BlogEditor({ postId }: { postId?: string }) {
     setUploading(true)
     setUploadError('')
     try {
-      const blob = await upload(file.name, file, {
-        access: 'public',
-        handleUploadUrl: '/api/upload',
-      })
-      setField('imageUrl', blob.url)
-    } catch {
-      setUploadError('Görsel yüklenemedi. Dosya formatını (JPG/PNG/WEBP) ve boyutunu (max 10 MB) kontrol edin.')
+      const form = new FormData()
+      form.append('file', file)
+      const res = await fetch('/api/upload', { method: 'POST', body: form })
+      const d = await res.json()
+      if (!res.ok) throw new Error(d.error || 'Yükleme başarısız')
+      setField('imageUrl', d.url)
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : 'Görsel yüklenemedi. Tekrar deneyin.')
     } finally {
       setUploading(false)
       if (fileRef.current) fileRef.current.value = ''
@@ -149,7 +149,7 @@ export default function BlogEditor({ postId }: { postId?: string }) {
 
             <div className="bg-white border border-[#e3ddd5] rounded-[16px] p-5 flex flex-col gap-3">
               <h3 className="font-semibold text-sm text-[#23231f]">Kapak Görseli</h3>
-              <p className="text-xs text-[#9a968c]">JPG / PNG / WEBP · max 10 MB · önerilen 1200×630px</p>
+              <p className="text-xs text-[#9a968c]">JPG / PNG / WEBP · max 10 MB · önerilen 1200×630 px</p>
               {data.imageUrl && <img src={data.imageUrl} alt="" className="w-full rounded-[10px] aspect-video object-cover" />}
               <input ref={fileRef} type="file" accept="image/*" onChange={uploadImage} className="hidden" />
               <button
