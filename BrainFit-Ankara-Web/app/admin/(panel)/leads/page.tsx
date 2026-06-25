@@ -1,7 +1,4 @@
-import { db } from '@/lib/db'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { redirect } from 'next/navigation'
+import { prisma } from '@/lib/db'
 
 const AGE_LABEL: Record<string, string> = { A: '4-6 yaş', B: '7-14 yaş', C: '15+' }
 function ScoreBadge({ value }: { value: number | null }) {
@@ -16,10 +13,7 @@ function ScoreBadge({ value }: { value: number | null }) {
 }
 
 export default async function LeadsPage() {
-  const session = await getServerSession(authOptions)
-  if (!session) redirect('/admin/login')
-
-  const leads = await db.testLead.findMany({
+  const leads = await prisma.testLead.findMany({
     orderBy: { createdAt: 'desc' },
     take: 200,
   })
