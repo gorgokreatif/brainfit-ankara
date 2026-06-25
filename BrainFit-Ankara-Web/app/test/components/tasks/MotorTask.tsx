@@ -27,7 +27,7 @@ export default function MotorTask({ ageGroup, onComplete }: Props) {
   const onsetRef = useRef(0)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  function randomDelay() { return 1000 + Math.random() * 2000 }
+  function randomDelay() { return 600 + Math.random() * 1000 }
 
   function startRT() {
     setPhase('rt_wait')
@@ -144,7 +144,7 @@ export default function MotorTask({ ageGroup, onComplete }: Props) {
             <b>Bölüm 2:</b> Ekranda beliren <b>noktaya dokun</b>, kaybolmadan önce!
           </p>
         </div>
-        <button onClick={() => { setPhase('rt_wait'); startRT() }}
+        <button onClick={() => startRT()}
           className="w-full max-w-sm bg-[#51AD32] text-white font-bold text-lg py-4 rounded-[16px] active:scale-95 transition-transform">
           Hazırım!
         </button>
@@ -177,29 +177,53 @@ export default function MotorTask({ ageGroup, onComplete }: Props) {
 
   // Simple RT screen
   if (phase === 'rt_wait' || phase === 'rt_go' || phase === 'rt_early') {
+    const isGo = phase === 'rt_go'
+    const isEarly = phase === 'rt_early'
     return (
       <div
         className="flex-1 flex flex-col items-center justify-center select-none transition-colors duration-150"
-        style={{ background: phase === 'rt_go' ? '#51AD32' : phase === 'rt_early' ? '#F8AF00' : '#F8F6F2' }}
+        style={{ background: isGo ? '#51AD32' : isEarly ? '#F8AF00' : '#F8F6F2' }}
         onPointerDown={handleRTTap}
       >
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-5">
+          {/* Animated circle */}
           <div
-            className="w-32 h-32 rounded-full flex items-center justify-center transition-all duration-150"
+            className={`w-36 h-36 rounded-full flex items-center justify-center transition-all duration-150 ${
+              phase === 'rt_wait' ? 'animate-pulse' : ''
+            }`}
             style={{
-              background: phase === 'rt_go' ? 'rgba(255,255,255,0.3)' : 'white',
-              border: `3px solid ${phase === 'rt_go' ? 'rgba(255,255,255,0.5)' : '#ece6db'}`,
+              background: isGo ? 'rgba(255,255,255,0.25)' : isEarly ? 'rgba(255,255,255,0.25)' : 'white',
+              border: `3px solid ${isGo ? 'rgba(255,255,255,0.5)' : isEarly ? 'rgba(255,255,255,0.5)' : '#d4cfc7'}`,
+              boxShadow: isGo ? '0 0 40px rgba(255,255,255,0.3)' : 'none',
             }}
           >
             <span className="text-5xl">
-              {phase === 'rt_go' ? '👆' : phase === 'rt_early' ? '⚠️' : '⏳'}
+              {isGo ? '👆' : isEarly ? '⚠️' : '⏳'}
             </span>
           </div>
-          <p className="font-bold text-lg" style={{ color: phase === 'rt_go' ? 'white' : '#23231f' }}>
-            {phase === 'rt_go' ? 'DOKUN!' : phase === 'rt_early' ? 'Çok erken!' : 'Bekle...'}
+
+          <p className="font-bold text-xl" style={{ color: isGo ? 'white' : '#23231f' }}>
+            {isGo ? 'DOKUN!' : isEarly ? 'Çok erken!' : 'Hazır ol...'}
           </p>
-          <p className="text-sm" style={{ color: phase === 'rt_go' ? 'rgba(255,255,255,0.8)' : '#9a968c' }}>
+
+          {/* Pulsing dots during wait */}
+          {phase === 'rt_wait' && (
+            <div className="flex gap-2">
+              {[0, 1, 2].map(i => (
+                <div key={i} className="w-2 h-2 rounded-full bg-[#c5c0b5] animate-bounce"
+                  style={{ animationDelay: `${i * 200}ms` }} />
+              ))}
+            </div>
+          )}
+          {!phase.startsWith('rt_wait') && (
+            <p className="text-sm" style={{ color: isGo ? 'rgba(255,255,255,0.8)' : '#9a968c' }}>
+              {isEarly ? 'Bekle, sonra tekrar...' : ''}
+            </p>
+          )}
+
+          <p className="text-xs" style={{ color: isGo ? 'rgba(255,255,255,0.7)' : '#9a968c' }}>
             Deneme {rtIdx + 1} / {cfg.simpleRTTrials}
+            {phase === 'rt_wait' && <span className="ml-2">· Ekran yeşile dönecek</span>}
           </p>
         </div>
       </div>

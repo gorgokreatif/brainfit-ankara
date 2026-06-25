@@ -119,6 +119,7 @@ export default function GoNoGo({ ageGroup, onComplete }: Props) {
   if (phase === 'instructions') {
     const isEmoji = cfg.stimulusType === 'emoji'
     const isCircle = cfg.stimulusType === 'circle'
+    const isLetter = cfg.stimulusType === 'letter'
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 gap-6 text-center">
         <div className="text-5xl">🎯</div>
@@ -127,21 +128,23 @@ export default function GoNoGo({ ageGroup, onComplete }: Props) {
         </h2>
         <div className="bg-white border border-[#ece6db] rounded-[18px] p-6 max-w-sm w-full text-left">
           <p className="text-sm font-semibold text-[#23231f] mb-3">Kurallar:</p>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2.5">
             <div className="flex items-center gap-3 bg-green-50 rounded-[12px] p-3">
-              <span className="text-2xl">{isEmoji ? cfg.targetEmoji : isCircle ? '🟢' : 'X'}</span>
-              <p className="text-sm text-[#23231f]"><b>{cfg.targetLabel}</b> gördüğünde <b>DOKUN</b></p>
+              <span className={isLetter ? 'text-2xl font-black font-mono' : 'text-2xl'}>{cfg.targetEmoji}</span>
+              <p className="text-sm text-[#23231f]"><b>{cfg.targetLabel}</b> gördüğünde <b>DOKUN ✓</b></p>
             </div>
-            {cfg.distractorEmojis.slice(0, 2).map((d, i) => (
-              <div key={i} className="flex items-center gap-3 bg-red-50 rounded-[12px] p-3">
-                <span className="text-2xl">{isCircle ? (d === '🔴' ? '🔴' : '🔵') : d}</span>
-                <p className="text-sm text-[#23231f]"><b>{cfg.distractorLabels[i]}</b> gördüğünde <b>DOKUNMA</b></p>
+            <div className="bg-red-50 rounded-[12px] p-3">
+              <p className="text-sm text-[#23231f] font-semibold mb-2">Bunları görünce <b>DOKUNMA ✗</b></p>
+              <div className="flex flex-wrap gap-2">
+                {cfg.distractorEmojis.map((d, i) => (
+                  <span key={i} className={`inline-flex items-center gap-1 bg-white border border-red-100 rounded-[8px] px-2.5 py-1.5 text-sm font-semibold ${isLetter ? 'font-mono text-lg' : ''}`}>
+                    <span className={isLetter ? 'text-xl font-black' : 'text-xl'}>{d}</span>
+                    {!isLetter && <span className="text-[#6c6c68]">{cfg.distractorLabels[i]}</span>}
+                  </span>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-          {ageGroup === 'A' && (
-            <p className="text-xs text-[#9a968c] mt-3">🐰 Tavşanı gördüğünde dokun, 🦁 aslanı gördüğünde dur!</p>
-          )}
         </div>
         <button
           onClick={() => { setPhase('isi') }}

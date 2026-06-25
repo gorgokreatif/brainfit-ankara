@@ -72,14 +72,14 @@ const SURVEY_LABELS_SELF = [
 export const difficultyConfig: Record<AgeGroup, DifficultyConfig> = {
   A: {
     gonogo: {
-      trials: 12,
-      targetRatio: 0.67,
-      stimulusDurationMs: 1500,
-      isiMs: 700,
+      trials: 16,
+      targetRatio: 0.56,
+      stimulusDurationMs: 1300,
+      isiMs: 600,
       targetEmoji: '🐰',
-      distractorEmojis: ['🦁'],
+      distractorEmojis: ['🦁', '🐻', '🐯'],
       targetLabel: 'Tavşan',
-      distractorLabels: ['Aslan'],
+      distractorLabels: ['Aslan', 'Ayı', 'Kaplan'],
       stimulusType: 'emoji',
     },
     visualSearch: {
@@ -96,14 +96,14 @@ export const difficultyConfig: Record<AgeGroup, DifficultyConfig> = {
 
   B: {
     gonogo: {
-      trials: 20,
-      targetRatio: 0.65,
-      stimulusDurationMs: 1000,
-      isiMs: 500,
+      trials: 24,
+      targetRatio: 0.54,
+      stimulusDurationMs: 850,
+      isiMs: 450,
       targetEmoji: '🟢',
-      distractorEmojis: ['🔴', '🔵'],
+      distractorEmojis: ['🔴', '🔵', '🟡'],
       targetLabel: 'Yeşil',
-      distractorLabels: ['Kırmızı', 'Mavi'],
+      distractorLabels: ['Kırmızı', 'Mavi', 'Sarı'],
       stimulusType: 'circle',
     },
     visualSearch: {
@@ -120,14 +120,14 @@ export const difficultyConfig: Record<AgeGroup, DifficultyConfig> = {
 
   C: {
     gonogo: {
-      trials: 24,
-      targetRatio: 0.42,
-      stimulusDurationMs: 900,
-      isiMs: 400,
-      targetEmoji: 'X',
-      distractorEmojis: ['O', 'P', 'M', 'H'],
-      targetLabel: 'X',
-      distractorLabels: ['O', 'P', 'M', 'H'],
+      trials: 30,
+      targetRatio: 0.40,
+      stimulusDurationMs: 750,
+      isiMs: 350,
+      targetEmoji: 'p',
+      distractorEmojis: ['q', 'd', 'b', 'n', 'm'],
+      targetLabel: 'p',
+      distractorLabels: ['q', 'd', 'b', 'n', 'm'],
       stimulusType: 'letter',
     },
     visualSearch: {

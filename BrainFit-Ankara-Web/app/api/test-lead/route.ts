@@ -7,9 +7,9 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const lead = await prisma.testLead.create({
       data: {
-        veliAdSoyad:    body.veliAdSoyad,
-        telefon:        body.telefon,
-        email:          body.email,
+        veliAdSoyad:    body.veliAdSoyad ?? '',
+        telefon:        body.telefon ?? '',
+        email:          body.email ?? '',
         testKiminIcin:  body.testKiminIcin ?? 'Çocuğum',
         cocukAd:        body.cocukAd ?? '',
         cocukYas:       body.cocukYas ? Number(body.cocukYas) : null,
@@ -33,6 +33,21 @@ export async function PATCH(req: NextRequest) {
     if (!id) return NextResponse.json({ error: 'id gerekli' }, { status: 400 })
 
     const body = await req.json()
+
+    // Contact info update (before showing results)
+    if (body.contact === true) {
+      await prisma.testLead.update({
+        where: { id },
+        data: {
+          telefon:  body.telefon ?? '',
+          email:    body.email ?? '',
+          kvkkOnay: Boolean(body.kvkkOnay),
+        },
+      })
+      return NextResponse.json({ ok: true })
+    }
+
+    // Score update (after results shown) — send email
     const lead = await prisma.testLead.update({
       where: { id },
       data: {

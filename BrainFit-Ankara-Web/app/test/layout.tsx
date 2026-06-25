@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Navbar from '@/components/site/Navbar'
 
 export const metadata: Metadata = {
   title: 'Zihin Check-Up Mini | BrainFit Ankara',
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function TestLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#F8F6F2] flex flex-col">
+      <Navbar />
       {children}
     </div>
   )
