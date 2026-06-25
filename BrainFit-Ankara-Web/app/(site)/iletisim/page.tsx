@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import TestPromo from '@/components/site/TestPromo'
 
 interface SiteSettings {
   phone: string
@@ -123,6 +124,7 @@ export default function IletisimPage() {
           </div>
         </div>
       </section>
+      <TestPromo />
     </div>
   )
 }

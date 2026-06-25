@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { cache } from 'react'
+import TestPromo from '@/components/site/TestPromo'
 
 export const dynamic = 'force-dynamic'
 
@@ -329,6 +330,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
       </div>
+      <TestPromo />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPageImages } from '@/lib/pageImages'
+import TestPromo from '@/components/site/TestPromo'
 
 export const dynamic = 'force-dynamic'
 export const metadata = { title: 'Nasıl Yapıyoruz? | BrainFit Ankara' }
@@ -120,6 +121,7 @@ export default async function NasilYapiyoruzPage() {
           </Link>
         </div>
       </section>
+      <TestPromo />
     </div>
   )
 }

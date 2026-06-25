@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { unstable_noStore as noStore } from 'next/cache'
 import { prisma } from '@/lib/db'
+import TestPromo from '@/components/site/TestPromo'
 
 export const dynamic = 'force-dynamic'
 
@@ -164,6 +165,7 @@ export default async function ProgramDetayPage({ params }: { params: Promise<{ s
           </Link>
         </div>
       </section>
+      <TestPromo />
     </div>
   )
 }

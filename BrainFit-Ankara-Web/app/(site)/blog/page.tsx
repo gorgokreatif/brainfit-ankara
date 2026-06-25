@@ -1,6 +1,7 @@
 import { unstable_noStore as noStore } from 'next/cache'
 import { prisma } from '@/lib/db'
 import BlogList from '@/components/site/BlogList'
+import TestPromo from '@/components/site/TestPromo'
 
 export const dynamic = 'force-dynamic'
 export const metadata = { title: 'Blog | BrainFit Ankara' }
@@ -32,6 +33,7 @@ export default async function BlogPage() {
       <section className="max-w-[1280px] mx-auto px-6 pb-[clamp(56px,7vw,90px)]">
         <BlogList posts={posts} categories={categories} />
       </section>
+      <TestPromo />
     </div>
   )
 }

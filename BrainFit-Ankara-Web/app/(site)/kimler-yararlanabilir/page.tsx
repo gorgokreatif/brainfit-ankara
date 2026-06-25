@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import TestPromo from '@/components/site/TestPromo'
 export const metadata = { title: 'Kimler Yararlanabilir? | BrainFit Ankara' }
 const audience = [
   'Dikkat ve odaklanma problemi yaşayanlar','DEHB tanısı olan veya dikkat-dürtü kontrolünde zorlanan çocuklar',
@@ -43,6 +44,7 @@ export default function KimlerPage() {
           </div>
         </div>
       </section>
+      <TestPromo />
     </div>
   )
 }
