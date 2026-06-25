@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import MediaPicker from '@/components/admin/MediaPicker'
 
 const PAGE_SLOTS = [
   // ─── Hero Bölümleri ───
@@ -45,6 +46,7 @@ export default function GorsellerPage() {
   const [uploading, setUploading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [msg, setMsg] = useState('')
+  const [showPicker, setShowPicker] = useState(false)
 
   useEffect(() => { load() }, [])
 
@@ -180,13 +182,22 @@ export default function GorsellerPage() {
             {/* File upload */}
             <label className="flex flex-col gap-1.5 text-[13px] font-semibold mb-4">
               Dosya Yükle
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFile}
-                disabled={uploading}
-                className="text-sm file:mr-3 file:py-1.5 file:px-3 file:rounded-[7px] file:border-0 file:bg-[#F4F2EE] file:text-[13px] file:font-medium file:cursor-pointer"
-              />
+              <div className="flex gap-2 items-center">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFile}
+                  disabled={uploading}
+                  className="text-sm file:mr-3 file:py-1.5 file:px-3 file:rounded-[7px] file:border-0 file:bg-[#F4F2EE] file:text-[13px] file:font-medium file:cursor-pointer flex-1"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPicker(true)}
+                  className="px-3 py-1.5 text-[13px] border border-[#e3ddd5] rounded-[9px] text-[#23231f] font-semibold flex-shrink-0"
+                >
+                  Kütüphane
+                </button>
+              </div>
               {uploading && <span className="text-xs text-[#9a968c]">Yükleniyor...</span>}
             </label>
 
@@ -218,6 +229,17 @@ export default function GorsellerPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {showPicker && (
+        <MediaPicker
+          onSelect={url => {
+            setEditing(ed => ed ? { ...ed, url } : ed)
+            setMsg('')
+            setShowPicker(false)
+          }}
+          onClose={() => setShowPicker(false)}
+        />
       )}
     </div>
   )

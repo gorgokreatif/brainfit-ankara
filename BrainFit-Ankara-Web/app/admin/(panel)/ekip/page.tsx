@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
+import MediaPicker from '@/components/admin/MediaPicker'
 
 interface TeamMember {
   id: string; name: string; role: string; bio: string;
@@ -16,6 +17,7 @@ export default function EkipPage() {
   const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
+  const [showPicker, setShowPicker] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => { load() }, [])
@@ -91,6 +93,14 @@ export default function EkipPage() {
         ))}
       </div>
 
+      {/* MEDIA PICKER */}
+      {showPicker && (
+        <MediaPicker
+          onSelect={url => { setEditing(ed => ({ ...ed!, imageUrl: url })); setShowPicker(false) }}
+          onClose={() => setShowPicker(false)}
+        />
+      )}
+
       {/* FORM MODAL */}
       {editing && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
@@ -125,9 +135,14 @@ export default function EkipPage() {
                 <p className="text-[13px] font-semibold mb-2">Fotoğraf</p>
                 {editing.imageUrl && <img src={editing.imageUrl} alt="" className="w-24 h-24 rounded-[10px] object-cover mb-2" />}
                 <input ref={fileRef} type="file" accept="image/*" onChange={uploadPhoto} className="hidden" />
-                <button onClick={() => fileRef.current?.click()} disabled={uploading} className="px-3 py-2 text-sm border border-[#e3ddd5] rounded-[9px] text-[#23231f] disabled:opacity-60">
-                  {uploading ? 'Yükleniyor...' : 'Fotoğraf Seç'}
-                </button>
+                <div className="flex gap-2">
+                  <button onClick={() => fileRef.current?.click()} disabled={uploading} className="flex-1 px-3 py-2 text-sm border border-[#e3ddd5] rounded-[9px] text-[#23231f] disabled:opacity-60">
+                    {uploading ? 'Yükleniyor...' : 'Yükle'}
+                  </button>
+                  <button onClick={() => setShowPicker(true)} className="flex-1 px-3 py-2 text-sm border border-[#e3ddd5] rounded-[9px] text-[#23231f]">
+                    Kütüphane
+                  </button>
+                </div>
                 {uploadError && <p className="text-xs text-red-500 mt-1">{uploadError}</p>}
               </div>
             </div>

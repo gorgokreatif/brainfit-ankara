@@ -57,6 +57,15 @@ model PageImage {
   updatedAt DateTime @updatedAt
 }
 
+model MediaFile {
+  id        String   @id @default(cuid())
+  url       String
+  filename  String
+  size      Int      @default(0)
+  mimeType  String   @default("")
+  createdAt DateTime @default(now())
+}
+
 model BlogPost {
   id          String       @id @default(cuid())
   title       String

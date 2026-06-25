@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import MediaPicker from '@/components/admin/MediaPicker'
 
 interface Category { id: string; name: string; color: string }
 interface PostData {
@@ -27,6 +28,7 @@ export default function BlogEditor({ postId }: { postId?: string }) {
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
   const [preview, setPreview] = useState(false)
+  const [showPicker, setShowPicker] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
@@ -152,18 +154,32 @@ export default function BlogEditor({ postId }: { postId?: string }) {
               <p className="text-xs text-[#9a968c]">JPG / PNG / WEBP · max 10 MB · önerilen 1200×630 px</p>
               {data.imageUrl && <img src={data.imageUrl} alt="" className="w-full rounded-[10px] aspect-video object-cover" />}
               <input ref={fileRef} type="file" accept="image/*" onChange={uploadImage} className="hidden" />
-              <button
-                onClick={() => fileRef.current?.click()}
-                disabled={uploading}
-                className="border border-[#e3ddd5] py-2 rounded-[9px] text-sm font-medium text-[#23231f] disabled:opacity-60"
-              >
-                {uploading ? 'Yükleniyor...' : data.imageUrl ? 'Görseli Değiştir' : 'Görsel Yükle'}
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => fileRef.current?.click()}
+                  disabled={uploading}
+                  className="flex-1 border border-[#e3ddd5] py-2 rounded-[9px] text-sm font-medium text-[#23231f] disabled:opacity-60"
+                >
+                  {uploading ? 'Yükleniyor...' : 'Yükle'}
+                </button>
+                <button
+                  onClick={() => setShowPicker(true)}
+                  className="flex-1 border border-[#e3ddd5] py-2 rounded-[9px] text-sm font-medium text-[#23231f]"
+                >
+                  Kütüphane
+                </button>
+              </div>
               {uploadError && <p className="text-xs text-red-500">{uploadError}</p>}
               {data.imageUrl && (
                 <button onClick={() => setField('imageUrl', '')} className="text-xs text-red-400 hover:text-red-600">
                   Görseli Kaldır
                 </button>
+              )}
+              {showPicker && (
+                <MediaPicker
+                  onSelect={url => { setField('imageUrl', url); setShowPicker(false) }}
+                  onClose={() => setShowPicker(false)}
+                />
               )}
             </div>
           </div>

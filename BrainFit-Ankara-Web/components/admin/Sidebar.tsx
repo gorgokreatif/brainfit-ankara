@@ -11,6 +11,7 @@ const nav = [
   { href: '/admin/blog', label: 'Blog Yazıları', icon: '📝' },
   { href: '/admin/kategoriler', label: 'Kategoriler', icon: '🏷' },
   { href: '/admin/gorseller', label: 'Sayfa Görselleri', icon: '🖼' },
+  { href: '/admin/medya', label: 'Medya Kütüphanesi', icon: '🗂' },
   { href: '/admin/smtp', label: 'SMTP Ayarları', icon: '✉️' },
 ]
 
