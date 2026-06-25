@@ -26,6 +26,7 @@ export default function MotorTask({ ageGroup, onComplete }: Props) {
   const areaRef = useRef<HTMLDivElement>(null)
   const onsetRef = useRef(0)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const rtIdxRef = useRef(0)
 
   function randomDelay() { return 600 + Math.random() * 1000 }
 
@@ -42,7 +43,8 @@ export default function MotorTask({ ageGroup, onComplete }: Props) {
   }
 
   function nextRT() {
-    const next = rtIdx + 1
+    const next = rtIdxRef.current + 1
+    rtIdxRef.current = next
     if (next >= cfg.simpleRTTrials) {
       setRtIdx(next)
       setPhase('target_instructions')
@@ -126,7 +128,6 @@ export default function MotorTask({ ageGroup, onComplete }: Props) {
     if (phase === 'target') {
       setTimeout(showTarget, 500)
     }
-    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
   }, [phase]) // eslint-disable-line
 
   useEffect(() => {
