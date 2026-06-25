@@ -202,11 +202,6 @@ export default function CorsiSpan({ ageGroup, onComplete }: Props) {
         <span className="text-[#9a968c]">Uzunluk: {span}</span>
       </div>
 
-      {feedback && (
-        <div className={`text-center py-2 px-6 rounded-[12px] font-semibold text-sm ${feedback === 'correct' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
-          {feedback === 'correct' ? '✓ Doğru!' : '✗ Yanlış — tekrar deneyelim'}
-        </div>
-      )}
 
       {phase === 'showing' && (
         <p className="text-sm text-[#9a968c]">Sırayı izle...</p>

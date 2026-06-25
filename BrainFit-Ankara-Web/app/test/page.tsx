@@ -150,6 +150,7 @@ export default function TestPage() {
           <ResultScreen
             scores={state.scores}
             ageGroup={state.ageGroup}
+            allMetrics={state.allMetrics}
             onMount={() => patchScores(state.scores!)}
           />
         )}

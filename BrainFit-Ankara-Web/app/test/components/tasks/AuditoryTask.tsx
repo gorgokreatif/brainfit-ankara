@@ -233,11 +233,6 @@ export default function AuditoryTask({ ageGroup, onComplete }: Props) {
             </button>
           </div>
         )}
-        {feedback !== null && (
-          <div className={`text-sm font-semibold py-2 px-5 rounded-[10px] ${feedback ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
-            {feedback ? '✓ Doğru!' : '✗ Yanlış'}
-          </div>
-        )}
       </div>
     )
   }
@@ -283,18 +278,6 @@ export default function AuditoryTask({ ageGroup, onComplete }: Props) {
                 style={{ animationDelay: `${i * 150}ms` }} />
             ))}
           </div>
-        )}
-        {feedback !== null && (
-          <div className={`text-sm font-semibold py-2 px-5 rounded-[10px] ${feedback ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
-            {feedback ? `✓ Doğru! ${currentBeats} vuruştu.` : `✗ ${currentBeats} vuruştu.`}
-          </div>
-        )}
-        {/* Replay button for wrong answers (last chance) */}
-        {!playing && !answered && currentBeats === 0 && rhythmIdx > 0 && (
-          <button onClick={() => playRhythmSound(rhythmIdx)}
-            className="bg-[#F8AF00] text-white font-bold px-8 py-3 rounded-[14px]">
-            ▶ Tekrar Dinle
-          </button>
         )}
       </div>
     )

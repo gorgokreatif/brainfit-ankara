@@ -181,11 +181,6 @@ export default function EmotionTask({ ageGroup, onComplete }: Props) {
             {EMOTION_DATA[trial]?.face}
           </div>
         </div>
-        {feedback !== null && (
-          <div className={`text-center py-2 rounded-[10px] text-sm font-semibold ${feedback ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
-            {feedback ? `✓ Evet, ${EMOTION_DATA[trial]?.label}!` : `✗ ${EMOTION_DATA[trial]?.label} ifadesiydi`}
-          </div>
-        )}
         <div className="grid grid-cols-2 gap-3">
           {opts.map(opt => (
             <button

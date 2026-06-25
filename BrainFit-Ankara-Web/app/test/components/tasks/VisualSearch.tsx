@@ -130,12 +130,6 @@ export default function VisualSearch({ ageGroup, onComplete }: Props) {
         <p className="text-xs text-[#9a968c]">{screenIdx + 1} / {cfg.screens}</p>
       </div>
 
-      {feedback !== null && (
-        <div className={`text-center py-2 mb-3 rounded-[12px] font-semibold text-sm ${feedback ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>
-          {feedback ? '✓ Doğru!' : '✗ Bu değildi'}
-        </div>
-      )}
-
       <div
         className="flex-1 grid gap-3 content-center justify-center"
         style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, maxWidth: 400, margin: '0 auto', width: '100%' }}

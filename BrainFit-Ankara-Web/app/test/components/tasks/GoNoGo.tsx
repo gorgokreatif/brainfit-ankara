@@ -37,7 +37,6 @@ export default function GoNoGo({ ageGroup, onComplete }: Props) {
   const [trials] = useState<Trial[]>(() => buildTrials(cfg))
   const [trialIdx, setTrialIdx] = useState(0)
   const [tapped, setTapped] = useState(false)
-  const [feedback, setFeedback] = useState<'correct' | 'error' | null>(null)
 
   const metrics = useRef<GoNoGoMetrics>({
     hits: 0, totalTargets: 0,
@@ -64,7 +63,6 @@ export default function GoNoGo({ ageGroup, onComplete }: Props) {
     if (phase !== 'isi') return
     timerRef.current = setTimeout(() => {
       setTapped(false)
-      setFeedback(null)
       stimulusOnset.current = performance.now()
       setPhase('stimulus')
     }, cfg.isiMs)
@@ -107,11 +105,9 @@ export default function GoNoGo({ ageGroup, onComplete }: Props) {
       metrics.current.hits++
       metrics.current.totalTargets++
       metrics.current.hitRTs.push(rt)
-      setFeedback('correct')
     } else {
       metrics.current.falseAlarms++
       metrics.current.totalDistractors++
-      setFeedback('error')
     }
     setTimeout(advance, 300)
   }
@@ -188,11 +184,11 @@ export default function GoNoGo({ ageGroup, onComplete }: Props) {
       {/* Stimulus */}
       <div className={`flex items-center justify-center rounded-[24px] transition-all duration-100 ${
         phase === 'isi' ? 'opacity-0' : 'opacity-100'
-      } ${feedback === 'correct' ? 'scale-105' : feedback === 'error' ? 'scale-95' : ''}`}
+      }`}
         style={{
           width: 180, height: 180,
-          background: feedback === 'correct' ? '#e8f7e0' : feedback === 'error' ? '#fef2f2' : 'white',
-          border: `3px solid ${feedback === 'correct' ? '#51AD32' : feedback === 'error' ? '#ef4444' : '#ece6db'}`,
+          background: 'white',
+          border: '3px solid #ece6db',
           boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
         }}
       >
