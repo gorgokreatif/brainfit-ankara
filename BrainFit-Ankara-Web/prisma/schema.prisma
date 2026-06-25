@@ -57,6 +57,26 @@ model PageImage {
   updatedAt DateTime @updatedAt
 }
 
+model TestLead {
+  id             String    @id @default(cuid())
+  veliAdSoyad    String
+  telefon        String
+  email          String
+  testKiminIcin  String    @default("Çocuğum")
+  cocukAd        String    @default("")
+  cocukYas       Int?
+  sehir          String    @default("")
+  kvkkOnay       Boolean   @default(false)
+  veliOnay18Alti Boolean   @default(false)
+  kaynak         String    @default("mini-test")
+  ageGroup       String    @default("")
+  scores         Json?
+  rawMetrics     Json?
+  completed      Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  completedAt    DateTime?
+}
+
 model MediaFile {
   id        String   @id @default(cuid())
   url       String
