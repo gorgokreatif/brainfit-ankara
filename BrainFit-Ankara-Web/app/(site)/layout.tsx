@@ -1,5 +1,6 @@
 import Navbar from '@/components/site/Navbar'
 import Footer from '@/components/site/Footer'
+import BrainFactPopup from '@/components/site/BrainFactPopup'
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+      <BrainFactPopup />
     </div>
   )
 }

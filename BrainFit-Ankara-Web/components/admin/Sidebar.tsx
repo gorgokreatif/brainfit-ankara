@@ -13,6 +13,7 @@ const nav = [
   { href: '/admin/gorseller', label: 'Sayfa Görselleri', icon: '🖼' },
   { href: '/admin/medya', label: 'Medya Kütüphanesi', icon: '🗂' },
   { href: '/admin/leads', label: 'Test Sonuçları', icon: '📊' },
+  { href: '/admin/appointments', label: 'Randevular', icon: '📅' },
   { href: '/admin/smtp', label: 'SMTP Ayarları', icon: '✉️' },
 ]
 

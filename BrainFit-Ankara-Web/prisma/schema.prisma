@@ -22,14 +22,14 @@ model TeamMember {
 }
 
 model SiteSettings {
-  id         String   @id @default("main")
-  phone      String   @default("")
-  whatsapp   String   @default("")
-  email      String   @default("")
-  address    String   @default("")
-  hours      String   @default("")
-  mapsEmbed  String   @default("")
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default("main")
+  phone     String   @default("")
+  whatsapp  String   @default("")
+  email     String   @default("")
+  address   String   @default("")
+  hours     String   @default("")
+  mapsEmbed String   @default("")
+  updatedAt DateTime @updatedAt
 }
 
 model SmtpSettings {
@@ -84,6 +84,21 @@ model MediaFile {
   size      Int      @default(0)
   mimeType  String   @default("")
   createdAt DateTime @default(now())
+}
+
+model Appointment {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  phone         String   @default("")
+  childAge      String   @default("")
+  preferredDate String
+  preferredTime String
+  note          String   @default("")
+  scores        Json?
+  source        String   @default("result-page")
+  status        String   @default("pending")
+  createdAt     DateTime @default(now())
 }
 
 model BlogPost {

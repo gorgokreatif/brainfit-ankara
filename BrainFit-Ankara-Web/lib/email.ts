@@ -53,6 +53,68 @@ export async function sendTestLeadEmail(lead: {
   })
 }
 
+export async function sendAppointmentEmails(data: {
+  name: string
+  email: string
+  phone: string
+  childAge: string
+  preferredDate: string
+  preferredTime: string
+  note: string
+  scores?: Record<string, number | null>
+  calendarLink: string
+}) {
+  const smtp = await prisma.smtpSettings.findUnique({ where: { id: 'main' } })
+  if (!smtp?.user || !smtp?.password || !smtp?.toEmail) return
+
+  const transporter = await getTransporter()
+  const scoreRows = data.scores
+    ? Object.entries(data.scores).map(([k, v]) => `<tr><td style="padding:4px 12px;border:1px solid #eee"><b>${k}</b></td><td style="padding:4px 12px;border:1px solid #eee">${v !== null ? v : '—'}</td></tr>`).join('')
+    : ''
+
+  // Admin bildirimi
+  await transporter.sendMail({
+    from: `"${smtp.fromName}" <${smtp.user}>`,
+    to: smtp.toEmail,
+    subject: `📅 Yeni Rapor Randevusu — ${data.name} (${data.preferredDate} ${data.preferredTime})`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px">
+        <h2 style="color:#51AD32;border-bottom:2px solid #51AD32;padding-bottom:8px">Yeni Randevu Talebi</h2>
+        <p><b>Ad Soyad:</b> ${data.name}</p>
+        <p><b>E-posta:</b> ${data.email}</p>
+        <p><b>Telefon:</b> ${data.phone || '—'}</p>
+        <p><b>Çocuğun Yaşı:</b> ${data.childAge || '—'}</p>
+        <p><b>Tercih Edilen Tarih:</b> ${data.preferredDate}</p>
+        <p><b>Tercih Edilen Saat:</b> ${data.preferredTime}</p>
+        ${data.note ? `<p><b>Not:</b> ${data.note}</p>` : ''}
+        ${scoreRows ? `<h3>Test Sonuçları</h3><table style="border-collapse:collapse;font-size:13px">${scoreRows}</table>` : ''}
+        <p style="margin-top:20px"><a href="${data.calendarLink}" style="background:#51AD32;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold">Google Calendar'a Ekle</a></p>
+        <p style="color:#999;font-size:11px;margin-top:16px">BrainFit Ankara — otomatik bildirim</p>
+      </div>
+    `,
+  })
+
+  // Kullanıcı onay maili
+  await transporter.sendMail({
+    from: `"${smtp.fromName}" <${smtp.user}>`,
+    to: data.email,
+    subject: `Randevu Talebiniz Alındı — BrainFit Ankara`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px">
+        <h2 style="color:#51AD32">Merhaba ${data.name}!</h2>
+        <p>Rapor değerlendirme randevu talebiniz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.</p>
+        <div style="background:#f8f6f2;border-radius:12px;padding:16px;margin:16px 0">
+          <p style="margin:4px 0"><b>📅 Tercih Edilen Tarih:</b> ${data.preferredDate}</p>
+          <p style="margin:4px 0"><b>🕐 Tercih Edilen Saat:</b> ${data.preferredTime}</p>
+        </div>
+        <p><a href="${data.calendarLink}" style="background:#51AD32;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold">Google Takvimine Ekle</a></p>
+        <p style="color:#666;font-size:13px;margin-top:20px">Sorularınız için: <a href="mailto:info@brainfitankara.com">info@brainfitankara.com</a></p>
+        <p style="color:#999;font-size:11px">BrainFit Ankara — Çankaya, Ankara</p>
+      </div>
+    `,
+  })
+}
+
 export async function sendContactEmail(data: {
   name: string
   phone: string

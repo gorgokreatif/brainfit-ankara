@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { Scores, AllMetrics, MetricDetail } from '../lib/scoring'
 import { getBand, AREA_LABELS, AREA_DESC, getAreaDetails, getAreaInterpretation } from '../lib/scoring'
 import type { AgeGroup } from '../lib/normBands'
+import AppointmentModal from './AppointmentModal'
 
 interface Props {
   scores: Scores
@@ -229,6 +230,9 @@ export default function ResultScreen({ scores, ageGroup, allMetrics, onMount }: 
           Detaylı 18 sayfalık profil için <b>Cog-Map Zihin Check-Up</b> randevusu alın.
         </p>
       </div>
+
+      {/* Appointment */}
+      <AppointmentModal scores={scores} />
 
       {/* CTA Buttons */}
       <div className="flex flex-col gap-3 pb-6">
