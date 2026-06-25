@@ -14,6 +14,14 @@ interface Props {
 
 const AREA_ORDER: (keyof Scores)[] = ['dikkat', 'gorsel', 'isitsel', 'motor', 'sosyalDuygusal']
 
+const AREA_SCIENCE: Record<keyof Scores, string> = {
+  dikkat:         'Go/No-Go paradigması (Donders, 1868) — inhibitör kontrol ve sürekli dikkat ölçümünde klinik standarttır.',
+  gorsel:         'Corsi Blok Testi (Corsi, 1972) + Görsel Arama (Treisman & Gelade, 1980) — görsel-uzamsal çalışma belleği ve ön-dikkat süreçleri.',
+  isitsel:        'İşitsel Ayrım & Ritim Algısı (Tallal, 1980) — fonolojik farkındalık ve zamansal işlemenin davranışsal göstergesi.',
+  motor:          'Tepki Süresi Paradigması (Donders, 1868; Hick, 1952) — psikomotor hız ve nöral iletim hızının doğrudan ölçümü.',
+  sosyalDuygusal: 'Temel Duygu Tanıma (Ekman & Friesen, 1978) — yüz ifadesi işleme, sosyal biliş ve duygusal empati kapasitesinin erken göstergesi.',
+}
+
 const AREA_PROGRAM: Record<keyof Scores, { link: string; text: string }> = {
   dikkat:         { link: '/programlar/brainfit-scholar', text: 'BrainFit Scholar programımıza bakın.' },
   gorsel:         { link: '/programlar/brainfit-junior',  text: 'BrainFit Junior programımıza bakın.' },
@@ -181,6 +189,13 @@ export default function ResultScreen({ scores, ageGroup, allMetrics, onMount }: 
                   {details.map(d => <MetricRow key={d.label} d={d} />)}
                 </div>
               )}
+
+              {/* Science note */}
+              <div className={`px-4 pb-3 ${details.length > 0 ? 'pt-2' : 'pt-0 border-t border-[#ece6db]'}`}>
+                <p className="text-[10px] text-[#bcb8b0] italic leading-relaxed">
+                  📖 {AREA_SCIENCE[area]}
+                </p>
+              </div>
             </div>
           )
         })}
