@@ -66,7 +66,12 @@ export default async function HomePage() {
                 Cog-Map'i İncele
               </Link>
             </div>
-            <p className="text-[13px] text-[#9a968c] mt-5 flex items-center gap-2">
+            <Link href="/test" className="mt-4 inline-flex items-center gap-2 text-[13.5px] font-semibold text-[#00B4E5] group">
+              <span className="text-base">🧠</span>
+              <span className="group-hover:underline underline-offset-2">5 dk'da ücretsiz bilişsel profil çıkar</span>
+              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+            </Link>
+            <p className="text-[13px] text-[#9a968c] mt-3 flex items-center gap-2">
               <span className="w-5 h-0.5 bg-[#E84F2D] inline-block" />
               Önce ölçüyoruz, sonra kişiye özel yol haritası oluşturuyoruz.
             </p>
@@ -131,6 +136,35 @@ export default async function HomePage() {
               <p className="text-[13.5px] text-[#8a8578] leading-relaxed">Bu davranışın arkasında dikkat, görsel, işitsel, motor veya duygusal bir alan olabilir.</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* MINI TEST PROMO */}
+      <section className="max-w-[1280px] mx-auto px-4 sm:px-6 pb-[clamp(40px,5vw,60px)]">
+        <div className="rounded-[24px] border border-[#00B4E5]/25 bg-gradient-to-br from-[#f0fbff] to-[#e8f7ff] px-[clamp(24px,4vw,52px)] py-[clamp(28px,4vw,44px)] flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
+          <div className="flex-1 min-w-0">
+            <span className="inline-flex items-center gap-2 text-[12px] font-bold text-[#00B4E5] uppercase tracking-widest mb-3">
+              <span className="w-5 h-[2px] bg-[#00B4E5] rounded inline-block" />
+              Ücretsiz · 5 dakika · Sonuç anında
+            </span>
+            <h3 className="text-[clamp(19px,2.4vw,28px)] font-bold text-[#23231f] tracking-tight leading-snug">
+              Çocuğunuzun bilişsel profilini<br className="hidden sm:block" /> hemen görün.
+            </h3>
+            <p className="text-[14.5px] text-[#6c6c68] mt-2 max-w-[420px] leading-relaxed">
+              6 mini görev, 5 bilişsel alan, radar grafik profil. Tanı koymaz — güçlü ve desteklenebilir alanları gösterir.
+            </p>
+            <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3 text-[13px] text-[#6c6c68] font-medium">
+              {['⏱ ~5 dk', '📱 Mobil uyumlu', '🔒 KVKK uyumlu', '🆓 Tamamen ücretsiz'].map(f => (
+                <span key={f}>{f}</span>
+              ))}
+            </div>
+          </div>
+          <Link
+            href="/test"
+            className="bf-lift flex-shrink-0 bg-[#00B4E5] text-white px-7 py-4 rounded-[14px] font-bold text-[15px] shadow-[0_10px_28px_rgba(0,180,229,.32)] whitespace-nowrap active:scale-[0.97] transition-transform"
+          >
+            Testi Başlat →
+          </Link>
         </div>
       </section>
 

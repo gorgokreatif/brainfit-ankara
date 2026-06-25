@@ -46,6 +46,9 @@ export default function Navbar() {
 
         {/* Desktop sağ butonlar */}
         <div className="hidden lg:flex items-center gap-2 flex-shrink-0 ml-auto">
+          <Link href="/test" className="bf-lift border-[1.5px] border-[#00B4E5] text-[#00B4E5] px-4 py-2.5 rounded-[10px] text-sm font-semibold whitespace-nowrap flex items-center gap-1.5 hover:bg-[#00B4E5] hover:text-white transition-colors">
+            🧠 Zihin Testi
+          </Link>
           <Link href="/iletisim" className="bf-lift bg-[#51AD32] text-white px-4 py-2.5 rounded-[10px] text-sm font-semibold whitespace-nowrap shadow-[0_6px_16px_rgba(81,173,50,.28)]" style={{ color: '#fff' }}>
             Ücretsiz Ön Görüşme
           </Link>
@@ -191,7 +194,16 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <div className="mt-3 pt-3 border-t border-[#eae6df] flex gap-2">
+          <div className="mt-3 pt-3 border-t border-[#eae6df] flex flex-col gap-2">
+            <Link
+              href="/test"
+              onClick={() => setMenuOpen(false)}
+              className="w-full bg-[#00B4E5] py-3 rounded-[10px] text-center text-sm font-bold flex items-center justify-center gap-2"
+              style={{ color: '#fff' }}
+            >
+              🧠 Ücretsiz Zihin Testi — 5 dk
+            </Link>
+            <div className="flex gap-2">
             <Link
               href="/iletisim"
               onClick={() => setMenuOpen(false)}
@@ -207,6 +219,7 @@ export default function Navbar() {
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9 1-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2 0 .4 0 .5l-.4.5c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l2 1c.3.1.4.2.5.3.1.2.1.6-.1 1.3Z"/></svg>
             </a>
+            </div>
           </div>
         </div>
       )}
