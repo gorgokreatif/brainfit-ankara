@@ -67,6 +67,8 @@ export default function AuditoryTask({ ageGroup, onComplete }: Props) {
       const isSame = Math.random() > 0.5
 
       discIsSameRef.current = isSame
+      setAnswered(false)
+      setFeedback(null)
       setDiscAnswerReady(false)
       setPlaying(true)
 
@@ -88,6 +90,8 @@ export default function AuditoryTask({ ageGroup, onComplete }: Props) {
       const count = cfg.minBeats + Math.floor(Math.random() * (cfg.maxBeats - cfg.minBeats + 1))
       currentBeatsRef.current = count
       setCurrentBeats(count)
+      setAnswered(false)
+      setFeedback(null)
       setPlaying(true)
 
       const now = ctx.currentTime + 0.1
@@ -120,6 +124,8 @@ export default function AuditoryTask({ ageGroup, onComplete }: Props) {
     setTimeout(() => {
       const next = discIdx + 1
       if (next >= cfg.discriminationTrials) {
+        setAnswered(false)
+        setFeedback(null)
         setPhase('rhythm_instructions')
       } else {
         setDiscIdx(next)
