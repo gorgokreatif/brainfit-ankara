@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/db'
+import LeadActions from './LeadActions'
 
 const AGE_LABEL: Record<string, string> = { A: '4-6 yaş', B: '7-14 yaş', C: '15+' }
 function ScoreBadge({ value }: { value: number | null }) {
@@ -51,6 +52,7 @@ export default async function LeadsPage() {
                   <th className="px-4 py-3 font-semibold text-[#6c6c68]">Sosyal</th>
                   <th className="px-4 py-3 font-semibold text-[#6c6c68]">Durum</th>
                   <th className="px-4 py-3 font-semibold text-[#6c6c68]">Tarih</th>
+                  <th className="px-4 py-3"></th>
                 </tr>
               </thead>
               <tbody>
@@ -111,6 +113,9 @@ export default async function LeadsPage() {
                           day: '2-digit', month: '2-digit', year: 'numeric',
                           hour: '2-digit', minute: '2-digit',
                         })}
+                      </td>
+                      <td className="px-4 py-3">
+                        <LeadActions id={lead.id} completed={lead.completed} />
                       </td>
                     </tr>
                   )

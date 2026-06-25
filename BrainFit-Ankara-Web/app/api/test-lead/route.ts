@@ -34,6 +34,15 @@ export async function PATCH(req: NextRequest) {
 
     const body = await req.json()
 
+    // Admin status toggle
+    if (body.adminToggle === true) {
+      await prisma.testLead.update({
+        where: { id },
+        data: { completed: Boolean(body.completed) },
+      })
+      return NextResponse.json({ ok: true })
+    }
+
     // Contact info update (before showing results)
     if (body.contact === true) {
       await prisma.testLead.update({
@@ -64,5 +73,18 @@ export async function PATCH(req: NextRequest) {
   } catch (err) {
     console.error('[test-lead PATCH]', err)
     return NextResponse.json({ error: 'Güncelleme başarısız.' }, { status: 500 })
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url)
+    const id = searchParams.get('id')
+    if (!id) return NextResponse.json({ error: 'id gerekli' }, { status: 400 })
+    await prisma.testLead.delete({ where: { id } })
+    return NextResponse.json({ ok: true })
+  } catch (err) {
+    console.error('[test-lead DELETE]', err)
+    return NextResponse.json({ error: 'Silme başarısız.' }, { status: 500 })
   }
 }
