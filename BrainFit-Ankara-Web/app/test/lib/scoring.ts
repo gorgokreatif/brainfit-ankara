@@ -233,6 +233,73 @@ export function getSosyalDetails(m: EmotionMetrics): MetricDetail[] {
   ]
 }
 
+export function getAreaInterpretation(area: keyof Scores, metrics: AllMetrics): string {
+  switch (area) {
+    case 'dikkat': {
+      const m = metrics.gonogo
+      if (!m || m.totalTargets === 0) return ''
+      const hitRate = m.totalTargets > 0 ? Math.round(m.hits / m.totalTargets * 100) : 0
+      const faRate  = m.totalDistractors > 0 ? Math.round(m.falseAlarms / m.totalDistractors * 100) : 0
+      const valid   = m.hitRTs.filter(rt => rt > 80 && rt < 3000)
+      const meanRT  = valid.length > 0 ? Math.round(avg(valid)) : null
+      const cv      = valid.length > 1 ? rtCV(valid) : null
+      if (hitRate >= 85 && faRate <= 10) return `İsabet oranı yüksek (%${hitRate}) ve dürtü kontrolü güçlü — odaklanma kapasitesi yaş normunun üzerinde görünüyor.`
+      if (faRate > 25) return `Hedefleri iyi tespit ediyor (%${hitRate}) ancak gereksiz tepkileri baskılama (inhibitör kontrol) henüz gelişmekte.`
+      if (hitRate < 60) return `Hedef uyaranlara tepki oranı %${hitRate}; sürekli dikkat egzersizleri odaklanma kapasitesini artırabilir.`
+      if (meanRT && meanRT > 650) return `Doğruluk iyi (%${hitRate}) ancak ortalama tepki hızı ${meanRT}ms — dikkat-motor koordinasyonu desteklenebilir.`
+      if (cv !== null && cv > 0.4) return `Tepki tutarsızlığı dikkat dalgalanmasına işaret ediyor; düzenli, kısa odaklanma pratikleri faydalı olur.`
+      return `Dikkat kontrolü ve tepki tutarlılığı yaş normunda seyrediyor (%${hitRate} isabet, ${meanRT ?? '—'}ms ort. hız).`
+    }
+    case 'gorsel': {
+      const vs = metrics.visualSearch
+      const corsi = metrics.corsi
+      if (!vs || !corsi) return ''
+      const acc = vs.total > 0 ? Math.round(vs.correct / vs.total * 100) : 0
+      if (corsi.maxSpan >= 5 && acc >= 85) return `Görsel-uzamsal bellek güçlü (${corsi.maxSpan} blok) ve arama doğruluğu yüksek (%${acc}) — görsel işleme kapasitesi yaş normunun üzerinde.`
+      if (corsi.maxSpan < 3) return `Uzamsal çalışma belleği kapasitesi düşük (${corsi.maxSpan} blok); hafıza oyunları ve blok-yapı egzersizleri destekleyici olur.`
+      if (acc < 65) return `Görsel ayrım doğruluğu %${acc}; görsel dikkat oyunları ve bulmacalar gelişimi hızlandırabilir.`
+      return `Görsel arama doğruluğu (%${acc}) ve uzamsal bellek kapasitesi (${corsi.maxSpan} blok) yaş normunda seyrediyor.`
+    }
+    case 'isitsel': {
+      const m = metrics.auditory
+      if (!m || m.skipped) return ''
+      const discT = m.discriminationTotal ?? 0
+      const disc  = discT > 0 ? Math.round((m.discriminationCorrect ?? 0) / discT * 100) : null
+      const rhmT  = m.rhythmTotal ?? 0
+      const rhm   = rhmT  > 0 ? Math.round((m.rhythmCorrect  ?? 0) / rhmT  * 100) : null
+      if (disc !== null && disc >= 80 && rhm !== null && rhm >= 80) return `Ses ayrımı (%${disc}) ve ritim algısı (%${rhm}) tutarlı — işitsel işleme kapasitesi sağlıklı gelişim gösteriyor.`
+      if (disc !== null && disc < 60) return `Ses ayrımı %${disc}; fonolojik farkındalık aktiviteleri ve sesli okuma pratikleri destekleyici olur.`
+      if (rhm !== null && rhm < 60) return `Ritim algısı %${rhm}; müzik ve ritim temelli oyunlar hem dil hem de motor gelişime katkı sağlar.`
+      return `İşitsel ayrım ve ritim algısı yaş normunda seyrediyor.`
+    }
+    case 'motor': {
+      const m = metrics.motor
+      if (!m) return ''
+      const valid  = m.simpleRTs.filter(rt => rt > 80 && rt < 3000)
+      const meanRT = valid.length > 0 ? Math.round(avg(valid)) : null
+      const total  = m.targetErrors.length + m.missedTargets
+      const hitR   = total > 0 ? Math.round(m.targetErrors.length / total * 100) : 0
+      const cv     = valid.length > 1 ? rtCV(valid) : null
+      if (meanRT && meanRT < 350 && hitR >= 80) return `Tepki hızı (${meanRT}ms) ve isabet doğruluğu (%${hitR}) güçlü — psikomotor koordinasyon yaş normunun üzerinde.`
+      if (meanRT && meanRT > 600) return `Tepki süresi ${meanRT}ms; ince motor beceri egzersizleri ve hız-koordinasyon oyunları gelişimi destekler.`
+      if (hitR < 60) return `Hedef isabeti %${hitR}; el-göz koordinasyon çalışmaları (top yakalama, çizim vb.) faydalı olur.`
+      if (cv !== null && cv > 0.4) return `Tepki tutarsızlığı yüksek — konsantrasyon gerektiren motor pratikler düzenlilik kazandırır.`
+      return `Psikomotor hız${meanRT ? ` (${meanRT}ms)` : ''} ve koordinasyon yaş normunda seyrediyor.`
+    }
+    case 'sosyalDuygusal': {
+      const m = metrics.emotion
+      if (!m) return ''
+      const eRate = m.emotionTotal > 0 ? Math.round(m.emotionCorrect / m.emotionTotal * 100) : 0
+      const sAvg  = m.surveyAnswers.length > 0 ? avg(m.surveyAnswers) : 3
+      if (eRate >= 80 && sAvg >= 4) return `Yüz ifadesi okuma becerisi güçlü (%${eRate}) ve sosyal uyum yüksek — sosyal-duygusal zeka yaş normunun üzerinde.`
+      if (eRate < 60) return `Duygu tanıma %${eRate}; rol yapma oyunları ve duygusal hikayeler sosyal algıyı güçlendirir.`
+      if (sAvg < 3) return `Sosyal uyum alanında destek faydalı olabilir; grup aktiviteleri ve sosyal beceri çalışmaları önerilir.`
+      return `Duygu tanıma (%${eRate}) ve sosyal uyum becerileri yaş normunda seyrediyor.`
+    }
+    default: return ''
+  }
+}
+
 export function getAreaDetails(area: keyof Scores, metrics: AllMetrics): MetricDetail[] {
   switch (area) {
     case 'dikkat':         return metrics.gonogo       ? getDikkatDetails(metrics.gonogo) : []

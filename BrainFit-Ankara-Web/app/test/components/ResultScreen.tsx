@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import type { Scores, AllMetrics, MetricDetail } from '../lib/scoring'
-import { getBand, AREA_LABELS, AREA_DESC, getAreaDetails } from '../lib/scoring'
+import { getBand, AREA_LABELS, AREA_DESC, getAreaDetails, getAreaInterpretation } from '../lib/scoring'
 import type { AgeGroup } from '../lib/normBands'
 
 interface Props {
@@ -165,6 +165,7 @@ export default function ResultScreen({ scores, ageGroup, allMetrics, onMount }: 
           }
           const band = getBand(score)
           const details = getAreaDetails(area, allMetrics)
+          const interpretation = getAreaInterpretation(area, allMetrics)
           return (
             <div key={area} className="bg-white border border-[#ece6db] rounded-[14px] overflow-hidden">
               {/* Score header */}
@@ -190,8 +191,15 @@ export default function ResultScreen({ scores, ageGroup, allMetrics, onMount }: 
                 </div>
               )}
 
+              {/* Interpretation */}
+              {interpretation && (
+                <div className="px-4 pt-3 pb-1 border-t border-[#ece6db]">
+                  <p className="text-[12px] text-[#4a4a44] leading-relaxed">{interpretation}</p>
+                </div>
+              )}
+
               {/* Science note */}
-              <div className={`px-4 pb-3 ${details.length > 0 ? 'pt-2' : 'pt-0 border-t border-[#ece6db]'}`}>
+              <div className="px-4 pb-3 pt-2">
                 <p className="text-[10px] text-[#bcb8b0] italic leading-relaxed">
                   📖 {AREA_SCIENCE[area]}
                 </p>
