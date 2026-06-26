@@ -37,21 +37,16 @@ export default function CerezPolitikasiPage() {
               <table className="w-full mt-3 text-xs border-collapse">
                 <thead>
                   <tr className="border-b border-[#ece6db]">
-                    <th className="text-left py-1.5 pr-4 text-[#23231f]">Çerez Adı</th>
+                    <th className="text-left py-1.5 pr-4 text-[#23231f]">Çerez Türü</th>
                     <th className="text-left py-1.5 pr-4 text-[#23231f]">Amaç</th>
                     <th className="text-left py-1.5 text-[#23231f]">Süre</th>
                   </tr>
                 </thead>
                 <tbody className="text-[#6c6c68]">
-                  <tr className="border-b border-[#ece6db]">
-                    <td className="py-1.5 pr-4 font-mono">authjs.session-token</td>
-                    <td className="py-1.5 pr-4">Yönetici oturum doğrulama (NextAuth)</td>
-                    <td className="py-1.5">Oturum</td>
-                  </tr>
                   <tr>
-                    <td className="py-1.5 pr-4 font-mono">__Secure-authjs.session-token</td>
-                    <td className="py-1.5 pr-4">Yönetici oturum doğrulama (HTTPS)</td>
-                    <td className="py-1.5">Oturum</td>
+                    <td className="py-1.5 pr-4">Oturum çerezi</td>
+                    <td className="py-1.5 pr-4">Yönetici kimlik doğrulama ve oturum yönetimi</td>
+                    <td className="py-1.5">Tarayıcı kapanınca</td>
                   </tr>
                 </tbody>
               </table>
