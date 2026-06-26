@@ -24,3 +24,6 @@ Thumbs.db
 npm-debug.log*
 
 .vercel
+
+# Local notes — push edilmez
+reminder.md
