@@ -4,7 +4,7 @@ import type { AgeGroup } from '../lib/normBands'
 
 interface Props {
   ageGroup: AgeGroup
-  onSaved: (leadId: string) => void
+  onSaved: (leadId: string, name: string, childName: string) => void
 }
 
 export default function QuickForm({ ageGroup, onSaved }: Props) {
@@ -32,7 +32,7 @@ export default function QuickForm({ ageGroup, onSaved }: Props) {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Kayıt hatası')
-      onSaved(data.id)
+      onSaved(data.id, adSoyad.trim(), cocukAd.trim())
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Bağlantı hatası, tekrar deneyin.')
       setLoading(false)

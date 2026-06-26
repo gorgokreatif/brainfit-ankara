@@ -11,6 +11,10 @@ interface Props {
   ageGroup: AgeGroup
   allMetrics: AllMetrics
   onMount: () => void
+  userName?: string
+  childName?: string
+  phone?: string
+  email?: string
 }
 
 const AREA_ORDER: (keyof Scores)[] = ['dikkat', 'gorsel', 'isitsel', 'motor', 'sosyalDuygusal']
@@ -107,7 +111,7 @@ function MetricRow({ d }: { d: MetricDetail }) {
   )
 }
 
-export default function ResultScreen({ scores, ageGroup, allMetrics, onMount }: Props) {
+export default function ResultScreen({ scores, ageGroup, allMetrics, onMount, userName = '', childName = '', phone = '', email = '' }: Props) {
   useEffect(() => { onMount() }, []) // eslint-disable-line
 
   const bestArea = AREA_ORDER
@@ -232,7 +236,7 @@ export default function ResultScreen({ scores, ageGroup, allMetrics, onMount }: 
       </div>
 
       {/* Appointment */}
-      <AppointmentModal scores={scores} />
+      <AppointmentModal scores={scores} prefillName={userName} prefillChildName={childName} prefillPhone={phone} prefillEmail={email} />
 
       {/* CTA Buttons */}
       <div className="flex flex-col gap-3 pb-6">

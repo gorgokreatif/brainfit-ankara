@@ -23,14 +23,18 @@ interface State {
   taskIndex: number
   allMetrics: AllMetrics
   scores: ReturnType<typeof calculateScores> | null
+  userName: string
+  childName: string
+  phone: string
+  email: string
 }
 
 type Action =
   | { type: 'GO_AGE' }
   | { type: 'SELECT_AGE'; ageGroup: AgeGroup }
-  | { type: 'QUICK_SAVED'; leadId: string }
+  | { type: 'QUICK_SAVED'; leadId: string; userName: string; childName: string }
   | { type: 'TASK_DONE'; key: keyof AllMetrics; metrics: AllMetrics[keyof AllMetrics] }
-  | { type: 'CONTACT_SAVED' }
+  | { type: 'CONTACT_SAVED'; phone: string; email: string }
 
 const TASK_KEYS: (keyof AllMetrics)[] = ['gonogo', 'visualSearch', 'corsi', 'auditory', 'motor', 'emotion']
 const TASK_LABELS = ['Dikkat', 'Görsel', 'Hafıza', 'İşitsel', 'Motor', 'Sosyal']
@@ -42,7 +46,7 @@ function reducer(state: State, action: Action): State {
     case 'SELECT_AGE':
       return { ...state, ageGroup: action.ageGroup, step: 'quick_form' }
     case 'QUICK_SAVED':
-      return { ...state, leadId: action.leadId, step: 'task', taskIndex: 0 }
+      return { ...state, leadId: action.leadId, userName: action.userName, childName: action.childName, step: 'task', taskIndex: 0 }
     case 'TASK_DONE': {
       const newMetrics = { ...state.allMetrics, [action.key]: action.metrics }
       const nextIndex = state.taskIndex + 1
@@ -53,7 +57,7 @@ function reducer(state: State, action: Action): State {
       return { ...state, allMetrics: newMetrics, taskIndex: nextIndex }
     }
     case 'CONTACT_SAVED':
-      return { ...state, step: 'result' }
+      return { ...state, step: 'result', phone: action.phone, email: action.email }
     default:
       return state
   }
@@ -66,6 +70,10 @@ const initialState: State = {
   taskIndex: 0,
   allMetrics: {},
   scores: null,
+  userName: '',
+  childName: '',
+  phone: '',
+  email: '',
 }
 
 function ProgressBar({ taskIndex }: { taskIndex: number }) {
@@ -124,7 +132,7 @@ export default function TestPage() {
         {state.step === 'quick_form' && state.ageGroup && (
           <QuickForm
             ageGroup={state.ageGroup}
-            onSaved={(id) => dispatch({ type: 'QUICK_SAVED', leadId: id })}
+            onSaved={(id, name, childName) => dispatch({ type: 'QUICK_SAVED', leadId: id, userName: name, childName })}
           />
         )}
 
@@ -142,7 +150,7 @@ export default function TestPage() {
         {state.step === 'contact' && state.leadId && (
           <ContactForm
             leadId={state.leadId}
-            onSaved={() => dispatch({ type: 'CONTACT_SAVED' })}
+            onSaved={(phone, email) => dispatch({ type: 'CONTACT_SAVED', phone, email })}
           />
         )}
 
@@ -152,6 +160,10 @@ export default function TestPage() {
             ageGroup={state.ageGroup}
             allMetrics={state.allMetrics}
             onMount={() => patchScores(state.scores!)}
+            userName={state.userName}
+            childName={state.childName}
+            phone={state.phone}
+            email={state.email}
           />
         )}
       </main>

@@ -4,6 +4,10 @@ import type { Scores } from '../lib/scoring'
 
 interface Props {
   scores: Scores
+  prefillName?: string
+  prefillChildName?: string
+  prefillPhone?: string
+  prefillEmail?: string
 }
 
 const TIMES = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00']
@@ -20,16 +24,26 @@ function getNextWeekdays(n: number): string[] {
   return days
 }
 
-export default function AppointmentModal({ scores }: Props) {
+function normalizePhone(raw: string): string {
+  const digits = raw.replace(/[^\d]/g, '')
+  if (digits.length === 12 && digits.startsWith('90')) return `+90${digits.slice(2)}`
+  if (digits.length === 11 && digits.startsWith('0')) return `+90${digits.slice(1)}`
+  if (digits.length === 10 && digits.startsWith('5')) return `+90${digits}`
+  if (raw.startsWith('+') && digits.length === 12 && digits.startsWith('90')) return `+${digits}`
+  return raw
+}
+
+export default function AppointmentModal({ scores, prefillName = '', prefillChildName = '', prefillPhone = '', prefillEmail = '' }: Props) {
   const [open, setOpen] = useState(false)
   const [step, setStep] = useState<'form' | 'done'>('form')
   const [calLink, setCalLink] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
+  const [name, setName] = useState(prefillName)
+  const [email, setEmail] = useState(prefillEmail)
+  const [phone, setPhone] = useState(prefillPhone ? normalizePhone(prefillPhone) : '')
+  const [childName, setChildName] = useState(prefillChildName)
   const [childAge, setChildAge] = useState('')
   const [selectedDate, setSelectedDate] = useState('')
   const [selectedTime, setSelectedTime] = useState('')
@@ -37,9 +51,28 @@ export default function AppointmentModal({ scores }: Props) {
 
   const days = getNextWeekdays(5)
 
+  function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
+    let v = e.target.value.replace(/[^\d+]/g, '')
+    if (!v.startsWith('+90')) {
+      const digits = v.replace(/\D/g, '')
+      if (digits.startsWith('90') && digits.length <= 12) v = `+${digits}`
+      else if (digits.startsWith('0')) v = `+90${digits.slice(1)}`
+      else if (digits.startsWith('5')) v = `+90${digits}`
+      else v = `+90${digits}`
+    }
+    if (v.length > 13) v = v.slice(0, 13)
+    setPhone(v)
+  }
+
+  const phoneOk = phone.length === 13 && phone.startsWith('+905')
+
   async function handleSubmit() {
     if (!name || !email || !selectedDate || !selectedTime) {
       setError('Ad, e-posta, tarih ve saat seçimi zorunludur.')
+      return
+    }
+    if (!phoneOk) {
+      setError('Geçerli bir Türkiye telefon numarası giriniz (05XXXXXXXXX).')
       return
     }
     setError('')
@@ -48,7 +81,7 @@ export default function AppointmentModal({ scores }: Props) {
       const res = await fetch('/api/appointment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, childAge, preferredDate: selectedDate, preferredTime: selectedTime, note, scores, source: 'result-page' }),
+        body: JSON.stringify({ name, email, phone: normalizePhone(phone), childName, childAge, preferredDate: selectedDate, preferredTime: selectedTime, note, scores, source: 'result-page' }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Hata')
@@ -108,7 +141,6 @@ export default function AppointmentModal({ scores }: Props) {
 
   return (
     <div className="bg-white border border-[#ece6db] rounded-[20px] overflow-hidden">
-      {/* Header */}
       <div className="bg-gradient-to-r from-[#51AD32] to-[#3d8f24] px-5 py-4 flex items-center justify-between">
         <div>
           <p className="font-extrabold text-white text-base">Rapor Değerlendirme Randevusu</p>
@@ -118,12 +150,32 @@ export default function AppointmentModal({ scores }: Props) {
       </div>
 
       <div className="p-5 flex flex-col gap-4">
-        {/* İsim + Email */}
+        {/* Veli adı + Çocuğun adı */}
         <div className="grid grid-cols-2 gap-3">
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-[#6c6c68]">Ad Soyad *</label>
+            <label className="text-xs font-semibold text-[#6c6c68]">Adınız Soyadınız *</label>
             <input value={name} onChange={e => setName(e.target.value)} placeholder="Ayşe Yılmaz"
               className="border border-[#ece6db] rounded-[10px] px-3 py-2.5 text-sm text-[#23231f] outline-none focus:border-[#51AD32]" />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xs font-semibold text-[#6c6c68]">Çocuğun Adı</label>
+            <input value={childName} onChange={e => setChildName(e.target.value)} placeholder="Ali"
+              className="border border-[#ece6db] rounded-[10px] px-3 py-2.5 text-sm text-[#23231f] outline-none focus:border-[#51AD32]" />
+          </div>
+        </div>
+
+        {/* Telefon + E-posta */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col gap-1">
+            <label className="text-xs font-semibold text-[#6c6c68]">Telefon *</label>
+            <input
+              value={phone}
+              onChange={handlePhoneChange}
+              placeholder="+905XXXXXXXXX"
+              inputMode="numeric"
+              className={`border rounded-[10px] px-3 py-2.5 text-sm text-[#23231f] outline-none focus:border-[#51AD32] ${phone && !phoneOk ? 'border-[#E84F2D]' : 'border-[#ece6db]'}`}
+            />
+            {phone && !phoneOk && <span className="text-[10px] text-[#E84F2D]">Geçersiz numara</span>}
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold text-[#6c6c68]">E-posta *</label>
@@ -132,21 +184,14 @@ export default function AppointmentModal({ scores }: Props) {
           </div>
         </div>
 
-        {/* Telefon + Yaş */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-[#6c6c68]">Telefon</label>
-            <input value={phone} onChange={e => setPhone(e.target.value)} placeholder="05XX XXX XX XX"
-              className="border border-[#ece6db] rounded-[10px] px-3 py-2.5 text-sm text-[#23231f] outline-none focus:border-[#51AD32]" />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-[#6c6c68]">Çocuğun Yaşı</label>
-            <input value={childAge} onChange={e => setChildAge(e.target.value)} placeholder="ör. 8"
-              className="border border-[#ece6db] rounded-[10px] px-3 py-2.5 text-sm text-[#23231f] outline-none focus:border-[#51AD32]" />
-          </div>
+        {/* Çocuğun yaşı */}
+        <div className="flex flex-col gap-1">
+          <label className="text-xs font-semibold text-[#6c6c68]">Çocuğun Yaşı</label>
+          <input value={childAge} onChange={e => setChildAge(e.target.value)} placeholder="ör. 8"
+            className="border border-[#ece6db] rounded-[10px] px-3 py-2.5 text-sm text-[#23231f] outline-none focus:border-[#51AD32] w-1/2" />
         </div>
 
-        {/* Tarih seçimi */}
+        {/* Tarih */}
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-semibold text-[#6c6c68]">Tercih Ettiğiniz Gün *</label>
           <div className="grid grid-cols-5 gap-1.5">
@@ -159,7 +204,7 @@ export default function AppointmentModal({ scores }: Props) {
           </div>
         </div>
 
-        {/* Saat seçimi */}
+        {/* Saat */}
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-semibold text-[#6c6c68]">Tercih Ettiğiniz Saat *</label>
           <div className="grid grid-cols-6 gap-1.5">

@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { sendAppointmentEmails } from '@/lib/email'
 
+function normalizePhone(raw: string): string {
+  const digits = raw.replace(/[^\d]/g, '')
+  if (digits.length === 12 && digits.startsWith('90')) return `+90${digits.slice(2)}`
+  if (digits.length === 11 && digits.startsWith('0')) return `+90${digits.slice(1)}`
+  if (digits.length === 10 && digits.startsWith('5')) return `+90${digits}`
+  if (raw.startsWith('+') && digits.length === 12 && digits.startsWith('90')) return `+${digits}`
+  return raw
+}
+
 function buildCalendarLink(date: string, time: string, name: string) {
   const [day, month, year] = date.split('.')
   const [hour, min] = time.split(':')
@@ -21,19 +30,31 @@ function buildCalendarLink(date: string, time: string, name: string) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { name, email, phone, childAge, preferredDate, preferredTime, note, scores } = body
+    const { name, email, phone, childName, childAge, preferredDate, preferredTime, note, scores } = body
 
-    if (!name || !email || !preferredDate || !preferredTime) {
-      return NextResponse.json({ error: 'Ad, e-posta, tarih ve saat zorunludur.' }, { status: 400 })
+    if (!name || !email || !phone || !preferredDate || !preferredTime) {
+      return NextResponse.json({ error: 'Ad, e-posta, telefon, tarih ve saat zorunludur.' }, { status: 400 })
     }
 
+    const normalizedPhone = normalizePhone(String(phone))
     const calendarLink = buildCalendarLink(preferredDate, preferredTime, name)
 
     const appointment = await prisma.appointment.create({
-      data: { name, email, phone: phone || '', childAge: childAge || '', preferredDate, preferredTime, note: note || '', scores: scores || null, source: body.source || 'result-page' },
+      data: {
+        name,
+        email,
+        phone: normalizedPhone,
+        childName: childName || '',
+        childAge: childAge || '',
+        preferredDate,
+        preferredTime,
+        note: note || '',
+        scores: scores || null,
+        source: body.source || 'result-page',
+      },
     })
 
-    await sendAppointmentEmails({ name, email, phone, childAge, preferredDate, preferredTime, note, scores, calendarLink }).catch(e => console.error('[appointment email]', e))
+    await sendAppointmentEmails({ name, email, phone: normalizedPhone, childAge, preferredDate, preferredTime, note, scores, calendarLink }).catch(e => console.error('[appointment email]', e))
 
     return NextResponse.json({ ok: true, id: appointment.id, calendarLink })
   } catch (err) {

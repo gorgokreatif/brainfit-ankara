@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 interface Props {
   leadId: string
-  onSaved: () => void
+  onSaved: (phone: string, email: string) => void
 }
 
 export default function ContactForm({ leadId, onSaved }: Props) {
@@ -37,7 +37,7 @@ export default function ContactForm({ leadId, onSaved }: Props) {
         body: JSON.stringify({ contact: true, telefon, email, kvkkOnay: true }),
       })
       if (!res.ok) throw new Error('Güncelleme başarısız.')
-      onSaved()
+      onSaved(telefon, email)
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Bir hata oluştu, tekrar deneyin.')
       setLoading(false)

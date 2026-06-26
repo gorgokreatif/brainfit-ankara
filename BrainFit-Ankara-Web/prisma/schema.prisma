@@ -91,6 +91,7 @@ model Appointment {
   name          String
   email         String
   phone         String   @default("")
+  childName     String   @default("")
   childAge      String   @default("")
   preferredDate String
   preferredTime String
