@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
+import { auth } from '@/lib/auth'
 import { sendTestLeadEmail } from '@/lib/email'
 
 export async function POST(req: NextRequest) {
@@ -7,16 +8,16 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const lead = await prisma.testLead.create({
       data: {
-        veliAdSoyad:    body.veliAdSoyad ?? '',
-        telefon:        body.telefon ?? '',
-        email:          body.email ?? '',
+        veliAdSoyad:    String(body.veliAdSoyad ?? '').slice(0, 200),
+        telefon:        String(body.telefon ?? '').slice(0, 20),
+        email:          String(body.email ?? '').slice(0, 200),
         testKiminIcin:  body.testKiminIcin ?? 'Çocuğum',
-        cocukAd:        body.cocukAd ?? '',
+        cocukAd:        String(body.cocukAd ?? '').slice(0, 200),
         cocukYas:       body.cocukYas ? Number(body.cocukYas) : null,
-        sehir:          body.sehir ?? '',
+        sehir:          String(body.sehir ?? '').slice(0, 100),
         kvkkOnay:       Boolean(body.kvkkOnay),
         veliOnay18Alti: Boolean(body.veliOnay18Alti),
-        ageGroup:       body.ageGroup ?? '',
+        ageGroup:       String(body.ageGroup ?? '').slice(0, 10),
       },
     })
     return NextResponse.json({ id: lead.id })
@@ -34,8 +35,10 @@ export async function PATCH(req: NextRequest) {
 
     const body = await req.json()
 
-    // Admin status toggle
+    // Admin status toggle — auth required
     if (body.adminToggle === true) {
+      const session = await auth()
+      if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
       await prisma.testLead.update({
         where: { id },
         data: { completed: Boolean(body.completed) },
@@ -48,8 +51,8 @@ export async function PATCH(req: NextRequest) {
       await prisma.testLead.update({
         where: { id },
         data: {
-          telefon:  body.telefon ?? '',
-          email:    body.email ?? '',
+          telefon:  String(body.telefon ?? '').slice(0, 20),
+          email:    String(body.email ?? '').slice(0, 200),
           kvkkOnay: Boolean(body.kvkkOnay),
         },
       })
@@ -77,6 +80,9 @@ export async function PATCH(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  const session = await auth()
+  if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
   try {
     const { searchParams } = new URL(req.url)
     const id = searchParams.get('id')

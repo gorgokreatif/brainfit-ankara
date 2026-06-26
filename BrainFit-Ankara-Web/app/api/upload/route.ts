@@ -13,6 +13,12 @@ export async function POST(req: NextRequest) {
     if (!file || !file.name) return NextResponse.json({ error: 'Dosya bulunamadı' }, { status: 400 })
     if (file.size > 10 * 1024 * 1024) return NextResponse.json({ error: 'Dosya boyutu 10 MB sınırını aşıyor' }, { status: 400 })
 
+    const ALLOWED_MIME = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'])
+    const ALLOWED_EXT = /\.(jpe?g|png|webp|gif|svg)$/i
+    if (!ALLOWED_MIME.has(file.type) || !ALLOWED_EXT.test(file.name)) {
+      return NextResponse.json({ error: 'Yalnızca resim dosyaları yüklenebilir (JPEG, PNG, WebP, GIF, SVG).' }, { status: 400 })
+    }
+
     const blob = await put(file.name, file, { access: 'public', addRandomSuffix: true })
 
     await prisma.mediaFile.create({

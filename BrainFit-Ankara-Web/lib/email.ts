@@ -7,7 +7,7 @@ export async function getTransporter() {
   return nodemailer.createTransport({
     host: smtp.host,
     port: smtp.port,
-    secure: false,
+    secure: smtp.port === 465,
     auth: { user: smtp.user, pass: smtp.password },
   })
 }

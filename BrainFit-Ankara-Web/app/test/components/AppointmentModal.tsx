@@ -48,6 +48,7 @@ export default function AppointmentModal({ scores, prefillName = '', prefillChil
   const [selectedDate, setSelectedDate] = useState('')
   const [selectedTime, setSelectedTime] = useState('')
   const [note, setNote] = useState('')
+  const [kvkk, setKvkk] = useState(false)
 
   const days = getNextWeekdays(5)
 
@@ -73,6 +74,10 @@ export default function AppointmentModal({ scores, prefillName = '', prefillChil
     }
     if (!phoneOk) {
       setError('Geçerli bir Türkiye telefon numarası giriniz (05XXXXXXXXX).')
+      return
+    }
+    if (!kvkk) {
+      setError('Devam etmek için KVKK aydınlatma metnini onaylamanız gerekmektedir.')
       return
     }
     setError('')
@@ -224,9 +229,18 @@ export default function AppointmentModal({ scores, prefillName = '', prefillChil
             className="border border-[#ece6db] rounded-[10px] px-3 py-2.5 text-sm text-[#23231f] outline-none focus:border-[#51AD32] resize-none" />
         </div>
 
+        {/* KVKK */}
+        <label className="flex items-start gap-2 cursor-pointer">
+          <input type="checkbox" checked={kvkk} onChange={e => setKvkk(e.target.checked)}
+            className="mt-0.5 accent-[#51AD32] w-4 h-4 flex-shrink-0" />
+          <span className="text-[11px] text-[#6c6c68] leading-relaxed">
+            <a href="/kvkk" target="_blank" rel="noopener noreferrer" className="text-[#51AD32] underline font-semibold">KVKK Aydınlatma Metni</a>{'\''}ni okudum, kişisel verilerimin işlenmesine onay veriyorum.
+          </span>
+        </label>
+
         {error && <p className="text-xs text-[#E84F2D] font-semibold">{error}</p>}
 
-        <button onClick={handleSubmit} disabled={loading}
+        <button onClick={handleSubmit} disabled={loading || !kvkk}
           className="w-full bg-[#51AD32] text-white font-bold py-3.5 rounded-[14px] text-sm active:scale-[0.98] transition-transform disabled:opacity-60">
           {loading ? 'Gönderiliyor...' : 'Randevu Talebini Gönder →'}
         </button>
