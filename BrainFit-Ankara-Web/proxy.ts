@@ -2,22 +2,25 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function proxy(req: NextRequest) {
-  const isAdminPath = req.nextUrl.pathname.startsWith('/admin')
-  const isLoginPath = req.nextUrl.pathname === '/admin/login'
+  const { pathname } = req.nextUrl
+  const isAdminRoute = pathname.startsWith('/admin') || pathname.startsWith('/api/admin')
+  const isLoginPage = pathname === '/admin/login'
 
-  if (isAdminPath && !isLoginPath) {
-    // NextAuth v5 stores session in these cookies
+  if (isAdminRoute && !isLoginPage) {
     const sessionToken =
       req.cookies.get('authjs.session-token')?.value ||
       req.cookies.get('__Secure-authjs.session-token')?.value
 
     if (!sessionToken) {
-      return NextResponse.redirect(new URL('/admin/login', req.url))
+      const loginUrl = new URL('/admin/login', req.url)
+      loginUrl.searchParams.set('callbackUrl', req.url)
+      return NextResponse.redirect(loginUrl)
     }
   }
+
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/api/admin/:path*'],
 }
