@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Scores } from '../lib/scoring'
 
 interface Props {
@@ -39,6 +39,7 @@ export default function AppointmentModal({ scores, prefillName = '', prefillChil
   const [calLink, setCalLink] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [bookedSlots, setBookedSlots] = useState<Set<string>>(new Set())
 
   const [name, setName] = useState(prefillName)
   const [email, setEmail] = useState(prefillEmail)
@@ -51,6 +52,14 @@ export default function AppointmentModal({ scores, prefillName = '', prefillChil
   const [kvkk, setKvkk] = useState(false)
 
   const days = getNextWeekdays(5)
+
+  useEffect(() => {
+    if (!open) return
+    fetch('/api/public/slots')
+      .then(r => r.json())
+      .then(d => setBookedSlots(new Set(d.booked ?? [])))
+      .catch(() => {})
+  }, [open])
 
   function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
     let v = e.target.value.replace(/[^\d+]/g, '')
@@ -201,7 +210,7 @@ export default function AppointmentModal({ scores, prefillName = '', prefillChil
           <label className="text-xs font-semibold text-[#6c6c68]">Tercih Ettiğiniz Gün *</label>
           <div className="grid grid-cols-5 gap-1.5">
             {days.map(d => (
-              <button key={d} onClick={() => setSelectedDate(d)}
+              <button key={d} onClick={() => { setSelectedDate(d); setSelectedTime('') }}
                 className={`py-2 rounded-[10px] text-xs font-bold border transition-colors ${selectedDate === d ? 'bg-[#51AD32] text-white border-[#51AD32]' : 'bg-white text-[#23231f] border-[#ece6db] hover:border-[#51AD32]'}`}>
                 {d.slice(0, 5)}
               </button>
@@ -213,12 +222,26 @@ export default function AppointmentModal({ scores, prefillName = '', prefillChil
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-semibold text-[#6c6c68]">Tercih Ettiğiniz Saat *</label>
           <div className="grid grid-cols-6 gap-1.5">
-            {TIMES.map(t => (
-              <button key={t} onClick={() => setSelectedTime(t)}
-                className={`py-2 rounded-[10px] text-xs font-bold border transition-colors ${selectedTime === t ? 'bg-[#51AD32] text-white border-[#51AD32]' : 'bg-white text-[#23231f] border-[#ece6db] hover:border-[#51AD32]'}`}>
-                {t}
-              </button>
-            ))}
+            {TIMES.map(t => {
+              const isBooked = selectedDate ? bookedSlots.has(`${selectedDate}|${t}`) : false
+              return (
+                <button
+                  key={t}
+                  onClick={() => !isBooked && setSelectedTime(t)}
+                  disabled={isBooked}
+                  title={isBooked ? 'Bu saat dolu' : undefined}
+                  className={`py-2 rounded-[10px] text-xs font-bold border transition-colors
+                    ${isBooked
+                      ? 'bg-[#f4f2ee] text-[#c4bfb5] border-[#e8e5df] cursor-not-allowed line-through'
+                      : selectedTime === t
+                        ? 'bg-[#51AD32] text-white border-[#51AD32]'
+                        : 'bg-white text-[#23231f] border-[#ece6db] hover:border-[#51AD32]'
+                    }`}
+                >
+                  {t}
+                </button>
+              )
+            })}
           </div>
         </div>
 
