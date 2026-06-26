@@ -64,9 +64,9 @@ export default async function Footer() {
         <div className="max-w-[1280px] mx-auto px-6 py-5 flex justify-between gap-4 flex-wrap text-xs text-[#86826f]">
           <span>© 2026 BrainFit Ankara. Tüm hakları saklıdır.</span>
           <div className="flex gap-5">
-            <span>KVKK</span>
-            <span>Gizlilik Politikası</span>
-            <span>Çerez Politikası</span>
+            <Link href="/kvkk" className="hover:text-[#cfcabf] transition-colors">KVKK</Link>
+            <Link href="/gizlilik-politikasi" className="hover:text-[#cfcabf] transition-colors">Gizlilik Politikası</Link>
+            <Link href="/cerez-politikasi" className="hover:text-[#cfcabf] transition-colors">Çerez Politikası</Link>
           </div>
         </div>
       </div>

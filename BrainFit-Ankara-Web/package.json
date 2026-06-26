@@ -15,7 +15,9 @@
   "private": true,
   "dependencies": {
     "@prisma/client": "5.22.0",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.4.1",
+    "@vercel/speed-insights": "^2.0.0",
     "bcryptjs": "^3.0.3",
     "next": "^16.2.9",
     "next-auth": "^5.0.0-beta.31",
